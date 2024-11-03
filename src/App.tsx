@@ -288,7 +288,7 @@ function App() {
 		<ThemeProvider>
 			<div className="mx-auto bg-slate-300 dark:bg-slate-900 min-h-[100dvh]">
 				<Navigation socialMedia={data.socialMedia} />
-				<Card className="w-full min-h-dvh max-w-6xl mx-auto rounded-none pt-20 sm:px-10">
+				<Card className="w-full min-h-dvh max-w-6xl mx-auto rounded-none pt-20 sm:px-12">
 					<CardHeader className="flex flex-col">
 						<PersonalInfo content={data.personal} />
 						<Contact content={data.contact} />
@@ -297,8 +297,9 @@ function App() {
 						<Skills skills={data.skills} />
 						<Projects content={data.projects} />
 					</CardContent>
-					<CardFooter className="flex justify-center space-x-4">
+					<CardFooter className="flex flex-col gap-5 mb-10">
 						<SocialMedia content={data.socialMedia} />
+						Developed with ❤️ by Luis Rivas
 					</CardFooter>
 				</Card>
 			</div>
