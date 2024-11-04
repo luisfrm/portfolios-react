@@ -14,6 +14,7 @@ import Projects from "./components/Projects/Projects";
 import { mock, mock_en } from "@/lib/mockdata";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import WorkExperienceAccordion from "./components/WorkExperienceAccordion/WorkExperienceAccordion";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 					<CardContent className="flex flex-col gap-10">
 						<Skills skills={data.skills} />
 						<Projects content={data.projects} />
+						<WorkExperienceAccordion workExperiences={data.workExperiences} />
 					</CardContent>
 					<CardFooter className="flex flex-col gap-5 my-10">
 						<SocialMedia content={data.socialMedia} />

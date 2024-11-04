@@ -10,7 +10,7 @@ import Logo from "@/components/Logo";
 const navItems = [
 	{ name: "About", href: "about" },
 	{ name: "Projects", href: "projects" },
-	{ name: "Contact", href: "contact" },
+	{ name: "Experience", href: "experience" },
 ];
 
 interface Props {

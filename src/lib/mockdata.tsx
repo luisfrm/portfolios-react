@@ -272,23 +272,23 @@ export const mock = {
 		{
 			company: "Overfuel",
 			position: "Full-Stack Developer",
-			period: "May 2023 — September 2024",
-			description: "Focused on design and implementation of new innovator features using React.js and Vue.js. Handled bug fixing and client requests using Node.js and Express within a microservices architecture.",
-			skills: ["React.js", "Vue.js", "Node.js", "Express.js", "Microservices"]
+			period: "Mayo 2023 — Septiembre 2024",
+			description: "Enfoque en el diseño e implementación de funcionalidades innovadoras utilizando React y Vue. Análisis y corrección de errores en el software usando GitHub y Jira. Desarrollo de backend con Node.js y Express en arquitectura de microservicios. Manejo de peticiones de clientes usando Scrum y Google Tag Manager.",
+			skills: ["React", "Vue", "Node.js", "Express", "GitHub", "Jira", "Scrum", "Google Tag Manager", "Microservicios"]
 		},
 		{
 			company: "321ignition",
-			position: "Front-End Developer Leadership",
-			period: "May 2020 — May 2023",
-			description: "Led front-end development teams, oversaw support activities, and handled back-end requests. Implemented APIs and optimized front-end UI to improve UX/UI.",
-			skills: ["React.js", "Next.js", "API Development", "Team Leadership"]
+			position: "Front-End Lead Developer",
+			period: "Mayo 2020 — Mayo 2023",
+			description: "Liderazgo de equipos de desarrolladores front-end y manejo de solicitudes back-end. Supervisión y coordinación del equipo de soporte. Desarrollo de arquitectura front-end para mejorar escalabilidad y rendimiento. Implementación de APIs para integrar aplicaciones front-end con microservicios. Optimización de UX/UI y migración de aplicaciones de React.js a Next.js.",
+			skills: ["React.js", "Next.js", "Node.js", "Express", "API Development", "UX/UI", "Liderazgo de equipo", "Microservicios"]
 		},
 		{
 			company: "Fira onLive",
 			position: "Front End Developer",
-			period: "May 2019 — March 2020",
-			description: "Created logic for new React components, developed a streaming player, and implemented chat functionality using various libraries.",
-			skills: ["React.js", "Redux", "Streaming Technologies", "GetStream.io"]
+			period: "Mayo 2019 — Marzo 2020",
+			description: "Creación de lógica para nuevos componentes de React y consumo de servicios API Rest. Diseño de sistemas para visualización de productos. Desarrollo de un Sistema de Gestión de Contenidos (CMS). Implementación de un reproductor de streaming con React.js, Redux y Red5 Pro SDK. Creación de un chat usando GetStream.io y desarrollo de una librería JavaScript para el reproductor de Streaming.",
+			skills: ["React.js", "Redux", "API Rest", "CMS", "Streaming", "Red5 Pro", "GetStream.io", "JavaScript"]
 		}
 	]
 };
@@ -560,4 +560,27 @@ export const mock_en = {
 			liveUrl: "https://t.me/virtualvegasbot",
 		},
 	],
+	workExperiences: [
+		{
+			company: "Overfuel",
+			position: "Full-Stack Developer",
+			period: "May 2023 — September 2024",
+			description: "Focused on design and implementation of new innovator features using React.js and Vue.js. Handled bug fixing and client requests using Node.js and Express within a microservices architecture.",
+			skills: ["React.js", "Vue.js", "Node.js", "Express.js", "Microservices"]
+		},
+		{
+			company: "321ignition",
+			position: "Front-End Developer Leadership",
+			period: "May 2020 — May 2023",
+			description: "Led front-end development teams, oversaw support activities, and handled back-end requests. Implemented APIs and optimized front-end UI to improve UX/UI.",
+			skills: ["React.js", "Next.js", "API Development", "Team Leadership"]
+		},
+		{
+			company: "Fira onLive",
+			position: "Front End Developer",
+			period: "May 2019 — March 2020",
+			description: "Created logic for new React components, developed a streaming player, and implemented chat functionality using various libraries.",
+			skills: ["React.js", "Redux", "Streaming Technologies", "GetStream.io"]
+		}
+	]
 };
