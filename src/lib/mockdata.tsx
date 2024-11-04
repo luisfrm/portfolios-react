@@ -4,9 +4,9 @@ import { Github, Linkedin } from "lucide-react";
 export const data = {
 	personal: {
 		title: "About me",
-		name: "Luis Rivas",
+		name: "¡Hola! Soy Luis Rivas👋",
 		role: "Full Stack Web Developer",
-		about: `Hello, I'm Luis Rivas, a Full Stack Developer from Venezuela. I work with many web technologies like React.js, Next.js, Vue.js, and Node.js. I'm good at making new features and fixing hard problems in websites and apps. I know how to work with different types of databases too. I like to work in teams and I'm always learning new things. In my job, I help make websites better and faster. I also work well with clients and help them get what they need. I'm excited about new technologies and always try to bring new ideas to my work. I enjoy leading teams and making sure we do good work together.`,
+		about: `Soy un Ingeniero informatico, autodidacta ubicado en Venezuela. Con +4 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
 	},
 	skills: [
 		{

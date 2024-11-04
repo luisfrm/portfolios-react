@@ -5,11 +5,12 @@ import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
+import Logo from "@/components/Logo";
 
 const navItems = [
-	{ name: "About", href: "#" },
-	{ name: "Projects", href: "#" },
-	{ name: "Contact", href: "#" },
+	{ name: "About", href: "about" },
+	{ name: "Projects", href: "projects" },
+	{ name: "Contact", href: "contact" },
 ];
 
 interface Props {
@@ -24,10 +25,8 @@ const Navigation = ({ socialMedia }: Props) => {
 		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-slate-800 top-0">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
 				<div className="flex justify-between">
-					<div id="nav_logo" className="flex-shrink-0 flex items-center">
-						<span className="text-xl font-bold text-gray-800 dark:text-white">
-							Luis Rivas
-						</span>
+					<div id="nav_logo" className="flex-shrink-0">
+						<Logo className="text-black dark:text-white h-8 w-8 md:h-14 md:w-14" />
 					</div>
 					<div id="nav_listElement" className="hidden sm:flex ml-5 gap-6">
 						{navItems &&

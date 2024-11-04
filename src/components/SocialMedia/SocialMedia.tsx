@@ -10,7 +10,7 @@ interface Props {
 
 const SocialMedia = ({ content }: Props) => {
 	return (
-		<div className="flex justify-center space-x-4">
+		<div id="social" className="flex justify-center space-x-4">
 			{content.length > 0 &&
 				content.map((item, index) => {
 					return (

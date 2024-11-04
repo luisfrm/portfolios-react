@@ -19,7 +19,7 @@ function App() {
 		<ThemeProvider>
 			<div className="mx-auto bg-slate-300 dark:bg-slate-900 min-h-[100dvh]">
 				<Navigation socialMedia={data.socialMedia} />
-				<Card className="w-full min-h-dvh max-w-6xl mx-auto rounded-none pt-20 sm:px-12">
+				<Card className="w-full min-h-dvh max-w-6xl mx-auto rounded-none pt-24 sm:px-12">
 					<CardHeader className="flex flex-col">
 						<PersonalInfo content={data.personal} />
 						<Contact content={data.contact} />

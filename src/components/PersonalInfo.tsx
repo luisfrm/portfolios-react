@@ -14,7 +14,7 @@ export default function PersonalInfo({ content }: Props) {
 	const { name, role, about, title } = content;
 	return (
 		<>
-			<div className="flex flex-col items-center space-y-4">
+			<div id="about" className="flex flex-col items-center space-y-4">
 				{/* <Avatar className="w-32 h-32">
 					<AvatarImage src="/placeholder-avatar.jpg" alt="Tu Nombre" />
 					<AvatarFallback>LR</AvatarFallback>
