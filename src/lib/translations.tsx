@@ -6,7 +6,7 @@ export const es = {
 		title: "Acerca de mi",
 		name: "¡Hola! Soy Luis Rivas👋",
 		role: "Full Stack Web Developer",
-		about: `Soy un Ingeniero informatico, autodidacta ubicado en Venezuela. Con +4 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
+		about: `Soy un Ingeniero informatico, autodidacta ubicado en Latinoamérica. Con +4 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
 	},
 	skills: {
 		title: "Habilidades",
@@ -416,7 +416,7 @@ export const en = {
 		title: "About me",
 		name: "Hello! I'm Luis Rivas👋",
 		role: "Full Stack Web Developer",
-		about: `I am a Computer Engineer, self-taught and based in Venezuela. With over 4 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. I am always excited to take on new challenges in the ever-evolving world of technology.`,
+		about: `I am a Computer Engineer, self-taught and based in Latin America. With over 4 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. I am always excited to take on new challenges in the ever-evolving world of technology.`,
 	},
 	skills: {
 		title: "Skills",
