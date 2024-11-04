@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/context/useTheme";
-import PersonalInfo from "@/components/PersonalInfo";
+import PersonalInfo from "@/components/PersonalInfo/PersonalInfo";
 import {
 	Card,
 	CardContent,
@@ -7,14 +7,14 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import Navigation from "@/components/Navigation/Navigation";
-import Skills from "./components/Skills";
-import Contact from "./components/Contact";
+import Skills from "@/components/Skills/Skills";
+import Contact from "./components/Contact/Contact";
 import SocialMedia from "./components/SocialMedia/SocialMedia";
 import Projects from "./components/Projects/Projects";
 import { mock, mock_en } from "@/lib/mockdata";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import WorkExperienceAccordion from "./components/WorkExperienceAccordion/WorkExperienceAccordion";
+import WorkExperienceAccordion from "@/components/WorkExperienceAccordion/WorkExperienceAccordion";
 
 
 function App() {

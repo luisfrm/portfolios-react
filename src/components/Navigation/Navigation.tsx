@@ -1,11 +1,11 @@
 import { Menu } from "lucide-react";
 import NavItem from "./NavItem";
-import { ThemeToggle } from "../ThemeToggle";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
-import Logo from "@/components/Logo";
+import Logo from "@/components/Logo/Logo";
 
 const navItems = [
 	{ name: "About", href: "about" },
