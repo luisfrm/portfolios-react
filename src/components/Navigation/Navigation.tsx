@@ -7,12 +7,6 @@ import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
 import Logo from "@/components/Logo/Logo";
 
-const navItems = [
-	{ name: "About", href: "about" },
-	{ name: "Projects", href: "projects" },
-	{ name: "Experience", href: "experience" },
-];
-
 interface Props {
 	socialMedia: {
 		url: string;
@@ -20,9 +14,13 @@ interface Props {
 	}[];
 	changeLanguage: () => void;
 	language: string;
+	navItems: {
+		name: string;
+		href: string;
+	}[];
 }
 
-const Navigation = ({ socialMedia, changeLanguage, language }: Props) => {
+const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) => {
 	return (
 		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-slate-800 top-0">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
