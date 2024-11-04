@@ -26,11 +26,8 @@ const ProjectItem = ({ project }: Props) => {
 		project;
 	return (
 		<Card className="border rounded shadow-md">
-			<CardHeader>
+			<CardHeader className="flex flex-col gap-5">
 				<CardTitle className="text-lg font-semibold">{title}</CardTitle>
-				<CardDescription>{description}</CardDescription>
-			</CardHeader>
-			<CardContent className="flex flex-col justify-center items-center gap-5">
 				{imageUrl && (
 					<div>
 						<img
@@ -40,6 +37,9 @@ const ProjectItem = ({ project }: Props) => {
 						/>
 					</div>
 				)}
+				<CardDescription>{description}</CardDescription>
+			</CardHeader>
+			<CardContent>
 				<div className="flex flex-wrap gap-2 mt-2">
 					{technologies.map((tech, index) => (
 						<Badge key={index} variant="secondary">

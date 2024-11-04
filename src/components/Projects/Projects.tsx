@@ -17,7 +17,7 @@ const Projects = ({ content }: Props) => {
 			{content.length > 0 && (
 				<div id="projects" className="space-y-2">
 					<h3 className="text-xl font-semibold">Projects</h3>
-					<div className="grid grid-col md:grid-cols-3 gap-x-5 gap-y-8">
+					<div className="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
 						{content.map((project, index) => (
 							<ProjectItem key={index} project={project} />
 						))}
