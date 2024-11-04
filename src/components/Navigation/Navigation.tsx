@@ -1,15 +1,16 @@
 import { Menu } from "lucide-react";
 import NavItem from "./NavItem";
-import { ThemeToggle } from "../ThemeToggle";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
+import Logo from "@/components/Logo/Logo";
 
 const navItems = [
-	{ name: "About", href: "#" },
-	{ name: "Projects", href: "#" },
-	{ name: "Contact", href: "#" },
+	{ name: "About", href: "about" },
+	{ name: "Projects", href: "projects" },
+	{ name: "Experience", href: "experience" },
 ];
 
 interface Props {
@@ -17,17 +18,17 @@ interface Props {
 		url: string;
 		icon: React.ReactNode;
 	}[];
+	changeLanguage: () => void;
+	language: string;
 }
 
-const Navigation = ({ socialMedia }: Props) => {
+const Navigation = ({ socialMedia, changeLanguage, language }: Props) => {
 	return (
 		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-slate-800 top-0">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
 				<div className="flex justify-between">
-					<div id="nav_logo" className="flex-shrink-0 flex items-center">
-						<span className="text-xl font-bold text-gray-800 dark:text-white">
-							Luis Rivas
-						</span>
+					<div id="nav_logo" className="flex-shrink-0">
+						<Logo className="text-black dark:text-white h-8 w-8 md:h-14 md:w-14" />
 					</div>
 					<div id="nav_listElement" className="hidden sm:flex ml-5 gap-6">
 						{navItems &&
@@ -42,10 +43,20 @@ const Navigation = ({ socialMedia }: Props) => {
 						id="nav_actions"
 						className="hidden sm:flex sm:items-center gap-2"
 					>
+						{changeLanguage && (
+							<Button variant="outline" size="icon" onClick={changeLanguage}>
+								{language === "en" ? "ES" : "EN"}
+							</Button>
+						)}
 						{socialMedia &&
 							socialMedia.length > 0 &&
 							socialMedia.map((item, index) => (
-								<SocialItem key={index} icon={item.icon} url={item.url} size="icon" />
+								<SocialItem
+									key={index}
+									icon={item.icon}
+									url={item.url}
+									size="icon"
+								/>
 							))}
 						<ThemeToggle />
 					</div>
@@ -66,10 +77,16 @@ const Navigation = ({ socialMedia }: Props) => {
 												{item.name}
 											</NavItemMobile>
 										))}
-									<div
-										id="nav_actions_mobile"
-										className="flex gap-2"
-									>
+									<div id="nav_actions_mobile" className="flex gap-2">
+										{changeLanguage && (
+											<Button
+												variant="outline"
+												size="icon"
+												onClick={changeLanguage}
+											>
+												{language === "en" ? "ES" : "EN"}
+											</Button>
+										)}
 										<ThemeToggle />
 										{socialMedia &&
 											socialMedia.length > 0 &&

@@ -1,4 +1,4 @@
-import { Badge } from "./ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
 	skills: {
@@ -10,14 +10,14 @@ interface Props {
 
 const Skills = ({ skills }: Props) => {
 	return (
-		<div className="space-y-2">
+		<div id="skills" className="space-y-2">
 			<h3 className="text-xl font-semibold">Habilidades</h3>
 			<div className="flex flex-wrap gap-2">
 				{skills &&
 					skills.length > 0 &&
 					skills.map((skill, index) => (
-						<a href={skill.url} target="_blank">
-							<Badge variant="secondary" key={index}>{skill.icon} {skill.name}</Badge>
+						<a key={index} href={skill.url} target="_blank">
+							<Badge className="hover:opacity-60" variant="secondary" >{skill.icon} {skill.name}</Badge>
 						</a>
 					))}
 			</div>
