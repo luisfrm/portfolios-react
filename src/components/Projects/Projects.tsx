@@ -1,24 +1,30 @@
 import ProjectItem from "./ProjectItem";
 
+interface Project {
+	title: string;
+	description: string;
+	imageUrl?: string;
+	technologies: string[];
+	githubUrl?: string;
+	liveUrl?: string;
+}
+
 interface Props {
 	content: {
 		title: string;
-		description: string;
-		imageUrl?: string;
-		technologies: string[];
-		githubUrl?: string;
-		liveUrl?: string;
-	}[];
+		projectList: Project[];
+	};
 }
 
 const Projects = ({ content }: Props) => {
+	const { title, projectList } = content;
 	return (
 		<>
-			{content.length > 0 && (
+			{projectList.length > 0 && (
 				<div id="projects" className="space-y-2">
-					<h3 className="text-xl font-semibold">Projects</h3>
+					<h3 className="text-xl font-semibold">{title}</h3>
 					<div className="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
-						{content.map((project, index) => (
+						{projectList.map((project, index) => (
 							<ProjectItem key={index} project={project} />
 						))}
 					</div>
