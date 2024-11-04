@@ -211,7 +211,7 @@ export const es = {
 	contact: {
 		email: "luisfrm_@outlook.com",
 		phone: "+58 4124722407",
-		city: "Maracaibo, Venezuela",
+		city: "Latinoamérica",
 	},
 	navItems: [
 		{ name: "Sobre mi", href: "about" },
@@ -621,7 +621,7 @@ export const en = {
 	contact: {
 		email: "luisfrm_@outlook.com",
 		phone: "+58 4124722407",
-		city: "Maracaibo, Venezuela",
+		city: "Latin America",
 	},
 	navItems: [
 		{ name: "About", href: "about" },
