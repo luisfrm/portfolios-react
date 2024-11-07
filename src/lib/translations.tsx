@@ -1,4 +1,4 @@
-import { fishers_import, overfuel, remote360, gym_manager, virtualvegas } from "@/assets";
+import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 
 export const es = {
@@ -314,7 +314,6 @@ export const es = {
 					"Kubernetes",
 					"RESTful",
 				],
-				githubUrl: "https://github.com",
 				liveUrl: "https://overfuel.com/",
 			},
 			{
@@ -334,6 +333,24 @@ export const es = {
 					"RESTful",
 				],
 				liveUrl: "https://www.fishersimports.com/",
+			},
+			{
+				title: "5Star Auto",
+				description:
+					"El sitio web de 5Star Auto, desarrollado por 321Ignition, empresa adquirida por Overfuel, destaca por un diseño elegante basado en el tipo de diseño web Mobile first. Ofrece una presentación muy bonita del inventario y todas sus paginas con un gran optimizacion, velocidad de rendimiento, búsqueda intuitiva y opciones de financiamiento. 321Ignition fue adquirida por Overfuel LLC y 5StarAuto dejo de formar parte de la cartera de clientes de Overfuel LLC.",
+				imageUrl: starauto,
+				technologies: [
+					"Vue.js",
+					"Bootstrap CSS",
+					"Node.js",
+					"MongoDB",
+					"Google Tag Manager",
+					"Google Analytics",
+					"GCP / GCloud",
+					"Docker",
+					"Kubernetes",
+					"RESTful",
+				],
 			},
 			{
 				title: "Virtual Vegas",
@@ -380,7 +397,7 @@ export const es = {
 				description:
 					"Liderazgo de equipos de desarrolladores front-end y manejo de solicitudes back-end. Supervisión y coordinación del equipo de soporte. Desarrollo de arquitectura front-end para mejorar escalabilidad y rendimiento. Implementación de APIs para integrar aplicaciones front-end con microservicios. Optimización de UX/UI y migración de aplicaciones de React.js a Next.js.",
 				skills: [
-					"React.js",
+					"Vue.js",
 					"Next.js",
 					"Node.js",
 					"Express",
@@ -388,6 +405,13 @@ export const es = {
 					"UX/UI",
 					"Liderazgo de equipo",
 					"Microservicios",
+					"Google Tag Manager",
+					"Google Analytics",
+					"Scrum",
+					"Docker",
+					"Kubernetes",
+					"CI/CD",
+					"GPC / GCloud",
 				],
 			},
 			{
@@ -398,13 +422,15 @@ export const es = {
 					"Creación de lógica para nuevos componentes de React y consumo de servicios API Rest. Diseño de sistemas para visualización de productos. Desarrollo de un Sistema de Gestión de Contenidos (CMS). Implementación de un reproductor de streaming con React.js, Redux y Red5 Pro SDK. Creación de un chat usando GetStream.io y desarrollo de una librería JavaScript para el reproductor de Streaming.",
 				skills: [
 					"React.js",
+					"TypeScript",
 					"Redux",
 					"API Rest",
 					"CMS",
-					"Streaming",
+					"Live Streaming",
 					"Red5 Pro",
 					"GetStream.io",
-					"JavaScript",
+					"WebSockets",
+					"MS Azure",
 				],
 			},
 		],
