@@ -23,7 +23,7 @@ const Projects = ({ content }: Props) => {
 			{projectList.length > 0 && (
 				<div id="projects" className="space-y-2">
 					<h3 className="text-xl font-semibold">{title}</h3>
-					<div className="grid grid-col md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
+					<div className="columns-1 md:columns-2 lg:columns-3 space-y-4">
 						{projectList.map((project, index) => (
 							<ProjectItem key={index} project={project} />
 						))}
