@@ -1,7 +1,8 @@
 import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
+import { Data } from "./types";
 
-export const es = {
+export const es: Data = {
 	personal: {
 		title: "Acerca de mi",
 		name: "¡Hola! Soy Luis Rivas👋",
@@ -266,7 +267,7 @@ export const es = {
 					"CI/CD",
 					"Mongoose",
 					"RESTful API",
-					"zod",
+					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
 			},
@@ -294,7 +295,7 @@ export const es = {
 					"CI/CD",
 					"Mongoose",
 					"RESTful API",
-					"zod",
+					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/remote-360",
 			},
@@ -367,6 +368,40 @@ export const es = {
 				githubUrl: "https://github.com/luisfrm/virtualvegas",
 				liveUrl: "https://t.me/virtualvegasbot",
 			},
+			{
+				title: "Portafolio",
+				description:
+					"Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto. Es una forma de mostrar mi trabajo y experiencia a empleadores y colegas.",
+				technologies: [
+					"React",
+					"Tailwind CSS",
+					"TypeScript",
+					"useContext",
+					"Vite",
+					"Shadcn-ui",
+					"Netlify"
+				],
+				githubUrl: "https://github.com/luisfrm/portfolios-react",
+				liveUrl: "https://luisrivas-portfolios.netlify.app",
+			},
+
+			{
+				title: "Task Manager",
+				description:
+					"Task Manager es una aplicación web monorepo que permite a los usuarios crear, editar y eliminar tareas. Usa tecnología moderna para manejar tareas, usuarios y autenticación. Permite a los usuarios crear cuentas, iniciar sesión y gestionar tareas de forma segura. Es una forma de organizar y planificar tareas de forma eficiente.",
+				technologies: [
+					"React",
+					"Tailwind CSS",
+					"Javascript",
+					"Node.js",
+					"Express.js",
+					"Mongoose",
+					"MongoDB",
+					"JWT",
+					"Zod"
+				],
+				githubUrl: "https://github.com/luisfrm/task-manager",
+			}
 		],
 	},
 	workExperiences: {
@@ -376,10 +411,14 @@ export const es = {
 				company: "Overfuel",
 				position: "Full-Stack Developer",
 				period: "Mayo 2023 — Septiembre 2024",
-				description:
-					"Enfoque en el diseño e implementación de funcionalidades innovadoras utilizando React y Vue. Análisis y corrección de errores en el software usando GitHub y Jira. Desarrollo de backend con Node.js y Express en arquitectura de microservicios. Manejo de peticiones de clientes usando Scrum y Google Tag Manager.",
+				description: [
+					"Diseñé e implemente funcionalidades innovadoras utilizando Next.js y Vue para mejorar la interacción del usuario.",
+					"Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo.",
+					"Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB.",
+					"Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para optimizar la recopilación de datos y su análisis. Utilizando React.js y Node.js para la elaboracion de nuevos features, formularios y cualquier petición solicitada por los clientes.",
+				],
 				skills: [
-					"React",
+					"Next.js",
 					"Vue",
 					"Node.js",
 					"Express",
@@ -388,14 +427,25 @@ export const es = {
 					"Scrum",
 					"Google Tag Manager",
 					"Microservicios",
+					"API Rest",
+					"Google Analytics",
+					"Docker",
+					"Kubernetes",
+					"CI/CD",
+					"AWS",
 				],
 			},
 			{
 				company: "321ignition",
 				position: "Front-End Lead Developer",
 				period: "Mayo 2020 — Mayo 2023",
-				description:
-					"Liderazgo de equipos de desarrolladores front-end y manejo de solicitudes back-end. Supervisión y coordinación del equipo de soporte. Desarrollo de arquitectura front-end para mejorar escalabilidad y rendimiento. Implementación de APIs para integrar aplicaciones front-end con microservicios. Optimización de UX/UI y migración de aplicaciones de React.js a Next.js.",
+				description: [
+					"Desarrollé una arquitectura Front-end en colaboracion con el equipo que mejoró la escalabilidad y el rendimiento del sitio web.",
+					"Desarrollé e implementade APIRest para integrar la aplicación Front-end con microservicios de fondo.",
+					"Optimicé la interfaz de usuario de Front-end para mejorar UX/UI.",
+					"Colaboré en la migración de varias aplicaciones Front-end de Vue.js a Next.js.",
+					"Atendi y resolvi peticiones de clientes para elaboración de nuevos features."
+				],
 				skills: [
 					"Vue.js",
 					"Next.js",
@@ -418,8 +468,11 @@ export const es = {
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "Mayo 2019 — Marzo 2020",
-				description:
-					"Creación de lógica para nuevos componentes de React y consumo de servicios API Rest. Diseño de sistemas para visualización de productos. Desarrollo de un Sistema de Gestión de Contenidos (CMS). Implementación de un reproductor de streaming con React.js, Redux y Red5 Pro SDK. Creación de un chat usando GetStream.io y desarrollo de una librería JavaScript para el reproductor de Streaming.",
+				description: [
+					"Desarrolle un reproductor de streaming utilizando React.js junto a Redux como biblioteca de gestión de estados globales y Red5 Pro como SDK.",
+					"Implemente un chat en React.js utilizando la libreria de GetStream.io para la gestión de mensajes en tiempo real.",
+					"Cree una librería en Javascript para la implementación del reproductor de Streaming para el uso de clientes."
+				],
 				skills: [
 					"React.js",
 					"TypeScript",
@@ -437,7 +490,7 @@ export const es = {
 	},
 };
 
-export const en = {
+export const en: Data = {
 	personal: {
 		title: "About me",
 		name: "Hello! I'm Luis Rivas👋",
@@ -702,7 +755,7 @@ export const en = {
 					"CI/CD",
 					"Mongoose",
 					"RESTful API",
-					"zod",
+					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
 			},
@@ -730,7 +783,7 @@ export const en = {
 					"CI/CD",
 					"Mongoose",
 					"RESTful API",
-					"zod",
+					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/remote-360",
 			},
@@ -786,6 +839,39 @@ export const en = {
 				githubUrl: "https://github.com/luisfrm/virtualvegas",
 				liveUrl: "https://t.me/virtualvegasbot",
 			},
+			{
+				title: "Portfolio",
+				description:
+					"My portfolio is a web application that showcases my projects and skills. It uses modern technology to present information clearly and attractively. It displays featured projects, skills, and contact information, providing a platform to showcase my work and experience to employers and peers.",
+				technologies: [
+					"React",
+					"Tailwind CSS",
+					"TypeScript",
+					"useContext",
+					"Vite",
+					"Shadcn-ui",
+					"Netlify"
+				],
+				githubUrl: "https://github.com/luisfrm/portfolios-react",
+				liveUrl: "https://luisrivas-portfolios.netlify.app",
+			},
+			{
+				title: "Task Manager",
+				description:
+					"Task Manager is a web application for managing tasks and projects. It offers a user-friendly interface for creating, assigning, and tracking tasks. The application uses modern technology to ensure seamless task management, featuring real-time updates, task prioritization, and detailed reporting.",
+				technologies: [
+					"React",
+					"Tailwind CSS",
+					"Javascript",
+					"Node.js",
+					"Express.js",
+					"Mongoose",
+					"MongoDB",
+					"JWT",
+					"Zod"
+				],
+				githubUrl: "https://github.com/luisfrm/task-manager",
+			}
 		],
 	},
 	workExperiences: {
@@ -796,30 +882,67 @@ export const en = {
 				position: "Full-Stack Developer",
 				period: "May 2023 — September 2024",
 				description:
-					"Focused on design and implementation of new innovator features using React.js and Vue.js. Handled bug fixing and client requests using Node.js and Express within a microservices architecture.",
-				skills: [
-					"React.js",
-					"Vue.js",
-					"Node.js",
-					"Express.js",
-					"Microservices",
-				],
+					["Focused on design and implementation of new innovator features using React.js and Vue.js. Handled bug fixing and client requests using Node.js and Express within a microservices architecture."],
+					skills: [
+						"Next.js",
+						"Vue",
+						"Node.js",
+						"Express",
+						"GitHub",
+						"Jira",
+						"Scrum",
+						"Google Tag Manager",
+						"Microservicios",
+						"API Rest",
+						"Google Analytics",
+						"Docker",
+						"Kubernetes",
+						"CI/CD",
+						"AWS",
+					],
 			},
 			{
 				company: "321ignition",
 				position: "Front-End Developer Leadership",
 				period: "May 2020 — May 2023",
 				description:
-					"Led front-end development teams, oversaw support activities, and handled back-end requests. Implemented APIs and optimized front-end UI to improve UX/UI.",
-				skills: ["React.js", "Next.js", "API Development", "Team Leadership"],
+					["Led front-end development teams, oversaw support activities, and handled back-end requests. Implemented APIs and optimized front-end UI to improve UX/UI."],
+				skills: [
+					"Vue.js",
+					"Next.js",
+					"Node.js",
+					"Express",
+					"API Development",
+					"UX/UI",
+					"Team Leadership",
+					"Microservices",
+					"Google Tag Manager",
+					"Google Analytics",
+					"Scrum",
+					"Docker",
+					"Kubernetes",
+					"CI/CD",
+					"GPC / GCloud",
+				],
 			},
 			{
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "May 2019 — March 2020",
 				description:
-					"Created logic for new React components, developed a streaming player, and implemented chat functionality using various libraries.",
-				skills: ["React.js", "Redux", "Streaming Technologies", "GetStream.io"],
+					["Created logic for new React components, developed a streaming player, and implemented chat functionality using various libraries."],
+					skills: [
+						"React.js",
+						"TypeScript",
+						"Redux",
+						"API Rest",
+						"CMS",
+						"Live Streaming",
+						"Red5 Pro",
+						"GetStream.io",
+						"WebSockets",
+						"MS Azure",
+					],
 			},
 		],
 	},
