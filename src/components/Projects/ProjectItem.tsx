@@ -25,7 +25,7 @@ const ProjectItem = ({ project }: Props) => {
 	const { title, description, imageUrl, technologies, githubUrl, liveUrl } =
 		project;
 	return (
-		<Card className="border rounded shadow-md">
+		<Card className="border rounded shadow-md break-inside-avoid">
 			<CardHeader className="flex flex-col gap-5">
 				<CardTitle className="text-lg font-semibold">{title}</CardTitle>
 				{imageUrl && (
@@ -51,7 +51,7 @@ const ProjectItem = ({ project }: Props) => {
 			<CardFooter className="flex justify-between">
 				{githubUrl && (
 					<Button variant="outline" size="sm" asChild>
-						<a href={githubUrl} target="_blank" rel="noopener noreferrer">
+						<a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Github Project redirect">
 							<Github className="mr-2 h-4 w-4" />
 							GitHub
 						</a>
@@ -59,7 +59,7 @@ const ProjectItem = ({ project }: Props) => {
 				)}
 				{liveUrl && (
 					<Button variant="outline" size="sm" asChild>
-						<a href={liveUrl} target="_blank" rel="noopener noreferrer">
+						<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live site project redirect">
 							<ExternalLink className="mr-2 h-4 w-4" />
 							Live Site
 						</a>

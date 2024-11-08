@@ -20,7 +20,7 @@ const Skills = ({ skills }: Props) => {
 				{skillsList &&
 					skillsList.length > 0 &&
 					skillsList.map((skill, index) => (
-						<a key={index} href={skill.url} target="_blank">
+						<a key={index} href={skill.url} target="_blank" aria-label={`${skill.name} redirect.`}>
 							<Badge className="hover:opacity-60" variant="secondary" >{skill.icon} {skill.name}</Badge>
 						</a>
 					))}

@@ -5,7 +5,7 @@ interface WorkExperience {
   position: string;
   company: string;
   period: string;
-  description: string;
+  description: string[];
   skills: string[];
 }
 
@@ -33,7 +33,16 @@ export default function WorkExperienceAccordion({workExperiences}: Props) {
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className="space-y-4">
-							<p className="">{experience.description}</p>
+							{experience.description.length > 0 &&
+								(
+									<ul className="list-disc list-inside">
+										{experience.description.map((desc, descIndex) => (
+											<li key={descIndex}>
+												{desc}
+											</li>
+										))}
+									</ul>
+								)}
 							<div className="flex flex-wrap gap-2">
 								{experience.skills.map((skill, skillIndex) => (
 									<Badge key={skillIndex} variant="secondary">

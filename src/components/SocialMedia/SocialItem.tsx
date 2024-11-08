@@ -10,7 +10,7 @@ interface Props {
 const SocialItem = ({ icon, name, url, size="default" }: Props) => {
 	return (
 		<>
-			<a href={url} target="_blank">
+			<a href={url} target="_blank" aria-label={`${name} social`}>
 				<Button variant="outline" size={size}>
 					{icon}
 					{name && ` ${name}`}
