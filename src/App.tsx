@@ -11,7 +11,7 @@ import Skills from "@/components/Skills/Skills";
 import Contact from "./components/Contact/Contact";
 import SocialMedia from "./components/SocialMedia/SocialMedia";
 import Projects from "./components/Projects/Projects";
-import { es, en } from "@/lib/translations";
+import { es, en } from "@/translations";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import WorkExperienceAccordion from "@/components/WorkExperienceAccordion/WorkExperienceAccordion";
