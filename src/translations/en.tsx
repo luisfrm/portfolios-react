@@ -396,7 +396,7 @@ export const en: Data = {
 			{
 				company: "Overfuel / 321ignition",
 				position: "Full-Stack Developer",
-				period: "May 2023 — September 2024",
+				period: "May 2023 — Present",
 				description: [
 					"Created new Frontend applications using Next.js, ensuring compatibility with the existing backend and CMS.",
 					"Attended and resolved client requests for the development of new features and bug fixes, ensuring the stability and performance of the both platform (Vue and Next.js), using the Scrum methodology to manage and prioritize tasks..",
