@@ -1,7 +1,7 @@
 {
   "name": "portfolios-react",
   "private": true,
-  "version": "1.0.1w",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
