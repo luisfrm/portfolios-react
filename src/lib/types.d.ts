@@ -12,6 +12,8 @@ export interface Contact {
 	email: string;
 	phone: string;
 	city: string;
+	download: string;
+
 }
 
 export interface NavItem {
@@ -66,6 +68,6 @@ export interface WorkExperiencesList {
 	company: string;
 	position: string;
 	period: string;
-	description: string[];
+	description: string;
 	skills: string[];
 }

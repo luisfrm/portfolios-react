@@ -213,11 +213,12 @@ export const es: Data = {
 		email: "luisfrm_@outlook.com",
 		phone: "+58 4124722407",
 		city: "Latinoamérica",
+		download: "Descargar CV",
 	},
 	navItems: [
-		{ name: "Sobre mi", href: "about" },
-		{ name: "Proyectos", href: "projects" },
 		{ name: "Experiencia", href: "experience" },
+		{ name: "Proyectos", href: "projects" },
+		{ name: "Sobre mi", href: "about" },
 	],
 	socialMedia: [
 		{
@@ -358,13 +359,7 @@ export const es: Data = {
 				description:
 					"VirtualVegas es un bot de Python que simula juegos de casino. Permite a los usuarios jugar juegos como blackjack y ruleta sin usar dinero real. El bot usa librerías de Python para crear los juegos, manejar las apuestas virtuales y mostrar los resultados. Es una forma divertida y segura de experimentar la emoción del casino desde casa.",
 				imageUrl: virtualvegas,
-				technologies: [
-					"Python3",
-					"Django",
-					"Python-telegram-bot",
-					"Docker",
-					"RESTful",
-				],
+				technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
 				githubUrl: "https://github.com/luisfrm/virtualvegas",
 				liveUrl: "https://t.me/virtualvegasbot",
 			},
@@ -372,15 +367,7 @@ export const es: Data = {
 				title: "Portafolio",
 				description:
 					"Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto. Es una forma de mostrar mi trabajo y experiencia a empleadores y colegas.",
-				technologies: [
-					"React",
-					"Tailwind CSS",
-					"TypeScript",
-					"useContext",
-					"Vite",
-					"Shadcn-ui",
-					"Netlify"
-				],
+				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
 				githubUrl: "https://github.com/luisfrm/portfolios-react",
 				liveUrl: "https://luisrivas-portfolios.netlify.app",
 			},
@@ -398,10 +385,10 @@ export const es: Data = {
 					"Mongoose",
 					"MongoDB",
 					"JWT",
-					"Zod"
+					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/task-manager",
-			}
+			},
 		],
 	},
 	workExperiences: {
@@ -411,12 +398,8 @@ export const es: Data = {
 				company: "Overfuel / 321ignition",
 				position: "Desarrollador Full-Stack",
 				period: "Mayo 2023 — Presente",
-				description: [
-					"Diseñé e implemente funcionalidades innovadoras utilizando Next.js y Vue para mejorar la interacción del usuario.",
-					"Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo.",
-					"Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB.",
-					"Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para optimizar la recopilación de datos y su análisis. Utilizando React.js y Node.js para la elaboracion de nuevos features, formularios y cualquier petición solicitada por los clientes.",
-				],
+				description:
+					"Diseñé e implemente funcionalidades innovadoras utilizando Next.js y Vue para mejorar la interacción del usuario.Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo.Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB.Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para optimizar la recopilación de datos y su análisis. Utilizando React.js y Node.js para la elaboracion de nuevos features, formularios y cualquier petición solicitada por los clientes.",
 				skills: [
 					"Next.js",
 					"Vue",
@@ -443,13 +426,7 @@ export const es: Data = {
 				company: "321ignition",
 				position: "Desarrollador Lead Front-End",
 				period: "Mayo 2020 — Mayo 2023",
-				description: [
-					"Desarrollé una arquitectura Front-end en colaboracion con el equipo que mejoró la escalabilidad y el rendimiento del sitio web.",
-					"Desarrollé e implementade APIRest para integrar la aplicación Front-end con microservicios de fondo.",
-					"Optimicé la interfaz de usuario de Front-end para mejorar UX/UI.",
-					"Colaboré en la migración de varias aplicaciones Front-end de Vue.js a Next.js.",
-					"Atendi y resolvi peticiones de clientes para elaboración de nuevos features."
-				],
+				description: "Desarrollé una arquitectura Front-end en colaboración con el equipo que mejoró la escalabilidad y el rendimiento del sitio web. Desarrollé e implementé APIs REST para integrar la aplicación Front-end con microservicios de backend. Optimicé la interfaz de usuario del Front-end para mejorar la experiencia de usuario (UX/UI). Colaboré en la migración de varias aplicaciones Front-end de Vue.js a Next.js. Atendí y resolví peticiones de clientes para la elaboración de nuevas funcionalidades.",
 				skills: [
 					"Vue.js",
 					"Next.js",
@@ -477,11 +454,7 @@ export const es: Data = {
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "Mayo 2019 — Marzo 2020",
-				description: [
-					"Desarrolle un reproductor de streaming utilizando React.js junto a Redux como biblioteca de gestión de estados globales y Red5 Pro como SDK.",
-					"Implemente un chat en React.js utilizando la libreria de GetStream.io para la gestión de mensajes en tiempo real.",
-					"Cree una librería en Javascript para la implementación del reproductor de Streaming para el uso de clientes."
-				],
+				description: "Desarrollé un reproductor de streaming utilizando React.js junto con Redux para la gestión de estados globales y Red5 Pro como SDK. Implementé un chat en React.js utilizando la librería de GetStream.io para la gestión de mensajes en tiempo real. Creé una librería en JavaScript para la implementación del reproductor de streaming para el uso de clientes.",
 				skills: [
 					"React.js",
 					"Redux",
