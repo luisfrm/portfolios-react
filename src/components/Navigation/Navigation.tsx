@@ -21,8 +21,14 @@ interface Props {
 }
 
 const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) => {
+
+	const goToPdf = () => {
+		const pdfURL = "https://drive.google.com/file/d/1t5MZ2PJZBJcREpQsmFFIOxVSnKuxKodF/view?usp=sharing"
+		window.open(pdfURL, "_blank")
+	}
+
 	return (
-		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-slate-800 top-0">
+		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-blue-950 top-0 border-b border-b-[#ffffff77]">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
 				<div className="flex justify-between">
 					<div id="nav_logo" className="flex-shrink-0">
@@ -39,10 +45,11 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 								</NavItem>
 							))}
 					</div>
-					<div
-						id="nav_actions"
-						className="hidden sm:flex sm:items-center gap-2"
-					>
+					{/* Desktop buttons */}
+					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
+						<Button variant="outline" onClick={goToPdf}>
+							Download CV
+						</Button>
 						{changeLanguage && (
 							<Button variant="outline" size="icon" onClick={changeLanguage}>
 								{language === "en" ? "ES" : "EN"}
@@ -50,14 +57,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 						)}
 						{socialMedia &&
 							socialMedia.length > 0 &&
-							socialMedia.map((item, index) => (
-								<SocialItem
-									key={index}
-									icon={item.icon}
-									url={item.url}
-									size="icon"
-								/>
-							))}
+							socialMedia.map((item, index) => <SocialItem key={index} icon={item.icon} url={item.url} size="icon" />)}
 						<ThemeToggle />
 					</div>
 					<div id="nav_actions" className="sm:hidden">
@@ -77,27 +77,25 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 												{item.name}
 											</NavItemMobile>
 										))}
-									<div id="nav_actions_mobile" className="flex gap-2">
-										{changeLanguage && (
-											<Button
-												variant="outline"
-												size="icon"
-												onClick={changeLanguage}
-											>
-												{language === "en" ? "ES" : "EN"}
+									<div id="nav_actions_mobile" className="flex flex-col gap-3">
+										<section className="flex gap-3">
+											{changeLanguage && (
+												<Button variant="outline" size="icon" onClick={changeLanguage}>
+													{language === "en" ? "ES" : "EN"}
+												</Button>
+											)}
+											<ThemeToggle />
+											{socialMedia &&
+												socialMedia.length > 0 &&
+												socialMedia.map((item, index) => (
+													<SocialItem key={index} icon={item.icon} url={item.url} size="icon" />
+												))}
+										</section>
+										<section>
+											<Button className="flex-1 w-100" variant="outline" onClick={goToPdf}>
+												Download CV
 											</Button>
-										)}
-										<ThemeToggle />
-										{socialMedia &&
-											socialMedia.length > 0 &&
-											socialMedia.map((item, index) => (
-												<SocialItem
-													key={index}
-													icon={item.icon}
-													url={item.url}
-													size="icon"
-												/>
-											))}
+										</section>
 									</div>
 								</nav>
 							</SheetContent>
