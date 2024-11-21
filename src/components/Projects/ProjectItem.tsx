@@ -37,7 +37,7 @@ const ProjectItem = ({ project }: Props) => {
 						/>
 					</div>
 				)}
-				<CardDescription>{description}</CardDescription>
+				<CardDescription className="dark:text-gray-100">{description}</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<div className="flex flex-wrap gap-2 mt-2">

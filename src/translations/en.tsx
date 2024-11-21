@@ -213,11 +213,12 @@ export const en: Data = {
 		email: "luisfrm_@outlook.com",
 		phone: "+58 4124722407",
 		city: "Latin America",
+		download: "Download CV",
 	},
 	navItems: [
-		{ name: "About", href: "about" },
-		{ name: "Projects", href: "projects" },
 		{ name: "Experience", href: "experience" },
+		{ name: "Projects", href: "projects" },
+		{ name: "About", href: "about" },
 	],
 	socialMedia: [
 		{
@@ -397,11 +398,7 @@ export const en: Data = {
 				company: "Overfuel / 321ignition",
 				position: "Full-Stack Developer",
 				period: "May 2023 — Present",
-				description: [
-					"Created new Frontend applications using Next.js, ensuring compatibility with the existing backend and CMS.",
-					"Attended and resolved client requests for the development of new features and bug fixes, ensuring the stability and performance of the both platform (Vue and Next.js), using the Scrum methodology to manage and prioritize tasks..",
-					"Maintaince and development of new features for the old existing platform, ensuring the stability and performance of the platform.",
-				],
+				description: "As a full-stack developer, I implemented innovative features using Next.js, Vue, and React.js to enhance user experience. I worked on analyzing and fixing bugs using tools like GitHub and Jira. I contributed to back-end development with Node.js and Express in a microservices architecture, using MongoDB as the database. I effectively managed client requests using the Scrum methodology and utilized Google Tag Manager to optimize data collection and analysis. My approach encompassed both front-end and back-end development, ensuring the delivery of scalable and maintainable solutions.",
 				skills: [
 					"Next.js",
 					"Vue",
@@ -428,13 +425,7 @@ export const en: Data = {
 				company: "321ignition",
 				position: "Front-End Developer Leadership",
 				period: "May 2020 — May 2023",
-				description: [
-					"Developed a Front-end architecture in collaboration with the team that improved the scalability and performance of the website.",
-					"Developed and implemented APIs to integrate the Front-end application with back-end micro-services.",
-					"Optimized the Front-end UI to improve UX/UI.",
-					"Assist in migrating several Front-end applications from Vue.js to Next.js.",
-					"Attended and resolved client requests for the development of new features.",
-				],
+				description: "Developed a Front-end architecture in collaboration with the team that improved the scalability and performance of the website. Developed and implemented REST APIs to integrate the Front-end application with backend microservices. Optimized the Front-end user interface to enhance UX/UI. Collaborated on migrating several Front-end applications from Vue.js to Next.js. Attended to and resolved client requests for the development of new features.",
 				skills: [
 					"Vue.js",
 					"Next.js",
@@ -462,12 +453,7 @@ export const en: Data = {
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "May 2019 — March 2020",
-				description: [
-					"Developed a streaming player using React.js alongside Redux as a global state management library and Red5 Pro as an SDK for live streaming.",
-					"Implement a chat in React.js using the GetStream.io library.",
-					"Create a Javascript library for implementing the Streaming player for client use.",
-					"designed logical systems to visualize products, improving user experience and decision-making. I also provided valuable assistance in the creation and development of a Content Management System (CMS), facilitating content organization and publishing workflows.",
-				],
+				description: "Eeveloped a streaming player using React.js along with Redux for global state management and Red5 Pro as the SDK. Implemented a chat feature in React.js using the GetStream.io library for real-time message management. Created a JavaScript library for implementing the streaming player for client use.",
 				skills: [
 					"React.js",
 					"Redux",

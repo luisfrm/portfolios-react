@@ -20,7 +20,7 @@ export default function WorkExperience({ workExperiences }: Props) {
 	const { workExperiencesList, title } = workExperiences;
 	
 	return (
-		<div id="experience" className="mx-auto max-w-3xl space-y-6">
+		<div id="experience" className="mx-auto max-w-4xl space-y-6">
 			<h2 className="text-3xl font-semibold text-center">{title}</h2>
 			<div className="relative">
 				{/* Timeline line */}
@@ -42,22 +42,12 @@ export default function WorkExperience({ workExperiences }: Props) {
 								</h3>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								{experience.description.length > 0 && (
-									<ul className="list-disc list-inside">
-										{experience.description.map((desc, descIndex) => (
-											<li className="text-gray-700 dark:text-gray-300" key={descIndex}>
-												{desc}
-											</li>
-										))}
-									</ul>
-								)}
+								<p className="text-gray-700 dark:text-gray-100">
+									{experience.description}
+								</p>
 								<div className="flex flex-wrap gap-2">
 									{experience.skills.map(tech => (
-										<Badge
-											key={tech}
-											variant="secondary"
-											className="bg-gray-200 dark:bg-gray-800/50 text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-800"
-										>
+										<Badge key={index} variant="secondary">
 											{tech}
 										</Badge>
 									))}
