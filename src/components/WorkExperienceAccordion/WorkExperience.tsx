@@ -5,7 +5,7 @@ interface WorkExperience {
   position: string;
   company: string;
   period: string;
-  description: string[];
+  description: string;
   skills: string[];
 }
 
