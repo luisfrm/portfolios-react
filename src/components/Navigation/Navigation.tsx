@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
 import Logo from "@/components/Logo/Logo";
+import { goToPdf } from "@/lib/utils";
 
 interface Props {
 	socialMedia: {
@@ -21,11 +22,6 @@ interface Props {
 }
 
 const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) => {
-
-	const goToPdf = () => {
-		const pdfURL = "https://drive.google.com/file/d/1t5MZ2PJZBJcREpQsmFFIOxVSnKuxKodF/view?usp=sharing"
-		window.open(pdfURL, "_blank")
-	}
 
 	return (
 		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-blue-950 top-0 border-b border-b-[#ffffff77]">
@@ -47,8 +43,8 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 					</div>
 					{/* Desktop buttons */}
 					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
-						<Button variant="outline" onClick={goToPdf}>
-							Download CV
+						<Button variant="outline" size="sm" onClick={goToPdf}>
+							CV
 						</Button>
 						{changeLanguage && (
 							<Button variant="outline" size="icon" onClick={changeLanguage}>
