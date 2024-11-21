@@ -4,7 +4,6 @@ import {
 	Card,
 	CardContent,
 	CardFooter,
-	CardHeader,
 } from "@/components/ui/card";
 import Navigation from "@/components/Navigation/Navigation";
 import Skills from "@/components/Skills/Skills";
@@ -14,7 +13,7 @@ import Projects from "./components/Projects/Projects";
 import { es, en } from "@/translations";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import WorkExperienceAccordion from "@/components/WorkExperienceAccordion/WorkExperienceAccordion";
+import WorkExperience from "@/components/WorkExperienceAccordion/WorkExperience";
 
 
 function App() {
@@ -28,19 +27,26 @@ function App() {
 
 	return (
 		<ThemeProvider>
-			<div className="mx-auto bg-slate-300 dark:bg-slate-900 min-h-[100dvh]">
-				<Navigation navItems={data.navItems} changeLanguage={changeLanguage} language={lang} socialMedia={data.socialMedia} />
-				<Card className="w-full min-h-dvh max-w-6xl mx-auto rounded-none pt-24 sm:px-12">
-					<CardHeader className="flex flex-col">
-						<PersonalInfo content={data.personal} />
-						<Contact content={data.contact} />
-					</CardHeader>
-					<CardContent className="flex flex-col gap-10">
-						<Skills skills={data.skills} />
+			{/* <div className="mx-auto bg-slate-300 dark:bg-slate-900 min-h-[100dvh]"> */}
+			<div className="flex flex-col gap-16 mx-auto min-h-dvh bg-gradient-to-b from-slate-100 to-slate-300 dark:from-[#060436] dark:to-[#0f1236]">
+				<Navigation
+					navItems={data.navItems}
+					changeLanguage={changeLanguage}
+					language={lang}
+					socialMedia={data.socialMedia}
+				/>
+				<Card className="w-full max-w-6xl mx-auto rounded-none sm:px-12 bg-transparent border-0 shadow-none py-36">
+					<CardContent className="flex flex-col gap-16">
+						<section className="flex flex-col gap-4">
+							<PersonalInfo content={data.personal} />
+							<Contact content={data.contact} />
+						</section>
+						<WorkExperience workExperiences={data.workExperiences} />
 						<Projects content={data.projects} />
-						<WorkExperienceAccordion workExperiences={data.workExperiences} />
 					</CardContent>
-					<CardFooter className="flex flex-col gap-5 my-10">
+
+					<CardFooter className="flex flex-col gap-5">
+						<Skills skills={data.skills} />
 						<SocialMedia content={data.socialMedia} />
 						Developed with ❤️ by Luis Rivas
 					</CardFooter>

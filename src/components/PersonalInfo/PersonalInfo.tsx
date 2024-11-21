@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function PersonalInfo({ content }: Props) {
-	const { name, role, about, title } = content;
+	const { name, role, about } = content;
 	return (
 		<>
 			<div id="about" className="flex flex-col items-center space-y-4">
@@ -20,11 +20,11 @@ export default function PersonalInfo({ content }: Props) {
 					<AvatarFallback>LR</AvatarFallback>
 				</Avatar> */}
 				<div className="text-center">
-					<CardTitle className="text-3xl font-bold">{name}</CardTitle>
+					<CardTitle className="text-3xl font-semibold">{name}</CardTitle>
 					<CardDescription className="text-xl">{role}</CardDescription>
 				</div>
 				<div className="space-y-2">
-					<h3 className="text-xl font-semibold">{title}</h3>
+					{/* <h2 className="text-2xl font-semibold">{title}</h2> */}
 					<p>{about}</p>
 				</div>
 			</div>
