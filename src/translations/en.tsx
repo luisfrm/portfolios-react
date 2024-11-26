@@ -1,4 +1,5 @@
-import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
+// import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
+import { fishers_import, overfuel, remote360, starauto } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
 
@@ -235,43 +236,43 @@ export const en: Data = {
 	projects: {
 		title: "Projects",
 		projectList: [
-			{
-				title: "Gym Manager Frontend",
-				description:
-					"Gym Manager's frontend is a React-based web application for gym management. It features a user-friendly interface for member registration, class scheduling, and performance tracking. The responsive design ensures seamless access across devices, enhancing the gym experience for both staff and members.",
-				imageUrl: gym_manager,
-				technologies: [
-					"Vite",
-					"React",
-					"Tailwind CSS",
-					"Shadcn-ui",
-					"TypeScript",
-					"Redux Toolkit",
-					"Redux Toolkit Query",
-				],
-				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-				liveUrl: "https://gym-manager-frontend.netlify.app/",
-			},
-			{
-				title: "Gym Manager Backend",
-				description:
-					"The Gym Manager backend, built with Node.js and Express, powers the gym management system. It handles user authentication, membership management, and class scheduling. The API integrates with a MongoDB database, ensuring efficient data storage and retrieval for smooth gym operations.",
-				technologies: [
-					"Node.js",
-					"Express.js",
-					"MongoDB",
-					"JWT",
-					"TypeScript",
-					"Jest",
-					"Docker",
-					"Kubernetes",
-					"CI/CD",
-					"Mongoose",
-					"RESTful API",
-					"Zod",
-				],
-				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-			},
+			// {
+			// 	title: "Gym Manager Frontend",
+			// 	description:
+			// 		"Gym Manager's frontend is a React-based web application for gym management. It features a user-friendly interface for member registration, class scheduling, and performance tracking. The responsive design ensures seamless access across devices, enhancing the gym experience for both staff and members.",
+			// 	imageUrl: gym_manager,
+			// 	technologies: [
+			// 		"Vite",
+			// 		"React",
+			// 		"Tailwind CSS",
+			// 		"Shadcn-ui",
+			// 		"TypeScript",
+			// 		"Redux Toolkit",
+			// 		"Redux Toolkit Query",
+			// 	],
+			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
+			// 	liveUrl: "https://gym-manager-frontend.netlify.app/",
+			// },
+			// {
+			// 	title: "Gym Manager Backend",
+			// 	description:
+			// 		"The Gym Manager backend, built with Node.js and Express, powers the gym management system. It handles user authentication, membership management, and class scheduling. The API integrates with a MongoDB database, ensuring efficient data storage and retrieval for smooth gym operations.",
+			// 	technologies: [
+			// 		"Node.js",
+			// 		"Express.js",
+			// 		"MongoDB",
+			// 		"JWT",
+			// 		"TypeScript",
+			// 		"Jest",
+			// 		"Docker",
+			// 		"Kubernetes",
+			// 		"CI/CD",
+			// 		"Mongoose",
+			// 		"RESTful API",
+			// 		"Zod",
+			// 	],
+			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
+			// },
 			{
 				title: "Remote 360",
 				description:
@@ -299,6 +300,7 @@ export const en: Data = {
 					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/remote-360",
+				liveUrl: "https://remote360.netlify.app/login",
 			},
 			{
 				title: "Overfuel LLC",
@@ -316,7 +318,6 @@ export const en: Data = {
 					"Kubernetes",
 					"RESTful",
 				],
-				githubUrl: "https://github.com",
 				liveUrl: "https://overfuel.com/",
 			},
 			{
@@ -340,7 +341,7 @@ export const en: Data = {
 			{
 				title: "5Star Auto",
 				description:
-					"5Star Auto is a car dealership website developed by Overfuel. It offers a user-friendly interface, advanced search functionality, and secure payment processing. The platform's responsive design and intuitive navigation ensure a seamless user experience, driving sales and customer satisfaction.",
+					"5Star Auto is a car dealership website developed by 321Ignition, acquired by Overfuel. It offers a user-friendly interface, advanced search functionality, and secure payment processing. The platform's responsive design and intuitive navigation ensure a seamless user experience, driving sales and customer satisfaction. When Overfuek acquired 321Ignition, 5Star Auto stop being part of the dealerships portfolios of Overfuel.",
 				imageUrl: starauto,
 				technologies: [
 					"Vue.js",
@@ -355,15 +356,15 @@ export const en: Data = {
 					"RESTful",
 				],
 			},
-			{
-				title: "Virtual Vegas",
-				description:
-					"VirtualVegas is an immersive online casino platform developed using React and Node.js. It offers a range of popular casino games, secure payment processing, and real-time multiplayer functionality. The platform's sleek design and robust backend ensure an authentic Vegas-style gaming experience from anywhere.",
-				imageUrl: virtualvegas,
-				technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
-				githubUrl: "https://github.com/luisfrm/virtualvegas",
-				liveUrl: "https://t.me/virtualvegasbot",
-			},
+			// {
+			// 	title: "Virtual Vegas",
+			// 	description:
+			// 		"VirtualVegas is an immersive online casino platform developed using React and Node.js. It offers a range of popular casino games, secure payment processing, and real-time multiplayer functionality. The platform's sleek design and robust backend ensure an authentic Vegas-style gaming experience from anywhere.",
+			// 	imageUrl: virtualvegas,
+			// 	technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
+			// 	githubUrl: "https://github.com/luisfrm/virtualvegas",
+			// 	liveUrl: "https://t.me/virtualvegasbot",
+			// },
 			{
 				title: "Portfolio",
 				description:
@@ -371,6 +372,15 @@ export const en: Data = {
 				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
 				githubUrl: "https://github.com/luisfrm/portfolios-react",
 				liveUrl: "https://luisrivas-portfolios.netlify.app",
+			},
+			{
+				title: "God's Good BarberShop",
+				description:
+					"God's Good BarberShop is a web application for a local barbershop in Venezuela. It displays contact information, services, and a Hero Section. The project is built with Next.js and features a responsive design for seamless access on all devices.",
+				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
+				imageUrl: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
+				liveUrl: "https://god-is-good-barbershop.vercel.app",
 			},
 			{
 				title: "Task Manager",
@@ -398,7 +408,8 @@ export const en: Data = {
 				company: "Overfuel / 321ignition",
 				position: "Full-Stack Developer",
 				period: "May 2023 — Present",
-				description: "As a full-stack developer, I implemented innovative features using Next.js, Vue, and React.js to enhance user experience. I worked on analyzing and fixing bugs using tools like GitHub and Jira. I contributed to back-end development with Node.js and Express in a microservices architecture, using MongoDB as the database. I effectively managed client requests using the Scrum methodology and utilized Google Tag Manager to optimize data collection and analysis. My approach encompassed both front-end and back-end development, ensuring the delivery of scalable and maintainable solutions.",
+				description:
+					"As a full-stack developer, I implemented innovative features using Next.js, Vue, and React.js to enhance user experience. I worked on analyzing and fixing bugs using tools like GitHub and Jira. I contributed to back-end development with Node.js and Express in a microservices architecture, using MongoDB as the database. I effectively managed client requests using the Scrum methodology and utilized Google Tag Manager to optimize data collection and analysis. My approach encompassed both front-end and back-end development, ensuring the delivery of scalable and maintainable solutions.",
 				skills: [
 					"Next.js",
 					"Vue",
@@ -425,7 +436,8 @@ export const en: Data = {
 				company: "321ignition",
 				position: "Front-End Developer Leadership",
 				period: "May 2020 — May 2023",
-				description: "Developed a Front-end architecture in collaboration with the team that improved the scalability and performance of the website. Developed and implemented REST APIs to integrate the Front-end application with backend microservices. Optimized the Front-end user interface to enhance UX/UI. Collaborated on migrating several Front-end applications from Vue.js to Next.js. Attended to and resolved client requests for the development of new features.",
+				description:
+					"Developed a Front-end architecture in collaboration with the team that improved the scalability and performance of the website. Developed and implemented REST APIs to integrate the Front-end application with backend microservices. Optimized the Front-end user interface to enhance UX/UI. Collaborated on migrating several Front-end applications from Vue.js to Next.js. Attended to and resolved client requests for the development of new features.",
 				skills: [
 					"Vue.js",
 					"Next.js",
@@ -453,7 +465,8 @@ export const en: Data = {
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "May 2019 — March 2020",
-				description: "Eeveloped a streaming player using React.js along with Redux for global state management and Red5 Pro as the SDK. Implemented a chat feature in React.js using the GetStream.io library for real-time message management. Created a JavaScript library for implementing the streaming player for client use.",
+				description:
+					"Developed a streaming player using React.js along with Redux for global state management and Red5 Pro as the SDK. Implemented a chat feature in React.js using the GetStream.io library for real-time message management. Created a JavaScript library for implementing the streaming player for client use.",
 				skills: [
 					"React.js",
 					"Redux",

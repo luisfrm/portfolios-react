@@ -1,4 +1,6 @@
-import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
+// import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
+import { fishers_import, overfuel, remote360, starauto } from "@/assets";
+
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
 
@@ -235,43 +237,43 @@ export const es: Data = {
 	projects: {
 		title: "Proyectos",
 		projectList: [
-			{
-				title: "Gym Manager Frontend",
-				description:
-					"Gym Manager es una aplicación web para administrar gimnasios. Ayuda a los dueños de gimnasios a controlar miembros, clases y equipos. La app usa tecnología moderna para manejar membresías, programar clases y crear informes. Hace más fácil dirigir un gimnasio y ayuda a los dueños a ver cómo va su negocio.",
-				imageUrl: gym_manager,
-				technologies: [
-					"Vite",
-					"React",
-					"Tailwind CSS",
-					"Shadcn-ui",
-					"TypeScript",
-					"Redux Toolkit",
-					"Redux Toolkit Query",
-				],
-				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-				liveUrl: "https://gym-manager-frontend.netlify.app/",
-			},
-			{
-				title: "Gym Manager Backend",
-				description:
-					"El backend de Gym Manager es el motor que hace funcionar la aplicación. Usa Node.js y una base de datos para guardar información de miembros, clases y equipos del gimnasio. Maneja las peticiones de la app, procesa datos y asegura que todo funcione rápido y seguro. Permite que la información esté siempre actualizada y disponible para los dueños del gimnasio.",
-				technologies: [
-					"Node.js",
-					"Express.js",
-					"MongoDB",
-					"JWT",
-					"TypeScript",
-					"Jest",
-					"Docker",
-					"Kubernetes",
-					"CI/CD",
-					"Mongoose",
-					"RESTful API",
-					"Zod",
-				],
-				githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-			},
+			// {
+			// 	title: "Gym Manager Frontend",
+			// 	description:
+			// 		"Gym Manager es una aplicación web para administrar gimnasios. Ayuda a los dueños de gimnasios a controlar miembros, clases y equipos. La app usa tecnología moderna para manejar membresías, programar clases y crear informes. Hace más fácil dirigir un gimnasio y ayuda a los dueños a ver cómo va su negocio.",
+			// 	imageUrl: gym_manager,
+			// 	technologies: [
+			// 		"Vite",
+			// 		"React",
+			// 		"Tailwind CSS",
+			// 		"Shadcn-ui",
+			// 		"TypeScript",
+			// 		"Redux Toolkit",
+			// 		"Redux Toolkit Query",
+			// 	],
+			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
+			// 	liveUrl: "https://gym-manager-frontend.netlify.app/",
+			// },
+			// {
+			// 	title: "Gym Manager Backend",
+			// 	description:
+			// 		"El backend de Gym Manager es el motor que hace funcionar la aplicación. Usa Node.js y una base de datos para guardar información de miembros, clases y equipos del gimnasio. Maneja las peticiones de la app, procesa datos y asegura que todo funcione rápido y seguro. Permite que la información esté siempre actualizada y disponible para los dueños del gimnasio.",
+			// 	technologies: [
+			// 		"Node.js",
+			// 		"Express.js",
+			// 		"MongoDB",
+			// 		"JWT",
+			// 		"TypeScript",
+			// 		"Jest",
+			// 		"Docker",
+			// 		"Kubernetes",
+			// 		"CI/CD",
+			// 		"Mongoose",
+			// 		"RESTful API",
+			// 		"Zod",
+			// 	],
+			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
+			// },
 			{
 				title: "Remote 360",
 				description:
@@ -299,6 +301,7 @@ export const es: Data = {
 					"Zod",
 				],
 				githubUrl: "https://github.com/luisfrm/remote-360",
+				liveUrl: "https://remote360.netlify.app/login",
 			},
 			{
 				title: "Overfuel LLC",
@@ -317,6 +320,23 @@ export const es: Data = {
 					"RESTful",
 				],
 				liveUrl: "https://overfuel.com/",
+			},
+			{
+				title: "God's Good BarberShop",
+				description: 
+					"God's Good BarberShop es una landing page de una barberia. El sitio se seguira actualizando con nuevas funcionalidades y mejoras para mantenerse actualizado y atractivo para los clientes.",
+				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
+				imageUrl: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
+				liveUrl: "https://god-is-good-barbershop.vercel.app",
+			},
+			{
+				title: "Portafolio",
+				description:
+					"Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto. Es una forma de mostrar mi trabajo y experiencia a empleadores y colegas.",
+				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
+				githubUrl: "https://github.com/luisfrm/portfolios-react",
+				liveUrl: "https://luisrivas-portfolios.netlify.app",
 			},
 			{
 				title: "Fishers Imports",
@@ -354,24 +374,15 @@ export const es: Data = {
 					"RESTful",
 				],
 			},
-			{
-				title: "Virtual Vegas",
-				description:
-					"VirtualVegas es un bot de Python que simula juegos de casino. Permite a los usuarios jugar juegos como blackjack y ruleta sin usar dinero real. El bot usa librerías de Python para crear los juegos, manejar las apuestas virtuales y mostrar los resultados. Es una forma divertida y segura de experimentar la emoción del casino desde casa.",
-				imageUrl: virtualvegas,
-				technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
-				githubUrl: "https://github.com/luisfrm/virtualvegas",
-				liveUrl: "https://t.me/virtualvegasbot",
-			},
-			{
-				title: "Portafolio",
-				description:
-					"Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto. Es una forma de mostrar mi trabajo y experiencia a empleadores y colegas.",
-				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
-				githubUrl: "https://github.com/luisfrm/portfolios-react",
-				liveUrl: "https://luisrivas-portfolios.netlify.app",
-			},
-
+			// {
+			// 	title: "Virtual Vegas",
+			// 	description:
+			// 		"VirtualVegas es un bot de Python que simula juegos de casino. Permite a los usuarios jugar juegos como blackjack y ruleta sin usar dinero real. El bot usa librerías de Python para crear los juegos, manejar las apuestas virtuales y mostrar los resultados. Es una forma divertida y segura de experimentar la emoción del casino desde casa.",
+			// 	imageUrl: virtualvegas,
+			// 	technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
+			// 	githubUrl: "https://github.com/luisfrm/virtualvegas",
+			// 	liveUrl: "https://t.me/virtualvegasbot",
+			// },
 			{
 				title: "Task Manager",
 				description:
@@ -426,7 +437,8 @@ export const es: Data = {
 				company: "321ignition",
 				position: "Desarrollador Lead Front-End",
 				period: "Mayo 2020 — Mayo 2023",
-				description: "Desarrollé una arquitectura Front-end en colaboración con el equipo que mejoró la escalabilidad y el rendimiento del sitio web. Desarrollé e implementé APIs REST para integrar la aplicación Front-end con microservicios de backend. Optimicé la interfaz de usuario del Front-end para mejorar la experiencia de usuario (UX/UI). Colaboré en la migración de varias aplicaciones Front-end de Vue.js a Next.js. Atendí y resolví peticiones de clientes para la elaboración de nuevas funcionalidades.",
+				description:
+					"Desarrollé una arquitectura Front-end en colaboración con el equipo que mejoró la escalabilidad y el rendimiento del sitio web. Desarrollé e implementé APIs REST para integrar la aplicación Front-end con microservicios de backend. Optimicé la interfaz de usuario del Front-end para mejorar la experiencia de usuario (UX/UI). Colaboré en la migración de varias aplicaciones Front-end de Vue.js a Next.js. Atendí y resolví peticiones de clientes para la elaboración de nuevas funcionalidades.",
 				skills: [
 					"Vue.js",
 					"Next.js",
@@ -454,7 +466,8 @@ export const es: Data = {
 				company: "Fira onLive",
 				position: "Front End Developer",
 				period: "Mayo 2019 — Marzo 2020",
-				description: "Desarrollé un reproductor de streaming utilizando React.js junto con Redux para la gestión de estados globales y Red5 Pro como SDK. Implementé un chat en React.js utilizando la librería de GetStream.io para la gestión de mensajes en tiempo real. Creé una librería en JavaScript para la implementación del reproductor de streaming para el uso de clientes.",
+				description:
+					"Desarrollé un reproductor de streaming utilizando React.js junto con Redux para la gestión de estados globales y Red5 Pro como SDK. Implementé un chat en React.js utilizando la librería de GetStream.io para la gestión de mensajes en tiempo real. Creé una librería en JavaScript para la implementación del reproductor de streaming para el uso de clientes.",
 				skills: [
 					"React.js",
 					"Redux",
