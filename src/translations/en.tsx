@@ -1,5 +1,5 @@
 // import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
-import { fishers_import, overfuel, remote360, starauto } from "@/assets";
+import { fishers_import, overfuel, remote360, starauto, god_is_good, portfolios } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
 
@@ -372,13 +372,14 @@ export const en: Data = {
 				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
 				githubUrl: "https://github.com/luisfrm/portfolios-react",
 				liveUrl: "https://luisrivas-portfolios.netlify.app",
+				imageUrl: portfolios,
 			},
 			{
 				title: "God's Good BarberShop",
 				description:
 					"God's Good BarberShop is a web application for a local barbershop in Venezuela. It displays contact information, services, and a Hero Section. The project is built with Next.js and features a responsive design for seamless access on all devices.",
 				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
-				imageUrl: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+				imageUrl: god_is_good,
 				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
 				liveUrl: "https://god-is-good-barbershop.vercel.app",
 			},

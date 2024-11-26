@@ -1,5 +1,5 @@
 // import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
-import { fishers_import, overfuel, remote360, starauto } from "@/assets";
+import { fishers_import, overfuel, remote360, starauto, god_is_good, portfolios } from "@/assets";
 
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
@@ -326,7 +326,7 @@ export const es: Data = {
 				description: 
 					"God's Good BarberShop es una landing page de una barberia. El sitio se seguira actualizando con nuevas funcionalidades y mejoras para mantenerse actualizado y atractivo para los clientes.",
 				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
-				imageUrl: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+				imageUrl: god_is_good,
 				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
 				liveUrl: "https://god-is-good-barbershop.vercel.app",
 			},
@@ -335,6 +335,7 @@ export const es: Data = {
 				description:
 					"Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto. Es una forma de mostrar mi trabajo y experiencia a empleadores y colegas.",
 				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
+				imageUrl: portfolios,
 				githubUrl: "https://github.com/luisfrm/portfolios-react",
 				liveUrl: "https://luisrivas-portfolios.netlify.app",
 			},
