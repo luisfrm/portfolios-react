@@ -1,4 +1,3 @@
-// import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
 import { fishers_import, overfuel, remote360, starauto, god_is_good, portfolios } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
