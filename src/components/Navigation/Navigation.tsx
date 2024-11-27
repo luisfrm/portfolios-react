@@ -29,7 +29,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 				<div className="flex justify-between">
 					<div id="nav_logo" className="flex-shrink-0">
 						<NavItem url="#">
-							<Logo className="text-black dark:text-white h-8 w-8 md:h-14 md:w-14" />
+							<Logo className="text-black dark:text-white h-8 w-8 md:h-14 md:w-14 lg:hover:scale-110 transition-transform duration-100" />
 						</NavItem>
 					</div>
 					<div id="nav_listElement" className="hidden sm:flex ml-5 gap-6">
