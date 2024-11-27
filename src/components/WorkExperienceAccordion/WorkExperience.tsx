@@ -20,7 +20,7 @@ export default function WorkExperience({ workExperiences }: Props) {
 	const { workExperiencesList, title } = workExperiences;
 	
 	return (
-		<div id="experience" className="mx-auto max-w-4xl space-y-6">
+		<div id="experience" className="mx-auto max-w-6xl space-y-6">
 			<h2 className="text-3xl font-semibold text-center">{title}</h2>
 			<div className="relative">
 				{/* Timeline line */}
@@ -38,11 +38,11 @@ export default function WorkExperience({ workExperiences }: Props) {
 							<CardHeader>
 								<time className="text-sm text-gray-600 dark:text-gray-400">{experience.period}</time>
 								<h3 className="text-xl font-semibold">
-									{experience.position} <span className="text-gray-600 dark:text-gray-400">{experience.company}</span>
+									{experience.position} <span className="text-gray-500 dark:text-gray-400">- {experience.company}</span>
 								</h3>
 							</CardHeader>
 							<CardContent className="space-y-4">
-								<p className="text-gray-700 dark:text-gray-100">
+								<p className="text-gray-700 dark:text-gray-100 text-balance">
 									{experience.description}
 								</p>
 								<div className="flex flex-wrap gap-2">

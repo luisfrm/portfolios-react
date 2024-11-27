@@ -33,7 +33,7 @@ const ProjectItem = ({ project }: Props) => {
 						<img
 							src={imageUrl}
 							alt={`Preview of ${title}`}
-							className="rounded-md object-cover layout-fill aspect-video"
+							className="rounded-md object-cover layout-fill aspect-video lg:hover:scale-105 transition-transform duration-300 ease-in-out"
 						/>
 					</div>
 				)}
@@ -50,7 +50,7 @@ const ProjectItem = ({ project }: Props) => {
 			</CardContent>
 			<CardFooter className="flex justify-between">
 				{githubUrl && (
-					<Button variant="outline" size="sm" asChild>
+					<Button variant="default" className="bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-200 hover:border-gray-300 font-bold" size="sm" asChild>
 						<a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Github Project redirect">
 							<Github className="mr-2 h-4 w-4" />
 							GitHub
@@ -58,7 +58,7 @@ const ProjectItem = ({ project }: Props) => {
 					</Button>
 				)}
 				{liveUrl && (
-					<Button variant="outline" size="sm" asChild>
+					<Button variant="default" className="bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-200 hover:border-gray-300 font-bold" size="sm" asChild>
 						<a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live site project redirect">
 							<ExternalLink className="mr-2 h-4 w-4" />
 							Live Site

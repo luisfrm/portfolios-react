@@ -1,5 +1,5 @@
 // import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
-import { fishers_import, overfuel, remote360, starauto, god_is_good, portfolios } from "@/assets";
+import { fishers_import, remote360, god_is_good, portfolios, task_manager } from "@/assets";
 
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
@@ -237,43 +237,6 @@ export const es: Data = {
 	projects: {
 		title: "Proyectos",
 		projectList: [
-			// {
-			// 	title: "Gym Manager Frontend",
-			// 	description:
-			// 		"Gym Manager es una aplicación web para administrar gimnasios. Ayuda a los dueños de gimnasios a controlar miembros, clases y equipos. La app usa tecnología moderna para manejar membresías, programar clases y crear informes. Hace más fácil dirigir un gimnasio y ayuda a los dueños a ver cómo va su negocio.",
-			// 	imageUrl: gym_manager,
-			// 	technologies: [
-			// 		"Vite",
-			// 		"React",
-			// 		"Tailwind CSS",
-			// 		"Shadcn-ui",
-			// 		"TypeScript",
-			// 		"Redux Toolkit",
-			// 		"Redux Toolkit Query",
-			// 	],
-			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-			// 	liveUrl: "https://gym-manager-frontend.netlify.app/",
-			// },
-			// {
-			// 	title: "Gym Manager Backend",
-			// 	description:
-			// 		"El backend de Gym Manager es el motor que hace funcionar la aplicación. Usa Node.js y una base de datos para guardar información de miembros, clases y equipos del gimnasio. Maneja las peticiones de la app, procesa datos y asegura que todo funcione rápido y seguro. Permite que la información esté siempre actualizada y disponible para los dueños del gimnasio.",
-			// 	technologies: [
-			// 		"Node.js",
-			// 		"Express.js",
-			// 		"MongoDB",
-			// 		"JWT",
-			// 		"TypeScript",
-			// 		"Jest",
-			// 		"Docker",
-			// 		"Kubernetes",
-			// 		"CI/CD",
-			// 		"Mongoose",
-			// 		"RESTful API",
-			// 		"Zod",
-			// 	],
-			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
-			// },
 			{
 				title: "Remote 360",
 				description:
@@ -304,27 +267,9 @@ export const es: Data = {
 				liveUrl: "https://remote360.netlify.app/login",
 			},
 			{
-				title: "Overfuel LLC",
-				description:
-					"Overfuel crea sitios web de vanguardia para concesionarios de automóviles. Sus soluciones ofrecen diseño responsive, gestión de inventario eficiente y herramientas de marketing digital, mejorando la presencia en línea y las ventas de los concesionarios.",
-				imageUrl: overfuel,
-				technologies: [
-					"Next.js",
-					"Tailwind CSS",
-					"CodeIgniter",
-					"MySQL",
-					"Google Tag Manager",
-					"AWS",
-					"Docker",
-					"Kubernetes",
-					"RESTful",
-				],
-				liveUrl: "https://overfuel.com/",
-			},
-			{
 				title: "God's Good BarberShop",
 				description: 
-					"God's Good BarberShop es una landing page de una barberia. El sitio se seguira actualizando con nuevas funcionalidades y mejoras para mantenerse actualizado y atractivo para los clientes.",
+					"God's Good BarberShop es una landing page para una barbería. El sitio está diseñado para atraer y mantener a los clientes informados sobre los servicios y promociones disponibles. Con un enfoque en la modernidad y la conveniencia, la página se actualizará continuamente con nuevas funcionalidades y mejoras para seguir siendo relevante y atractiva.",
 				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
 				imageUrl: god_is_good,
 				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
@@ -358,33 +303,6 @@ export const es: Data = {
 				liveUrl: "https://www.fishersimports.com/",
 			},
 			{
-				title: "5Star Auto",
-				description:
-					"El sitio web de 5Star Auto, desarrollado por 321Ignition, empresa adquirida por Overfuel, destaca por un diseño elegante basado en el tipo de diseño web Mobile first. Ofrece una presentación muy bonita del inventario y todas sus paginas con un gran optimizacion, velocidad de rendimiento, búsqueda intuitiva y opciones de financiamiento. 321Ignition fue adquirida por Overfuel LLC y 5StarAuto dejo de formar parte de la cartera de clientes de Overfuel LLC.",
-				imageUrl: starauto,
-				technologies: [
-					"Vue.js",
-					"Bootstrap CSS",
-					"Node.js",
-					"MongoDB",
-					"Google Tag Manager",
-					"Google Analytics",
-					"GCP / GCloud",
-					"Docker",
-					"Kubernetes",
-					"RESTful",
-				],
-			},
-			// {
-			// 	title: "Virtual Vegas",
-			// 	description:
-			// 		"VirtualVegas es un bot de Python que simula juegos de casino. Permite a los usuarios jugar juegos como blackjack y ruleta sin usar dinero real. El bot usa librerías de Python para crear los juegos, manejar las apuestas virtuales y mostrar los resultados. Es una forma divertida y segura de experimentar la emoción del casino desde casa.",
-			// 	imageUrl: virtualvegas,
-			// 	technologies: ["Python3", "Django", "Python-telegram-bot", "Docker", "RESTful"],
-			// 	githubUrl: "https://github.com/luisfrm/virtualvegas",
-			// 	liveUrl: "https://t.me/virtualvegasbot",
-			// },
-			{
 				title: "Task Manager",
 				description:
 					"Task Manager es una aplicación web monorepo que permite a los usuarios crear, editar y eliminar tareas. Usa tecnología moderna para manejar tareas, usuarios y autenticación. Permite a los usuarios crear cuentas, iniciar sesión y gestionar tareas de forma segura. Es una forma de organizar y planificar tareas de forma eficiente.",
@@ -399,6 +317,7 @@ export const es: Data = {
 					"JWT",
 					"Zod",
 				],
+				imageUrl: task_manager,
 				githubUrl: "https://github.com/luisfrm/task-manager",
 			},
 		],
@@ -407,11 +326,11 @@ export const es: Data = {
 		title: "Experiencia Laboral",
 		workExperiencesList: [
 			{
-				company: "Overfuel / 321ignition",
+				company: "Overfuel",
 				position: "Desarrollador Full-Stack",
 				period: "Mayo 2023 — Presente",
 				description:
-					"Diseñé e implemente funcionalidades innovadoras utilizando Next.js y Vue para mejorar la interacción del usuario.Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo.Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB.Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para optimizar la recopilación de datos y su análisis. Utilizando React.js y Node.js para la elaboracion de nuevos features, formularios y cualquier petición solicitada por los clientes.",
+					"Diseñé e implementé funcionalidades innovadoras utilizando Next.js o Vue para mejorar la interacción del usuario. Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo. Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB. Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para la implementación de thirdparties.",
 				skills: [
 					"Next.js",
 					"Vue",

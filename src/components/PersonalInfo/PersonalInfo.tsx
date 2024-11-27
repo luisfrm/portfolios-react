@@ -1,5 +1,4 @@
 import { CardDescription, CardTitle } from "@/components/ui/card";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface Props {
 	content: {
@@ -13,21 +12,17 @@ interface Props {
 export default function PersonalInfo({ content }: Props) {
 	const { name, role, about } = content;
 	return (
-		<>
-			<div id="about" className="flex flex-col items-center space-y-4">
-				{/* <Avatar className="w-32 h-32">
-					<AvatarImage src="/placeholder-avatar.jpg" alt="Tu Nombre" />
-					<AvatarFallback>LR</AvatarFallback>
-				</Avatar> */}
+		<section>
+			<div id="about" className="relative flex flex-col items-center space-y-4">
 				<div className="text-center">
 					<CardTitle className="text-3xl font-semibold">{name}</CardTitle>
 					<CardDescription className="text-xl">{role}</CardDescription>
 				</div>
 				<div className="space-y-2">
 					{/* <h2 className="text-2xl font-semibold">{title}</h2> */}
-					<p>{about}</p>
+					<p className="text-pretty">{about}</p>
 				</div>
 			</div>
-		</>
+		</section>
 	);
 }

@@ -1,4 +1,4 @@
-import { fishers_import, overfuel, remote360, starauto, god_is_good, portfolios } from "@/assets";
+import { fishers_import, remote360, god_is_good, portfolios, task_manager } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
 
@@ -302,24 +302,6 @@ export const en: Data = {
 				liveUrl: "https://remote360.netlify.app/login",
 			},
 			{
-				title: "Overfuel LLC",
-				description:
-					"Overfuel creates cutting-edge websites for car dealerships. Their solutions offer responsive design, efficient inventory management, and digital marketing tools, enhancing dealers' online presence and sales.",
-				imageUrl: overfuel,
-				technologies: [
-					"Next.js",
-					"Tailwind CSS",
-					"CodeIgniter",
-					"MySQL",
-					"Google Tag Manager",
-					"AWS",
-					"Docker",
-					"Kubernetes",
-					"RESTful",
-				],
-				liveUrl: "https://overfuel.com/",
-			},
-			{
 				title: "Fishers Imports",
 				description:
 					"Fishers Imports' website, developed by Overfuel, showcases elegant design and advanced functionality. It features an impressive luxury inventory display, intuitive search, and financing options, demonstrating Overfuel's ability to boost high-end dealerships' digital presence.",
@@ -336,24 +318,6 @@ export const en: Data = {
 					"RESTful",
 				],
 				liveUrl: "https://www.fishersimports.com/",
-			},
-			{
-				title: "5Star Auto",
-				description:
-					"5Star Auto is a car dealership website developed by 321Ignition, acquired by Overfuel. It offers a user-friendly interface, advanced search functionality, and secure payment processing. The platform's responsive design and intuitive navigation ensure a seamless user experience, driving sales and customer satisfaction. When Overfuek acquired 321Ignition, 5Star Auto stop being part of the dealerships portfolios of Overfuel.",
-				imageUrl: starauto,
-				technologies: [
-					"Vue.js",
-					"Bootstrap CSS",
-					"Node.js",
-					"MongoDB",
-					"Google Tag Manager",
-					"Google Analytics",
-					"GCP / GCloud",
-					"Docker",
-					"Kubernetes",
-					"RESTful",
-				],
 			},
 			// {
 			// 	title: "Virtual Vegas",
@@ -376,7 +340,7 @@ export const en: Data = {
 			{
 				title: "God's Good BarberShop",
 				description:
-					"God's Good BarberShop is a web application for a local barbershop in Venezuela. It displays contact information, services, and a Hero Section. The project is built with Next.js and features a responsive design for seamless access on all devices.",
+					"God's Good BarberShop is a landing page for a barbershop. The site is designed to attract and keep customers informed about available services and promotions. With a focus on modernity and convenience, the page will be continuously updated with new features and improvements to remain relevant and appealing.",
 				technologies: ["Next.js", "Typescript", "Tailwind CSS", "Shadcn-ui", "Server components", "Client components"],
 				imageUrl: god_is_good,
 				githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
@@ -397,6 +361,7 @@ export const en: Data = {
 					"JWT",
 					"Zod",
 				],
+				imageUrl: task_manager,
 				githubUrl: "https://github.com/luisfrm/task-manager",
 			},
 		],

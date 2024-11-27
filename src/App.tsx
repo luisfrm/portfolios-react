@@ -27,7 +27,6 @@ function App() {
 
 	return (
 		<ThemeProvider>
-			{/* <div className="mx-auto bg-slate-300 dark:bg-slate-900 min-h-[100dvh]"> */}
 			<div className="flex flex-col gap-16 mx-auto min-h-dvh bg-gradient-to-b from-slate-100 to-slate-300 dark:from-[#060436] dark:to-[#0f1236]">
 				<Navigation
 					navItems={data.navItems}
