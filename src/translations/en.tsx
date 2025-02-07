@@ -1,4 +1,4 @@
-import { fishers_import, remote360, god_is_good, portfolios, task_manager } from "@/assets";
+import { fishers_import, god_is_good, portfolios, task_manager, gymmanager } from "@/assets";
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
 
@@ -273,18 +273,18 @@ export const en: Data = {
 			// 	githubUrl: "https://github.com/luisfrm/gym-manager-frontend",
 			// },
 			{
-				title: "Remote 360",
+				title: "Gym manager",
 				description:
-					"Remote360 is a web-based platform for conducting 360-degree evaluations in remote work settings. Built with React and Node.js, it offers user authentication, employee management, and a comprehensive evaluation system. The application streamlines feedback processes for remote teams, featuring role-based access, real-time notifications, and detailed reporting to enhance performance management in distributed workforces.",
-				imageUrl: remote360,
+					"Gym Manager's app is a Full-Stack application for gym management. It features a user-friendly interface for member registration, class scheduling, and performance tracking. The responsive design ensures seamless access across devices. built with Node.js and Express, powers the gym management system. It handles user authentication, membership management, and class scheduling. The API integrates with a MongoDB database, ensuring efficient data storage and retrieval for smooth gym operations, enhancing the gym experience for both staff and members. ",
+				imageUrl: gymmanager,
 				technologies: [
 					"Vite",
 					"React",
 					"Tailwind CSS",
 					"Shadcn-ui",
 					"TypeScript",
-					"Redux Toolkit",
-					"Redux Toolkit Query",
+					"Zustand",
+					"Tanstack Query",
 					"Node.js",
 					"Express.js",
 					"MongoDB",
@@ -292,14 +292,12 @@ export const en: Data = {
 					"TypeScript",
 					"Jest",
 					"Docker",
-					"Kubernetes",
-					"CI/CD",
 					"Mongoose",
 					"RESTful API",
 					"Zod",
 				],
-				githubUrl: "https://github.com/luisfrm/remote-360",
-				liveUrl: "https://remote360.netlify.app/login",
+				githubUrl: "https://github.com/luisfrm/gym-manager",
+				liveUrl: "https://gym-manager-frontend.onrender.com",
 			},
 			{
 				title: "Fishers Imports",

@@ -11,8 +11,11 @@ import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import WorkExperience from "@/components/WorkExperienceAccordion/WorkExperience";
 
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get("lang");
+
 function App() {
-	const [lang, setLang] = useLocalStorage("lang", "en");
+	const [lang, setLang] = useLocalStorage<"en" | "es">("lang", langParam === "es" ? "es" : "en");
 	const [data, setData] = useState(lang === "en" ? en : es);
 
 	// useEffect(() => {
@@ -38,7 +41,7 @@ function App() {
 						<section className="h-screen lg:h-dvh flex justify-center items-center">
 							<section className="flex flex-col gap-4 bg-card p-8 rounded-xl shadow-xl">
 								<PersonalInfo content={data.personal} />
-								<Contact content={data.contact} />
+								<Contact content={data.contact} lang={lang} />
 							</section>
 						</section>
 						<WorkExperience workExperiences={data.workExperiences} />

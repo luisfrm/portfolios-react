@@ -43,7 +43,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 					</div>
 					{/* Desktop buttons */}
 					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
-						<Button variant="outline" size="sm" onClick={goToPdf}>
+						<Button variant="outline" size="sm" onClick={() => goToPdf(language)}>
 							CV
 						</Button>
 						{changeLanguage && (
@@ -88,7 +88,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 												))}
 										</section>
 										<section>
-											<Button className="flex-1 w-100" variant="outline" onClick={goToPdf}>
+											<Button className="flex-1 w-100" variant="outline" onClick={() => goToPdf(language)}>
 												Download CV
 											</Button>
 										</section>
