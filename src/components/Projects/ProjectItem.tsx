@@ -25,7 +25,7 @@ const ProjectItem = ({ project }: Props) => {
 	const { title, description, imageUrl, technologies, githubUrl, liveUrl } =
 		project;
 	return (
-		<Card className="border rounded shadow-md break-inside-avoid">
+		<Card className="border rounded shadow-md break-inside-avoid animate-show">
 			<CardHeader className="flex flex-col gap-5">
 				<CardTitle className="text-lg font-semibold">{title}</CardTitle>
 				{imageUrl && (
