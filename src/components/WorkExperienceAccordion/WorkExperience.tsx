@@ -34,7 +34,7 @@ export default function WorkExperience({ workExperiences }: Props) {
 						{/* Timeline dot */}
 						<div className="absolute left-8 h-4 w-4 -translate-x-1/2 rounded-full bg-primary md:left-1/2" />
 
-						<Card className="relative flex-1 bg-card text-gray-900 dark:text-white backdrop-blur-sm">
+						<Card className="relative flex-1 bg-card text-gray-900 dark:text-white backdrop-blur-sm animate-show">
 							<CardHeader>
 								<time className="text-sm text-gray-600 dark:text-gray-400">{experience.period}</time>
 								<h3 className="text-xl font-semibold">

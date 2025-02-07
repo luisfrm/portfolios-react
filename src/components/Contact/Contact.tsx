@@ -10,9 +10,10 @@ interface Props {
 		city: string;
 		download?: string;
 	};
+	lang: "en" | "es";
 }
 
-const Contact = ({ content }: Props) => {
+const Contact = ({ content, lang }: Props) => {
 	const { email, phone, city } = content;
 	return (
 		<div id="contact" className="space-y-2">
@@ -35,7 +36,7 @@ const Contact = ({ content }: Props) => {
 					<span>{city}</span>
 				</div>
 				<div className="pt-5 flex justify-center md:justify-start">
-					<Button variant="outline" size="lg" onClick={goToPdf}>
+					<Button variant="outline" size="lg" onClick={() => goToPdf(lang)}>
 						<Download /> {content.download}
 					</Button>
 				</div>

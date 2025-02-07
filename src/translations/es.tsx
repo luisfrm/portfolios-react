@@ -1,5 +1,5 @@
 // import { fishers_import, overfuel, remote360, gym_manager, virtualvegas, starauto } from "@/assets";
-import { fishers_import, remote360, god_is_good, portfolios, task_manager } from "@/assets";
+import { fishers_import, god_is_good, portfolios, task_manager, gymmanager } from "@/assets";
 
 import { Github, Linkedin } from "lucide-react";
 import { Data } from "@/lib/types";
@@ -238,18 +238,18 @@ export const es: Data = {
 		title: "Proyectos",
 		projectList: [
 			{
-				title: "Remote 360",
+				title: "Gym Manager",
 				description:
-					"REMOTE-360 es una app web para evaluar empleados que trabajan desde casa. Permite a jefes y compañeros dar opiniones sobre el trabajo de otros. Usa tecnología moderna para hacer formularios, manejar usuarios y crear informes simples. Ayuda a ver cómo trabaja la gente sin estar en la oficina.",
-				imageUrl: remote360,
+					"La aplicación Gym Manager es una aplicación Full-Stack para la gestión de gimnasios. Cuenta con una interfaz fácil de usar para el registro de miembros, la programación de clases y el seguimiento del rendimiento. El diseño responsivo garantiza un acceso sin inconvenientes en todos los dispositivos. Construida con Node.js y Express, maneja la autenticación de usuarios, la gestión de membresías y la programación de clases. La API se integra con una base de datos MongoDB, lo que garantiza un almacenamiento y recuperación de datos eficiente para operaciones fluidas del gimnasio y mejora la experiencia del gimnasio para el personal y los miembros.",
+				imageUrl: gymmanager,
 				technologies: [
 					"Vite",
 					"React",
 					"Tailwind CSS",
 					"Shadcn-ui",
 					"TypeScript",
-					"Redux Toolkit",
-					"Redux Toolkit Query",
+					"Zustand",
+					"Tanstack Query",
 					"Node.js",
 					"Express.js",
 					"MongoDB",
@@ -257,14 +257,12 @@ export const es: Data = {
 					"TypeScript",
 					"Jest",
 					"Docker",
-					"Kubernetes",
-					"CI/CD",
 					"Mongoose",
 					"RESTful API",
 					"Zod",
 				],
-				githubUrl: "https://github.com/luisfrm/remote-360",
-				liveUrl: "https://remote360.netlify.app/login",
+				githubUrl: "https://github.com/luisfrm/gym-manager",
+				liveUrl: "https://gym-manager-frontend.onrender.com/",
 			},
 			{
 				title: "God's Good BarberShop",
