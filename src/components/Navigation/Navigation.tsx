@@ -24,7 +24,7 @@ interface Props {
 const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) => {
 
 	return (
-		<nav className="bg-white shadow-md fixed w-screen z-50 dark:bg-blue-950 top-0 border-b border-b-[#ffffff77]">
+		<nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
 				<div className="flex justify-between">
 					<div id="nav_logo" className="flex-shrink-0">

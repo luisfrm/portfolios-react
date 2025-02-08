@@ -13,7 +13,7 @@ export default function PersonalInfo({ content }: Props) {
 	const { name, role, about } = content;
 	return (
 		<section>
-			<div id="about" className="relative flex flex-col items-center space-y-4">
+			<div id="about" className="relative flex flex-col items-center space-y-4 border-b border-gray-200 pb-8 dark:border-gray-700">
 				<div className="text-center">
 					<CardTitle className="text-3xl font-semibold">{name}</CardTitle>
 					<CardDescription className="text-xl">{role}</CardDescription>
