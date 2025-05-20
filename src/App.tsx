@@ -15,7 +15,7 @@ import MouseMoveEffect from "./components/MouseMove/MouseMoveEffect";
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get("lang");
 
-function App() {
+const App = () => {
 	const [lang, setLang] = useLocalStorage<"en" | "es">("lang", langParam === "es" ? "es" : "en");
 	const [data, setData] = useState(lang === "en" ? en : es);
 
@@ -64,6 +64,6 @@ function App() {
 			</div>
 		</ThemeProvider>
 	);
-}
+};
 
 export default App;
