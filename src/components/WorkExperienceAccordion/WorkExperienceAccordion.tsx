@@ -1,59 +1,97 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
+import { TYPOGRAPHY, COLORS, SPACING } from "@/lib/constants";
+import type { WorkExperiences, WorkExperiencesList } from "@/lib/types.d";
 
-interface WorkExperience {
-  position: string;
-  company: string;
-  period: string;
-  description: string[];
-  skills: string[];
+// Constants for accordion styling
+const ACCORDION_STYLES = {
+	container: SPACING.SECTION,
+	trigger: "text-left",
+	content: SPACING.CARD_CONTENT,
+	position: "font-semibold",
+	companyInfo: cn(TYPOGRAPHY.SMALL_TEXT, COLORS.TEXT_ACCENT),
+	descriptionList: "list-disc list-inside",
+	skillsContainer: cn("flex flex-wrap", SPACING.FLEX_GAP_2)
+} as const;
+
+interface WorkExperienceAccordionProps {
+	workExperiences: WorkExperiences;
 }
 
-interface Props {
-  workExperiences: {
-    workExperiencesList: WorkExperience[];
-    title: string;
-  };
+interface AccordionItemProps {
+	experience: WorkExperiencesList;
+	index: number;
 }
 
-export default function WorkExperienceAccordion({workExperiences}: Props) {
-  const { workExperiencesList, title } = workExperiences;
-  return (
-		<div id="experience" className="space-y-6">
-			<h2 className="text-3xl font-semibold text-center">{title}</h2>
+function ExperienceDescription({ description }: { description: string }) {
+	// Assuming description is a single string, but if it needs to be split into list items
+	// we can split by periods, newlines, or other delimiters
+	const descriptionItems = description.split(/[.!?]\s+/).filter(item => item.trim().length > 0);
+	
+	if (descriptionItems.length <= 1) {
+		return <p className={COLORS.TEXT_SECONDARY}>{description}</p>;
+	}
+
+	return (
+		<ul className={ACCORDION_STYLES.descriptionList}>
+			{descriptionItems.map((desc, descIndex) => (
+				<li key={`desc-${descIndex}`} className={COLORS.TEXT_SECONDARY}>
+					{desc.trim()}{desc.trim().match(/[.!?]$/) ? '' : '.'}
+				</li>
+			))}
+		</ul>
+	);
+}
+
+function SkillsBadges({ skills }: { skills: string[] }) {
+	return (
+		<div className={ACCORDION_STYLES.skillsContainer}>
+			{skills.map((skill, skillIndex) => (
+				<Badge key={`skill-${skillIndex}`} variant="secondary">
+					{skill}
+				</Badge>
+			))}
+		</div>
+	);
+}
+
+function ExperienceAccordionItem({ experience, index }: AccordionItemProps) {
+	return (
+		<AccordionItem key={`experience-${index}`} value={`item-${index}`}>
+			<AccordionTrigger className={ACCORDION_STYLES.trigger}>
+				<div>
+					<div className={ACCORDION_STYLES.position}>
+						{experience.position}
+					</div>
+					<div className={ACCORDION_STYLES.companyInfo}>
+						{experience.company} | {experience.period}
+					</div>
+				</div>
+			</AccordionTrigger>
+			<AccordionContent className={ACCORDION_STYLES.content}>
+				<ExperienceDescription description={experience.description} />
+				<SkillsBadges skills={experience.skills} />
+			</AccordionContent>
+		</AccordionItem>
+	);
+}
+
+export default function WorkExperienceAccordion({ workExperiences }: WorkExperienceAccordionProps) {
+	const { workExperiencesList, title } = workExperiences;
+
+	return (
+		<section id="experience" className={ACCORDION_STYLES.container}>
+			<h2 className={TYPOGRAPHY.SECTION_TITLE}>{title}</h2>
 			<Accordion type="single" collapsible className="w-full">
 				{workExperiencesList.map((experience, index) => (
-					<AccordionItem key={index} value={`item-${index}`}>
-						<AccordionTrigger className="text-left">
-							<div>
-								<div className="font-semibold">{experience.position}</div>
-								<div className="text-sm text-gray-500">
-									{experience.company} | {experience.period}
-								</div>
-							</div>
-						</AccordionTrigger>
-						<AccordionContent className="space-y-4">
-							{experience.description.length > 0 &&
-								(
-									<ul className="list-disc list-inside">
-										{experience.description.map((desc, descIndex) => (
-											<li key={descIndex}>
-												{desc}
-											</li>
-										))}
-									</ul>
-								)}
-							<div className="flex flex-wrap gap-2">
-								{experience.skills.map((skill, skillIndex) => (
-									<Badge key={skillIndex} variant="secondary">
-										{skill}
-									</Badge>
-								))}
-							</div>
-						</AccordionContent>
-					</AccordionItem>
+					<ExperienceAccordionItem
+						key={`accordion-item-${index}`}
+						experience={experience}
+						index={index}
+					/>
 				))}
 			</Accordion>
-		</div>
+		</section>
 	);
 }
