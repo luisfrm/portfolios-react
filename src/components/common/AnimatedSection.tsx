@@ -35,6 +35,8 @@ export function AnimatedSection({
       className={cn(
         ANIMATION_CLASSES[animation],
         isInView && 'is-visible',
+        // Prevent horizontal overflow for horizontal animations
+        (animation === 'fade-left' || animation === 'fade-right') && 'overflow-x-hidden max-w-full',
         className
       )}
       style={{
