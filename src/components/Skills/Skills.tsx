@@ -7,7 +7,7 @@ import type { Skill, SkillCategory } from "@/lib/types/content";
 // Constants for skills styling
 const SKILLS_STYLES = {
 	container: cn("id-skills", SPACING.SECTION),
-	categoriesGrid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+	categoriesGrid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6",
 	categoryCard: "p-4 rounded-lg border",
 	categoryTitle: TYPOGRAPHY.CATEGORY_TITLE,
 	skillsContainer: cn("flex flex-wrap", SPACING.FLEX_GAP_2),
@@ -18,7 +18,7 @@ const SKILLS_STYLES = {
 		"dark:from-blue-400 dark:via-slate-400 dark:to-gray-300",
 		"text-center mb-4"
 	),
-	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-12 rounded-full"
+	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-6 sm:mb-8 lg:mb-12 rounded-full"
 } as const;
 
 interface SkillsProps {

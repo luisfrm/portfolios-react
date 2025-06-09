@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export function Layout({ children, className }: LayoutProps) {
   return (
-    <div className={cn("relative flex flex-col mx-auto min-h-dvh", LAYOUT.CONTENT_GAP, className)}>
+    <div className={cn("relative flex flex-col mx-auto min-h-dvh overflow-x-hidden max-w-full", LAYOUT.CONTENT_GAP, className)}>
       {children}
     </div>
   );

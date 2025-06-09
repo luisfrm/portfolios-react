@@ -122,10 +122,22 @@
   }
 }
 
+/* Ensure no horizontal scroll on any container */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .snowflake {
@@ -326,8 +338,9 @@ button:focus-visible {
 /* Fade Left - For alternating content */
 .animate-fade-left {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateX(-20px);
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 .animate-fade-left.is-visible {
@@ -338,8 +351,9 @@ button:focus-visible {
 /* Fade Right - For alternating content */
 .animate-fade-right {
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateX(20px);
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 .animate-fade-right.is-visible {
@@ -418,4 +432,41 @@ button:focus-visible {
 .animate-fade-scale.delay-4,
 .animate-fade-down.delay-4 {
   transition-delay: 0.6s;
+}
+
+/* Mobile-specific adjustments to prevent horizontal overflow */
+@media (max-width: 768px) {
+  .animate-fade-left {
+    transform: translateX(-10px);
+  }
+  
+  .animate-fade-right {
+    transform: translateX(10px);
+  }
+  
+  /* Ensure all containers on mobile prevent horizontal scroll */
+  body,
+  #root,
+  .main-content,
+  .layout-container {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Smaller spacing for cards and containers */
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem !important;
+  }
+  
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.75rem !important;
+  }
+  
+  .gap-8 {
+    gap: 1rem !important;
+  }
+  
+  .gap-6 {
+    gap: 0.75rem !important;
+  }
 }

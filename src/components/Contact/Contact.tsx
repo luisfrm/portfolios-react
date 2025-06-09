@@ -16,15 +16,15 @@ interface Props {
 }
 
 const CONTACT_STYLES = {
-	container: "space-y-6",
+	container: "space-y-4 sm:space-y-6",
 	title: cn(
 		"text-3xl font-semibold text-center",
 		"bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
 		"dark:from-blue-400 dark:via-slate-400 dark:to-gray-300",
 		"mb-4"
 	),
-	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-8 rounded-full",
-	contactInfo: "space-y-4",
+	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-4 sm:mb-6 lg:mb-8 rounded-full",
+	contactInfo: "space-y-3 sm:space-y-4",
 	contactItem: cn(
 		"flex items-center space-x-3 font-semibold text-lg",
 		"hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
