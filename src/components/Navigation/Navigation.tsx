@@ -6,30 +6,33 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NavItemMobile from "./NavItemMobile";
 import SocialItem from "../SocialMedia/SocialItem";
 import Logo from "@/components/Logo/Logo";
-import { goToPdf } from "@/lib/utils";
+import { openPdfInNewTab } from "@/lib/utils";
+import { NAV_CONFIG, ANIMATION_CLASSES } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import type { Language } from "@/hooks/useLanguage";
 
-interface Props {
+interface NavigationProps {
 	socialMedia: {
 		url: string;
 		icon: React.ReactNode;
 	}[];
 	changeLanguage: () => void;
-	language: string;
+	language: Language;
 	navItems: {
 		name: string;
 		href: string;
 	}[];
 }
 
-const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) => {
+const Navigation = ({ socialMedia, changeLanguage, language, navItems }: NavigationProps) => {
 
 	return (
 		<nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
+			<div className={cn(NAV_CONFIG.MAX_WIDTH, "mx-auto", NAV_CONFIG.PADDING_X, NAV_CONFIG.PADDING_Y)}>
 				<div className="flex justify-between">
 					<div id="nav_logo" className="flex-shrink-0">
 						<NavItem url="#">
-							<Logo className="text-black dark:text-white h-8 w-8 md:h-14 md:w-14 lg:hover:scale-110 transition-transform duration-100" />
+							<Logo className={cn("text-black dark:text-white h-8 w-8 md:h-14 md:w-14", ANIMATION_CLASSES.HOVER_SCALE, ANIMATION_CLASSES.TRANSITION)} />
 						</NavItem>
 					</div>
 					<div id="nav_listElement" className="hidden sm:flex ml-5 gap-6">
@@ -43,9 +46,9 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 					</div>
 					{/* Desktop buttons */}
 					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
-						<Button variant="outline" size="sm" onClick={() => goToPdf(language)}>
-							CV
-						</Button>
+											<Button variant="outline" size="sm" onClick={() => openPdfInNewTab(language)}>
+						CV
+					</Button>
 						{changeLanguage && (
 							<Button variant="outline" size="icon" onClick={changeLanguage}>
 								{language === "en" ? "ES" : "EN"}
@@ -88,9 +91,9 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Props) 
 												))}
 										</section>
 										<section>
-											<Button className="flex-1 w-100" variant="outline" onClick={() => goToPdf(language)}>
-												Download CV
-											</Button>
+																					<Button className="flex-1 w-100" variant="outline" onClick={() => openPdfInNewTab(language)}>
+											Download CV
+										</Button>
 										</section>
 									</div>
 								</nav>

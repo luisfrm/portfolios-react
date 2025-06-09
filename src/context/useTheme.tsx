@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { useLocalStorage } from "usehooks-ts"
+import { STORAGE_KEYS } from "@/lib/constants"
 
 type Theme = 'light' | 'dark' | 'system'
 
@@ -11,7 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider ({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useLocalStorage<Theme>('theme', 'system')
+  const [theme, setTheme] = useLocalStorage<Theme>(STORAGE_KEYS.THEME, 'system')
   const [systemTheme, setSystemTheme] = useState<'dark' | 'light'>('light')
 
   useEffect(() => {

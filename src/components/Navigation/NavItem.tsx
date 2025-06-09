@@ -1,36 +1,36 @@
-interface Props {
-  children: React.ReactNode;
+import { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { useScrollTo } from '@/hooks/useScrollTo';
+
+interface NavItemProps {
+  children: ReactNode;
   url: string;
+  className?: string;
+  onClick?: () => void;
 }
 
-const NavItem = ({children, url}: Props) => {
-	const makeScrollTo = (hash: string) => {
-		if (hash === "#") {
-			window.scrollTo({ top: 0, behavior: "smooth" });
-			return;
-		}
-		
-		const element = document.getElementById(hash);
-		
-		if (!element) return;
+const NAVIGATION_STYLES = {
+  base: "cursor-pointer border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium",
+  colors: "text-gray-900 dark:text-gray-300 hover:border-gray-300 hover:text-gray-500 dark:hover:text-white"
+};
 
-		// make 120px below the element
-		// 120px is the height of the fixed navbar
-		if (element) {
-			const y = element.getBoundingClientRect().top + window.scrollY - 120;
-			window.scrollTo({ top: y, behavior: "smooth" });
-		}
-	}
+const NavItem = ({ children, url, className, onClick }: NavItemProps) => {
+  const { scrollToElement } = useScrollTo();
+  
+  const handleClick = () => {
+    onClick?.();
+    scrollToElement(url);
+  };
 
-	return (
-		<div
-			onClick={()=>{makeScrollTo(url)}}
-			className="cursor-pointer border-transparent text-gray-900 dark:text-gray-300 hover:border-gray-300 hover:text-gray-500 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-			aria-label="Navigation Item"
-		>
-			{children}
-		</div>
-	);
+  return (
+    <div
+      onClick={handleClick}
+      className={cn(NAVIGATION_STYLES.base, NAVIGATION_STYLES.colors, className)}
+      aria-label="Navigation Item"
+    >
+      {children}
+    </div>
+  );
 };
 
 export default NavItem;
