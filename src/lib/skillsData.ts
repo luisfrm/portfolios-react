@@ -15,9 +15,19 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				icon: "▲",
 			},
 			{
+				name: "Astro",
+				url: "https://docs.astro.build",
+				icon: "🚀",
+			},
+			{
 				name: "Vue.js",
 				url: "https://vuejs.org/guide/introduction.html",
 				icon: "🖖",
+			},
+			{
+				name: "Aurelia",
+				url: "https://aurelia.io/docs/getting-started/what-is-aurelia",
+				icon: "🔴", 
 			},
 			{
 				name: "TypeScript",
@@ -28,6 +38,26 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				name: "JavaScript",
 				url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
 				icon: "🟨",
+			},
+			{
+				name: "Zustand",
+				url: "https://zustand-demo.pmnd.rs/",
+				icon: "🔍",
+			},
+			{
+				name: "Tanstack Query",
+				url: "https://tanstack.com/query/latest/docs/framework/react/overview",
+				icon: "🔍",
+			},
+			{
+				name: "Redux Toolkit",
+				url: "https://redux-toolkit.js.org/introduction/getting-started",
+				icon: "🔄",
+			},
+			{
+				name: "RTK Query",
+				url: "https://redux-toolkit.js.org/rtk-query/overview",
+				icon: "🔍",
 			},
 			{
 				name: "HTML5",
@@ -90,6 +120,11 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				icon: "🔗",
 			},
 			{
+				name: "Cron Job",
+				url: "https://cron-job.org/en/",
+				icon: "🕒",
+			},
+			{
 				name: "GraphQL",
 				url: "https://graphql.org/learn/",
 				icon: "📊",
@@ -145,6 +180,16 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				icon: "☁️",
 			},
 			{
+				name: "Azure",
+				url: "https://learn.microsoft.com/en-us/azure/",
+				icon: "🔵",
+			},
+			{
+				name: "S3",
+				url: "https://docs.aws.amazon.com/s3/index.html",
+				icon: "🔴",
+			},
+			{
 				name: "Docker",
 				url: "https://docs.docker.com/",
 				icon: "🐳",
@@ -164,26 +209,16 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				url: "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
 				icon: "🔄",
 			},
+			{
+				name: "GitHub Actions",
+				url: "https://docs.github.com/en/actions",
+				icon: "🔄",
+			},
 		]
 	},
 	{
 		category: "Tools & Other",
 		skills: [
-			{
-				name: "Redux Toolkit",
-				url: "https://redux-toolkit.js.org/introduction/getting-started",
-				icon: "🔄",
-			},
-			{
-				name: "Redux Toolkit Query",
-				url: "https://redux-toolkit.js.org/rtk-query/overview",
-				icon: "🔍",
-			},
-			{
-				name: "Astro",
-				url: "https://docs.astro.build",
-				icon: "🚀",
-			},
 			{
 				name: "Git",
 				url: "https://git-scm.com/doc",
@@ -200,19 +235,24 @@ export const SKILLS_CATEGORIES_DATA: SkillCategory[] = [
 				icon: "💻",
 			},
 			{
-				name: "Google Tag Manager",
-				url: "https://developers.google.com/tag-manager",
-				icon: "🏷️",
-			},
-			{
 				name: "Scrum",
 				url: "https://www.scrum.org/resources/what-is-scrum",
 				icon: "🏉",
 			},
 			{
+				name: "Google Tag Manager",
+				url: "https://developers.google.com/tag-manager",
+				icon: "🏷️",
+			},
+			{
 				name: "Kanban",
 				url: "https://www.atlassian.com/agile/kanban",
 				icon: "📊",
+			},
+			{
+				name: "Figma",
+				url: "https://www.figma.com/design/1234567890/1234567890",
+				icon: "🎨",
 			},
 			{
 				name: "Micro-Frontend",

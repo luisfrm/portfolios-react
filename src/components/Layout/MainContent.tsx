@@ -12,7 +12,7 @@ interface MainContentProps {
 export function MainContent({ children, footer, className }: MainContentProps) {
   return (
     <Card className={cn(
-      "w-full rounded-none sm:px-12 bg-transparent border-0 shadow-none pb-36 z-10",
+      "w-full rounded-none sm:px-12 bg-transparent border-0 shadow-none z-10",
       LAYOUT.CONTAINER_MAX_WIDTH,
       "mx-auto",
       className
