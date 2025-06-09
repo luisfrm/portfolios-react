@@ -20,15 +20,15 @@ interface Props {
 }
 
 const PROJECTS_STYLES = {
-	container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-16"),
+	  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-8 sm:py-12 lg:py-16"),
 	title: cn(
 		TYPOGRAPHY.SECTION_TITLE,
 		"bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
 		"dark:from-blue-400 dark:via-slate-400 dark:to-gray-300",
 		"mb-4"
 	),
-	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-16 rounded-full",
-	grid: "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-8 sm:mb-12 lg:mb-16 rounded-full",
+	grid: "grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12"
 } as const
 
 const getDelayClass = (index: number) => {

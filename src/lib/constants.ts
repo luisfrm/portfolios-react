@@ -25,8 +25,8 @@ export const NAV_CONFIG = {
 // Layout
 export const LAYOUT = {
   CONTAINER_MAX_WIDTH: 'max-w-7xl',
-  CONTENT_GAP: 'gap-16',
-  CARD_GAP: 'gap-5'
+  CONTENT_GAP: 'gap-8 sm:gap-12 lg:gap-16',
+  CARD_GAP: 'gap-3 sm:gap-4 lg:gap-5'
 } as const;
 
 // Typography
@@ -52,13 +52,13 @@ export const COLORS = {
 
 // Spacing
 export const SPACING = {
-  SECTION: 'space-y-6',
-  CARD_CONTENT: 'space-y-4',
+  SECTION: 'space-y-4 sm:space-y-6',
+  CARD_CONTENT: 'space-y-3 sm:space-y-4',
   FLEX_GAP_2: 'gap-2',
   FLEX_GAP_3: 'gap-3',
   FLEX_GAP_4: 'gap-4',
-  FLEX_GAP_8: 'gap-8',
-  HERO_SPACING: 'space-y-8'
+  FLEX_GAP_8: 'gap-4 sm:gap-6 lg:gap-8',
+  HERO_SPACING: 'space-y-6 sm:space-y-8'
 } as const;
 
 // Hero Styles

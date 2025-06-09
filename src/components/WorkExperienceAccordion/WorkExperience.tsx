@@ -7,11 +7,11 @@ import type { WorkExperiences, WorkExperiencesList } from "@/lib/types.d"
 
 // Constants for timeline styling
 const TIMELINE_STYLES = {
-	container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-16"),
+	container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-8 sm:py-12 lg:py-16"),
 	timeline: "relative",
 	timelineLine: "absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-blue-600 via-slate-600 to-gray-700 md:left-1/2 opacity-40",
 	timelineDot: "absolute left-8 h-5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 md:left-1/2 shadow-lg ring-4 ring-background z-10",
-	experienceContainer: cn("mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group"),
+	experienceContainer: cn("mb-8 sm:mb-12 lg:mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group"),
 	spacer: "hidden flex-1 md:block"
 } as const
 
@@ -129,7 +129,7 @@ export default function WorkExperience({ workExperiences }: WorkExperienceProps)
 		<section id="experience" className={TIMELINE_STYLES.container}>
 			{/* Section title with gradient effect */}
 			<AnimatedSection animation="fade-scale" delay={0}>
-				<div className="text-center mb-12">
+				<div className="text-center mb-6 sm:mb-8 lg:mb-12">
 					<h2 className={cn(
 						TYPOGRAPHY.SECTION_TITLE, 
 						"bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
@@ -137,7 +137,7 @@ export default function WorkExperience({ workExperiences }: WorkExperienceProps)
 					)}>
 						{title}
 					</h2>
-					<div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mt-4 rounded-full"></div>
+					<div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mt-2 sm:mt-3 lg:mt-4 rounded-full"></div>
 				</div>
 			</AnimatedSection>
 			<Timeline experiences={workExperiencesList} />

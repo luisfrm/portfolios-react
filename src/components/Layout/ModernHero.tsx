@@ -116,7 +116,7 @@ export function HeroContent({ name, role, about, onDownloadCV, onContactClick }:
       
       {/* Call to action buttons - Final elements */}
       <AnimatedSection animation="fade-up" delay={800} threshold={0}>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
           <button 
             onClick={onDownloadCV}
             className={cn(HERO_STYLES.ctaButton, "hover:scale-105 transition-transform duration-300")}
