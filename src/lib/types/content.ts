@@ -6,8 +6,14 @@ export interface Skill extends BaseItem {
   icon: string;
 }
 
+export interface SkillCategory {
+  category: string;
+  skills: Skill[];
+}
+
 export interface SkillsSection extends BaseContent {
-  skillsList: Skill[];
+  skillsList: Skill[]; // For backward compatibility
+  skillsByCategory?: SkillCategory[]; // New categorized structure
 }
 
 // Projects types
