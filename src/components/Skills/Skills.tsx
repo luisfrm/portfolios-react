@@ -1,8 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { TYPOGRAPHY, SPACING, SKILL_CATEGORY_COLORS } from "@/lib/constants";
-import { useSkillsCategories } from "@/hooks/useSkillsCategories";
-import type { Skills as SkillsType, Skill } from "@/lib/types.d";
+import { AnimatedSection } from "@/components/common/AnimatedSection";
+import type { Skill, SkillCategory } from "@/lib/types/content";
 
 // Constants for skills styling
 const SKILLS_STYLES = {
@@ -11,11 +11,21 @@ const SKILLS_STYLES = {
 	categoryCard: "p-4 rounded-lg border",
 	categoryTitle: TYPOGRAPHY.CATEGORY_TITLE,
 	skillsContainer: cn("flex flex-wrap", SPACING.FLEX_GAP_2),
-	skillBadge: "bg-card hover:scale-105 transition-transform duration-200"
+	skillBadge: "bg-card hover:scale-105 transition-transform duration-200",
+	sectionTitle: cn(
+		TYPOGRAPHY.SECTION_TITLE,
+		"bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
+		"dark:from-blue-400 dark:via-slate-400 dark:to-gray-300",
+		"text-center mb-4"
+	),
+	decorativeLine: "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-12 rounded-full"
 } as const;
 
 interface SkillsProps {
-	skills: SkillsType;
+	skills: {
+		title: string;
+		skillsCategories: SkillCategory[];
+	};
 }
 
 interface SkillBadgeProps {
@@ -25,6 +35,7 @@ interface SkillBadgeProps {
 interface CategorySectionProps {
 	category: string;
 	skills: Skill[];
+	index: number;
 }
 
 function SkillBadge({ skill }: SkillBadgeProps) {
@@ -46,67 +57,54 @@ function SkillBadge({ skill }: SkillBadgeProps) {
 	);
 }
 
-function CategorySection({ category, skills }: CategorySectionProps) {
+function CategorySection({ category, skills, index }: CategorySectionProps) {
 	const categoryColorClass = SKILL_CATEGORY_COLORS[category as keyof typeof SKILL_CATEGORY_COLORS] || 
 		SKILL_CATEGORY_COLORS['Tools & Other'];
 
 	return (
-		<div className={cn(SKILLS_STYLES.categoryCard, categoryColorClass)}>
-			<h3 className={SKILLS_STYLES.categoryTitle}>
-				{category}
-			</h3>
-			<div className={SKILLS_STYLES.skillsContainer}>
-				{skills.map((skill, index) => (
-					<SkillBadge 
-						key={`${category}-skill-${index}`} 
-						skill={skill} 
-					/>
-				))}
+		<AnimatedSection 
+			animation="fade-up" 
+			delay={index * 150}
+		>
+			<div className={cn(SKILLS_STYLES.categoryCard, categoryColorClass)}>
+				<h3 className={SKILLS_STYLES.categoryTitle}>
+					{category}
+				</h3>
+				<div className={SKILLS_STYLES.skillsContainer}>
+					{skills.map((skill, skillIndex) => (
+						<SkillBadge 
+							key={`${category}-skill-${skillIndex}`} 
+							skill={skill} 
+						/>
+					))}
+				</div>
 			</div>
-		</div>
-	);
-}
-
-function SkillsGrid({ categorizedSkills }: { categorizedSkills: Array<{category: string, skills: Skill[]}> }) {
-	return (
-		<div className={SKILLS_STYLES.categoriesGrid}>
-			{categorizedSkills.map((categoryData, index) => (
-				<CategorySection
-					key={`category-${index}`}
-					category={categoryData.category}
-					skills={categoryData.skills}
-				/>
-			))}
-		</div>
-	);
-}
-
-function FallbackSkillsList({ skills }: { skills: Skill[] }) {
-	return (
-		<div className="flex flex-wrap gap-2 justify-center">
-			{skills.map((skill, index) => (
-				<SkillBadge 
-					key={`fallback-skill-${index}`} 
-					skill={skill} 
-				/>
-			))}
-		</div>
+		</AnimatedSection>
 	);
 }
 
 export default function Skills({ skills }: SkillsProps) {
-	const { title, skillsList } = skills;
-	const { categorizedSkills, hasCategories } = useSkillsCategories(skillsList);
+	const { title, skillsCategories } = skills;
 
 	return (
 		<section id="skills" className={SKILLS_STYLES.container}>
-			<h2 className={TYPOGRAPHY.SECTION_TITLE}>{title}</h2>
+			<AnimatedSection animation="fade-scale" delay={0}>
+				<div className="text-center">
+					<h2 className={SKILLS_STYLES.sectionTitle}>{title}</h2>
+					<div className={SKILLS_STYLES.decorativeLine}></div>
+				</div>
+			</AnimatedSection>
 			
-			{hasCategories ? (
-				<SkillsGrid categorizedSkills={categorizedSkills} />
-			) : (
-				<FallbackSkillsList skills={skillsList} />
-			)}
+			<div className={SKILLS_STYLES.categoriesGrid}>
+				{skillsCategories.map((categoryData, index) => (
+					<CategorySection
+						key={`category-${index}`}
+						category={categoryData.category}
+						skills={categoryData.skills}
+						index={index}
+					/>
+				))}
+			</div>
 		</section>
 	);
 }

@@ -50,7 +50,12 @@ export interface Skill {
 
 export interface Skills {
 	title: string;
-	skillsList: Skill[];
+	skillsCategories: SkillCategory[];
+}
+
+export interface SkillCategory {
+	category: string;
+	skills: Skill[];
 }
 
 export interface SocialMedia {

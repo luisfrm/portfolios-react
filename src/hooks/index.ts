@@ -1,6 +1,6 @@
 export { useLanguage } from './useLanguage';
 export { useScrollTo } from './useScrollTo';
-export { useSkillsCategories } from './useSkillsCategories';
+export { useHeroActions } from './useHeroActions';
 export type { Language, UseLanguageReturn } from './useLanguage';
 export type { UseScrollToReturn } from './useScrollTo';
-export type { UseSkillsCategoriesReturn } from './useSkillsCategories'; 
+export type { UseHeroActionsReturn } from './useHeroActions'; 
