@@ -26,7 +26,8 @@ const PROJECT_ITEM_STYLES = {
 	overlay: cn(
 		"absolute inset-0 bg-black/70 backdrop-blur-sm",
 		"opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-		"flex items-center justify-center"
+		"flex items-center justify-center",
+		"hidden md:flex"
 	),
 	overlayActions: "flex gap-4",
 	actionButton: cn(
@@ -34,6 +35,14 @@ const PROJECT_ITEM_STYLES = {
 		"bg-white/10 backdrop-blur-sm border border-white/20 text-white",
 		"hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300",
 		"hover:scale-105 font-medium"
+	),
+	mobileActions: "flex gap-3 px-8 py-4 border-b border-border/50 bg-gradient-to-r from-background/50 to-muted/30 md:hidden",
+	mobileActionButton: cn(
+		"flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
+		"bg-blue-50 text-blue-700 border border-blue-200",
+		"dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800",
+		"hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-200",
+		"active:scale-95"
 	),
 	content: "flex-1 p-8",
 	title: cn(
@@ -80,7 +89,7 @@ const ProjectItem = ({ project, delayClass }: Props) => {
 								className={PROJECT_ITEM_STYLES.image}
 								loading="lazy"
 							/>
-							{/* Overlay with actions - appears on hover */}
+							{/* Desktop Overlay with actions - appears on hover */}
 							<div className={PROJECT_ITEM_STYLES.overlay}>
 								<div className={PROJECT_ITEM_STYLES.overlayActions}>
 									{githubUrl && (
@@ -123,6 +132,36 @@ const ProjectItem = ({ project, delayClass }: Props) => {
 						</div>
 					)}
 				</div>
+
+				{/* Mobile Actions - Always visible on mobile */}
+				{(githubUrl || liveUrl) && (
+					<div className={PROJECT_ITEM_STYLES.mobileActions}>
+						{githubUrl && (
+							<a
+								href={githubUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={PROJECT_ITEM_STYLES.mobileActionButton}
+								aria-label={`View ${title} source code`}
+							>
+								<Github className="w-4 h-4" />
+								<span>Code</span>
+							</a>
+						)}
+						{liveUrl && (
+							<a
+								href={liveUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={PROJECT_ITEM_STYLES.mobileActionButton}
+								aria-label={`View ${title} live demo`}
+							>
+								<ExternalLink className="w-4 h-4" />
+								<span>Demo</span>
+							</a>
+						)}
+					</div>
+				)}
 
 				{/* Content Section */}
 				<div className={PROJECT_ITEM_STYLES.content}>
