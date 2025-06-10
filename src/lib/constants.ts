@@ -1,7 +1,7 @@
 // PDF URLs
 export const PDF_URLS = {
   en: "https://drive.google.com/file/d/1uZU-2QexviG9ET6u8dLI6f2R1topivXR/view?usp=sharing",
-  es: "https://drive.google.com/file/d/1RAgnxrdfFGLuvQir7EuUsh_vxmVhDi9v/view?usp=sharing"
+  es: "https://drive.google.com/file/d/1YXrq70AqSPr8nytCEOEdpf3LiazIEanU/view?usp=sharing"
 } as const;
 
 // Local Storage Keys

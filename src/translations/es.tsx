@@ -131,9 +131,38 @@ export const es: Data = {
 		title: "Experiencia Laboral",
 		workExperiencesList: [
 			{
+				company: "Chicks Gold",
+				position: "Frontend Developer",
+				period: "Noviembre 2024 — Presente",
+				description:
+					"Implementé soluciones avanzadas de Front-end para múltiples aplicaciones empresariales (ChicksGold e-commerce y ChicksX crypto platform) utilizando Aurelia Framework, implementando arquitecturas modulares y componentes escalables. Desarrollé sistemas híbridos combinando Material Design Components con un sistema de diseño personalizado, optimizando rendimiento y usabilidad. Implementé comunicación en tiempo real a través de SignalR/WebSockets, gestión de estado compleja con Aurelia Store, y una integración sin complicaciones de servicios backend a través de APIs REST. Mantuve el código base mientras modernizaba interfaces, asegurando compatibilidad con navegadores y diseño responsivo para experiencias móviles optimizadas.",
+				skills: [
+					"Aurelia Framework",
+					"Typescript",
+					"HTML5",
+					"CSS3",
+					"Material Design Components (MDC)",
+					"Custom Design System (CDS)",
+					"Git",
+					"Azure",
+					"pnpm",
+					"Bootstrap",
+					"Responsive Design",
+					"UX/UI Optimization",
+					"SignalR",
+					"WebSockets",
+					"REST API Integration",
+					"State Management",
+					"Aurelia Store",
+					"E-commerce Development",
+					"Mobile-first Design",
+					"Performance Optimization",
+				]
+			},
+			{
 				company: "Overfuel",
 				position: "Desarrollador Full-Stack",
-				period: "Mayo 2023 — Presente",
+				period: "Mayo 2023 — Septiembre 2025",
 				description:
 					"Diseñé e implementé funcionalidades innovadoras utilizando Next.js o Vue para mejorar la interacción del usuario. Trabajé en el análisis y corrección de errores en el software empleando herramientas de diagnóstico y seguimiento en GitHub y Jira, asegurando estabilidad y rendimiento óptimo. Colaboré en el desarrollo del Back-end utilizando Node.js y Express dentro de una arquitectura de microservicios, promoviendo la escalabilidad y mantenibilidad. Utilizando ademas una base de datos en MongoDB. Manejé eficazmente de peticiones técnicas y no técnicas de los clientes, utilizando la metodología Scrum para gestionar y priorizar tareas, y Google Tag Manager para la implementación de thirdparties.",
 				skills: [
