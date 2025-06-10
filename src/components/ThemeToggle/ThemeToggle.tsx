@@ -13,7 +13,7 @@ export function ThemeToggle() {
   const { setTheme } = useTheme()
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -21,7 +21,14 @@ export function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent 
+        align="end" 
+        side="bottom"
+        sideOffset={4}
+        className="min-w-[8rem]"
+        avoidCollisions={true}
+        collisionPadding={8}
+      >
         <DropdownMenuItem onClick={() => setTheme("light")}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>

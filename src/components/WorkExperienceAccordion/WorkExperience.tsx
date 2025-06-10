@@ -11,7 +11,7 @@ const TIMELINE_STYLES = {
 	timeline: "relative",
 	timelineLine: "absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-blue-600 via-slate-600 to-gray-700 md:left-1/2 opacity-40",
 	timelineDot: "absolute left-8 h-5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 md:left-1/2 shadow-lg ring-4 ring-background z-10",
-	experienceContainer: cn("mb-8 sm:mb-12 lg:mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group"),
+	experienceContainer: cn("mb-8 sm:mb-12 lg:mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group px-2"),
 	spacer: "hidden flex-1 md:block"
 } as const
 
@@ -21,8 +21,7 @@ const CARD_STYLES = {
 		"hover:border-blue-600/30 hover:shadow-xl hover:shadow-blue-600/10",
 		"transition-all duration-300 ease-out",
 		COLORS.TEXT_PRIMARY, 
-		ANIMATION_CLASSES.ANIMATE_SHOW,
-		"group-hover:scale-[1.01]"
+		ANIMATION_CLASSES.ANIMATE_SHOW
 	),
 	time: cn(TYPOGRAPHY.SMALL_TEXT, "text-blue-600 dark:text-blue-400 font-medium"),
 	title: cn(TYPOGRAPHY.CARD_TITLE, "bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text"),
