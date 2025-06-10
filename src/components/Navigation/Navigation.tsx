@@ -10,6 +10,7 @@ import { openPdfInNewTab } from "@/lib/utils";
 import { NAV_CONFIG, ANIMATION_CLASSES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { Language } from "@/hooks/useLanguage";
+import { useState } from "react";
 
 interface NavigationProps {
 	socialMedia: {
@@ -22,12 +23,22 @@ interface NavigationProps {
 		name: string;
 		href: string;
 	}[];
+	downloadText: string;
 }
 
-const Navigation = ({ socialMedia, changeLanguage, language, navItems }: NavigationProps) => {
+const Navigation = ({ socialMedia, changeLanguage, language, navItems, downloadText="Download CV" }: NavigationProps) => {
+	const [isSheetOpen, setIsSheetOpen] = useState(false);
 
 	return (
-		<nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
+		<>
+			{/* Custom overlay que no bloquea scroll */}
+			{isSheetOpen && (
+				<div 
+					className="fixed inset-0 z-40 bg-black/80 animate-in fade-in-0"
+					onClick={() => setIsSheetOpen(false)}
+				/>
+			)}
+			<nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
 			<div className={cn(NAV_CONFIG.MAX_WIDTH, "mx-auto", NAV_CONFIG.PADDING_X, NAV_CONFIG.PADDING_Y)}>
 				<div className="flex justify-between">
 					<div id="nav_logo" className="flex-shrink-0">
@@ -46,9 +57,9 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Navigat
 					</div>
 					{/* Desktop buttons */}
 					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
-											<Button variant="outline" size="sm" onClick={() => openPdfInNewTab(language)}>
-						CV
-					</Button>
+						<Button variant="outline" size="sm" onClick={() => openPdfInNewTab(language)}>
+							CV
+						</Button>
 						{changeLanguage && (
 							<Button variant="outline" size="icon" onClick={changeLanguage}>
 								{language === "en" ? "ES" : "EN"}
@@ -60,9 +71,9 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Navigat
 						<ThemeToggle />
 					</div>
 					<div id="nav_actions" className="sm:hidden">
-						<Sheet>
+						<Sheet modal={false} onOpenChange={setIsSheetOpen}>
 							<SheetTrigger asChild>
-								<Button variant="ghost" size="icon">
+								<Button variant="ghost" className="bg-transparent" size="icon">
 									<Menu className="h-6 w-6" />
 									<span className="sr-only">Menu</span>
 								</Button>
@@ -91,9 +102,9 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Navigat
 												))}
 										</section>
 										<section>
-																					<Button className="flex-1 w-100" variant="outline" onClick={() => openPdfInNewTab(language)}>
-											Download CV
-										</Button>
+											<Button className="flex-1 w-100" variant="outline" onClick={() => openPdfInNewTab(language)}>
+												{downloadText}
+											</Button>
 										</section>
 									</div>
 								</nav>
@@ -103,6 +114,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems }: Navigat
 				</div>
 			</div>
 		</nav>
+		</>
 	);
 };
 

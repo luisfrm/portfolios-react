@@ -19,6 +19,7 @@ function App() {
 					changeLanguage={changeLanguage}
 					language={language}
 					socialMedia={data.socialMedia}
+					downloadText={data.personal.downloadText}
 				/>
 				
 				{/* Modern Hero Section */}
