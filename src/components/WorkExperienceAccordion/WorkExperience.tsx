@@ -11,7 +11,7 @@ const TIMELINE_STYLES = {
 	timeline: "relative",
 	timelineLine: "absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-blue-600 via-slate-600 to-gray-700 md:left-1/2 opacity-40",
 	timelineDot: "absolute left-8 h-5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 md:left-1/2 shadow-lg ring-4 ring-background z-10",
-	experienceContainer: cn("mb-8 sm:mb-12 lg:mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group px-2"),
+	experienceContainer: cn("mb-8 sm:mb-12 lg:mb-16 flex flex-col", SPACING.FLEX_GAP_8, "group"),
 	spacer: "hidden flex-1 md:block"
 } as const
 
