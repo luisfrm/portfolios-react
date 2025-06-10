@@ -8,7 +8,7 @@ import { useLanguage, useHeroActions } from "@/hooks";
 
 function App() {
 	const { language, data, changeLanguage } = useLanguage();
-	const { handleDownloadCV, handleContactClick } = useHeroActions(language);
+	const { handleDownloadCV } = useHeroActions(language);
 
 	return (
 		<ThemeProvider>
@@ -28,7 +28,9 @@ function App() {
 						role={data.personal.role}
 						about={data.personal.about}
 						onDownloadCV={handleDownloadCV}
-						onContactClick={handleContactClick}
+						downloadText={data.personal.downloadText}
+						email={data.contact.email}
+						getInTouchText={data.personal.getInTouchText}
 					/>
 				</ModernHero>
 

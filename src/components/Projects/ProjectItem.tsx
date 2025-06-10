@@ -32,7 +32,7 @@ const PROJECT_ITEM_STYLES = {
 	actionButton: cn(
 		"flex items-center gap-3 px-6 py-3 rounded-full",
 		"bg-white/10 backdrop-blur-sm border border-white/20 text-white",
-		"hover:bg-blue-500 hover:border-blue-500 transition-all duration-300",
+		"hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300",
 		"hover:scale-105 font-medium"
 	),
 	content: "flex-1 p-8",

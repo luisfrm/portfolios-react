@@ -70,7 +70,7 @@ export const HERO_STYLES = {
   nameGradient: 'bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-300 dark:to-slate-300 bg-clip-text text-transparent',
   roleHighlight: 'text-blue-600 dark:text-blue-400',
   ctaButton: 'inline-flex items-center px-8 py-4 text-lg font-medium rounded-full bg-gradient-to-r from-blue-600 to-slate-700 text-white hover:from-blue-700 hover:to-slate-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl',
-  secondaryButton: 'inline-flex items-center px-6 py-3 text-lg font-medium rounded-full border-2 border-slate-300 text-slate-300 dark:border-slate-400 dark:text-slate-100 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-all duration-300'
+  secondaryButton: 'inline-flex items-center px-6 py-3 text-lg font-medium rounded-full border-2 border-slate-800 text-slate-800 dark:border-slate-400 dark:text-slate-100 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-all duration-300'
 } as const;
 
 // Skills Categories

@@ -9,6 +9,8 @@ export const en: Data = {
 		name: "Hello! I'm Luis Rivas👋",
 		role: "Full Stack Web Developer",
 		about: `Computer Engineer, self-taught and based in Latin America. With over 4 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. Always excited to take on new challenges in the ever-evolving world of technology.`,
+		downloadText: "Download CV",
+		getInTouchText: "Get in touch",
 	},
 	skills: {
 		title: "Skills",
@@ -173,9 +175,37 @@ export const en: Data = {
 		title: "Work Experience",
 		workExperiencesList: [
 			{
+				company: "Chicks Gold",
+				position: "Frontend Developer",
+				period: "October 2025 — Present",
+				description:
+					"As a frontend developer, I implemented innovative features using Aurelia js, Javascript, Typescript to enhance user experience. I worked on analyzing and fixing bugs using tools like GitHub and Jira. I effectively managed client requests using the Scrum methodology and utilized Google Tag Manager to optimize data collection and analysis. My approach encompassed both front-end and back-end development, ensuring the delivery of scalable and maintainable solutions.",
+				skills: [
+					"Next.js",
+					"Vue",
+					"Node.js",
+					"Express",
+					"JavaScript",
+					"TypeScript",
+					"Git",
+					"GitHub",
+					"Jira",
+					"Scrum",
+					"Google Tag Manager",
+					"Microservices",
+					"API Rest",
+					"Google Analytics",
+					"Docker",
+					"Kubernetes",
+					"CI/CD",
+					"CircleCI",
+					"AWS",
+				],
+			},
+			{
 				company: "Overfuel / 321ignition",
 				position: "Full-Stack Developer",
-				period: "May 2023 — Present",
+				period: "May 2023 — September 2025",
 				description:
 					"As a full-stack developer, I implemented innovative features using Next.js, Vue, and React.js to enhance user experience. I worked on analyzing and fixing bugs using tools like GitHub and Jira. I contributed to back-end development with Node.js and Express in a microservices architecture, using MongoDB as the database. I effectively managed client requests using the Scrum methodology and utilized Google Tag Manager to optimize data collection and analysis. My approach encompassed both front-end and back-end development, ensuring the delivery of scalable and maintainable solutions.",
 				skills: [

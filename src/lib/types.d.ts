@@ -26,6 +26,8 @@ export interface Personal {
 	name: string;
 	role: string;
 	about: string;
+	downloadText: string;
+	getInTouchText: string;
 }
 
 export interface Projects {

@@ -20,7 +20,7 @@ interface Props {
 }
 
 const PROJECTS_STYLES = {
-	  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-8 sm:py-12 lg:py-16"),
+	  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION),
 	title: cn(
 		TYPOGRAPHY.SECTION_TITLE,
 		"bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",

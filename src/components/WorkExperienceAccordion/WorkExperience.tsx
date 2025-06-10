@@ -7,7 +7,7 @@ import type { WorkExperiences, WorkExperiencesList } from "@/lib/types.d"
 
 // Constants for timeline styling
 const TIMELINE_STYLES = {
-	container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-8 sm:py-12 lg:py-16"),
+	container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION),
 	timeline: "relative",
 	timelineLine: "absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-blue-600 via-slate-600 to-gray-700 md:left-1/2 opacity-40",
 	timelineDot: "absolute left-8 h-5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 md:left-1/2 shadow-lg ring-4 ring-background z-10",
@@ -18,11 +18,11 @@ const TIMELINE_STYLES = {
 const CARD_STYLES = {
 	base: cn(
 		"relative flex-1 bg-gradient-to-br from-card via-card to-card/90 backdrop-blur-sm border-2 border-border/50",
-		"hover:border-blue-600/30 hover:shadow-xl hover:shadow-blue-600/10 hover:-translate-y-1",
+		"hover:border-blue-600/30 hover:shadow-xl hover:shadow-blue-600/10",
 		"transition-all duration-300 ease-out",
 		COLORS.TEXT_PRIMARY, 
 		ANIMATION_CLASSES.ANIMATE_SHOW,
-		"group-hover:scale-[1.02]"
+		"group-hover:scale-[1.01]"
 	),
 	time: cn(TYPOGRAPHY.SMALL_TEXT, "text-blue-600 dark:text-blue-400 font-medium"),
 	title: cn(TYPOGRAPHY.CARD_TITLE, "bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text"),
@@ -56,9 +56,13 @@ function ExperienceCard({ experience, isEven, index }: ExperienceCardProps) {
 			)}
 		>
 			{/* Timeline dot with pulse effect */}
-			<div className={cn(TIMELINE_STYLES.timelineDot, "animate-pulse")}>
-				<div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 animate-ping opacity-20"></div>
-			</div>
+			{
+				index !== 0 && (
+					<div className={cn(TIMELINE_STYLES.timelineDot, "animate-pulse")}>
+						<div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 animate-ping opacity-20"></div>
+					</div>
+				)
+			}
 
 			<Card className={CARD_STYLES.base}>
 				<CardHeader className="pb-4">

@@ -11,6 +11,8 @@ export const es: Data = {
 		name: "¡Hola! Soy Luis Rivas👋",
 		role: "Full Stack Web Developer",
 		about: `Ingeniero informatico, autodidacta ubicado en Latinoamérica. Con +4 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
+		downloadText: "Descargar CV",
+		getInTouchText: "Contactar",
 	},
 	skills: {
 		title: "Habilidades",
