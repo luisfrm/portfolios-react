@@ -10,7 +10,7 @@ export const es: Data = {
 		title: "Acerca de mi",
 		name: "¡Hola! Soy Luis Rivas👋",
 		role: "Full Stack Web Developer",
-		about: `Ingeniero informatico, autodidacta ubicado en Latinoamérica. Con +4 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
+		about: `Ingeniero informatico, autodidacta ubicado en Latinoamérica. Con +6 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatizacion, innovacion y creacion de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.`,
 		downloadText: "Descargar CV",
 		getInTouchText: "Contactar",
 	},
@@ -24,10 +24,29 @@ export const es: Data = {
 		city: "Latinoamérica",
 		download: "Descargar CV",
 	},
+	contactForm: {
+		title: "Contáctame",
+		namePlaceholder: "Tu nombre completo",
+		emailPlaceholder: "tu@email.com",
+		subjectPlaceholder: "Asunto del mensaje",
+		messagePlaceholder: "Escribe tu mensaje aquí...",
+		sendButtonText: "Enviar Mensaje",
+		messages: {
+			validationError: "Por favor, completa todos los campos requeridos",
+			validationDescription: "Todos los campos son obligatorios para enviar tu mensaje.",
+			successMessage: "¡Mensaje enviado exitosamente! 🎉",
+			successDescription: "Te responderé lo antes posible. ¡Gracias por contactarme!",
+			errorMessage: "Error al enviar el mensaje",
+			errorDescription: "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+			sendingText: "Enviando...",
+		},
+	},
 	navItems: [
 		{ name: "Experiencia", href: "experience" },
 		{ name: "Proyectos", href: "projects" },
-		{ name: "Sobre mi", href: "about" },
+		{ name: "Contacto", href: "contact-form" },
+		{ name: "Habilidades", href: "skills" },
+		{ name: "Sobre mi", href: "hero" },
 	],
 	socialMedia: [
 		{
@@ -87,7 +106,7 @@ export const es: Data = {
 				technologies: ["React", "Tailwind CSS", "TypeScript", "useContext", "Vite", "Shadcn-ui", "Netlify"],
 				imageUrl: portfolios,
 				githubUrl: "https://github.com/luisfrm/portfolios-react",
-				liveUrl: "https://luisrivas-portfolios.netlify.app",
+				liveUrl: "https://luisrivas.work",
 			},
 			{
 				title: "Fishers Imports",
@@ -131,7 +150,7 @@ export const es: Data = {
 		title: "Experiencia Laboral",
 		workExperiencesList: [
 			{
-				company: "Chicks Gold",
+				company: "Chicks Group",
 				position: "Frontend Developer",
 				period: "Noviembre 2024 — Presente",
 				description:
@@ -147,16 +166,10 @@ export const es: Data = {
 					"Azure",
 					"pnpm",
 					"Bootstrap",
-					"Responsive Design",
-					"UX/UI Optimization",
 					"SignalR",
 					"WebSockets",
 					"REST API Integration",
-					"State Management",
 					"Aurelia Store",
-					"E-commerce Development",
-					"Mobile-first Design",
-					"Performance Optimization",
 				]
 			},
 			{

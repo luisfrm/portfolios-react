@@ -6,6 +6,7 @@ export * from './content';
 import type { 
   PersonalInfo, 
   ContactInfo, 
+  ContactFormInfo,
   NavItem, 
   SocialMediaItem 
 } from './common';
@@ -18,6 +19,7 @@ import type {
 export interface AppData {
   personal: PersonalInfo;
   contact: ContactInfo;
+  contactForm: ContactFormInfo;
   navItems: NavItem[];
   socialMedia: SocialMediaItem[];
   skills: SkillsSection;

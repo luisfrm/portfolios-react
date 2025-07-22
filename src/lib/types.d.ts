@@ -2,6 +2,7 @@ export interface Data {
 	personal: Personal;
 	skills: Skills;
 	contact: Contact;
+	contactForm: ContactForm;
 	navItems: NavItem[];
 	socialMedia: SocialMedia[];
 	projects: Projects;
@@ -13,7 +14,24 @@ export interface Contact {
 	phone: string;
 	city: string;
 	download: string;
+}
 
+export interface ContactForm {
+	title: string;
+	namePlaceholder: string;
+	emailPlaceholder: string;
+	subjectPlaceholder: string;
+	messagePlaceholder: string;
+	sendButtonText: string;
+	messages: {
+		validationError: string;
+		validationDescription: string;
+		successMessage: string;
+		successDescription: string;
+		errorMessage: string;
+		errorDescription: string;
+		sendingText: string;
+	};
 }
 
 export interface NavItem {

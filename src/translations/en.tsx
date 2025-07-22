@@ -22,10 +22,29 @@ export const en: Data = {
 		city: "Latin America",
 		download: "Download CV",
 	},
+	contactForm: {
+		title: "Contact Me",
+		namePlaceholder: "Your full name",
+		emailPlaceholder: "your@email.com",
+		subjectPlaceholder: "Message subject",
+		messagePlaceholder: "Write your message here...",
+		sendButtonText: "Send Message",
+		messages: {
+			validationError: "Please complete all required fields",
+			validationDescription: "All fields are required to send your message.",
+			successMessage: "Message sent successfully! 🎉",
+			successDescription: "I'll get back to you as soon as possible. Thanks for contacting me!",
+			errorMessage: "Error sending message",
+			errorDescription: "An unexpected error occurred. Please try again.",
+			sendingText: "Sending...",
+		},
+	},
 	navItems: [
 		{ name: "Experience", href: "experience" },
 		{ name: "Projects", href: "projects" },
-		{ name: "About", href: "about" },
+		{ name: "Contact", href: "contact-form" },
+		{ name: "Skills", href: "skills" },
+		{ name: "About", href: "hero" },
 	],
 	socialMedia: [
 		{

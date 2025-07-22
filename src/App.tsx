@@ -4,7 +4,10 @@ import Projects from "./components/Projects/Projects";
 import WorkExperience from "@/components/WorkExperienceAccordion/WorkExperience";
 import MouseMoveEffect from "./components/MouseMove/MouseMoveEffect";
 import { Layout, MainContent, Footer, ModernHero, HeroContent } from "@/components/Layout";
+import { ContactForm } from "@/components/Contact/ContactForm";
+import { UpWidget } from "@/components/common/UpWidget";
 import { useLanguage, useHeroActions } from "@/hooks";
+import { Toaster } from "sonner";
 
 function App() {
 	const { language, data, changeLanguage } = useLanguage();
@@ -13,6 +16,13 @@ function App() {
 	return (
 		<ThemeProvider>
 			<MouseMoveEffect />
+			<UpWidget />
+			<Toaster 
+				position="top-right"
+				expand={true}
+				richColors
+				closeButton
+			/>
 			<Layout>
 				<Navigation
 					navItems={data.navItems}
@@ -30,7 +40,6 @@ function App() {
 						about={data.personal.about}
 						onDownloadCV={handleDownloadCV}
 						downloadText={data.personal.downloadText}
-						email={data.contact.email}
 						getInTouchText={data.personal.getInTouchText}
 					/>
 				</ModernHero>
@@ -43,6 +52,15 @@ function App() {
 				}>
 					<WorkExperience workExperiences={data.workExperiences} />
 					<Projects content={data.projects} />
+					<ContactForm 
+						title={data.contactForm.title}
+						namePlaceholder={data.contactForm.namePlaceholder}
+						emailPlaceholder={data.contactForm.emailPlaceholder}
+						subjectPlaceholder={data.contactForm.subjectPlaceholder}
+						messagePlaceholder={data.contactForm.messagePlaceholder}
+						sendButtonText={data.contactForm.sendButtonText}
+						messages={data.contactForm.messages}
+					/>
 				</MainContent>
 			</Layout>
 		</ThemeProvider>

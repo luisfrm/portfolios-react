@@ -40,13 +40,13 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems, downloadT
 			)}
 			<nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
 			<div className={cn(NAV_CONFIG.MAX_WIDTH, "mx-auto", NAV_CONFIG.PADDING_X, NAV_CONFIG.PADDING_Y)}>
-				<div className="flex justify-between">
+				<div className="flex justify-between relative">
 					<div id="nav_logo" className="flex-shrink-0">
 						<NavItem url="#">
 							<Logo className={cn("text-black dark:text-white h-8 w-8 md:h-14 md:w-14", ANIMATION_CLASSES.HOVER_SCALE, ANIMATION_CLASSES.TRANSITION)} />
 						</NavItem>
 					</div>
-					<div id="nav_listElement" className="hidden sm:flex ml-5 gap-6">
+					<div id="nav_listElement" className="hidden sm:flex gap-6 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
 						{navItems &&
 							navItems.length > 0 &&
 							navItems.map((item, index) => (

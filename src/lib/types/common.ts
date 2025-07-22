@@ -27,6 +27,24 @@ export interface ContactInfo {
   download: string;
 }
 
+export interface ContactFormInfo {
+  title: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  subjectPlaceholder: string;
+  messagePlaceholder: string;
+  sendButtonText: string;
+  messages: {
+    validationError: string;
+    validationDescription: string;
+    successMessage: string;
+    successDescription: string;
+    errorMessage: string;
+    errorDescription: string;
+    sendingText: string;
+  };
+}
+
 // Personal information types
 export interface PersonalInfo extends BaseContent {
   name: string;

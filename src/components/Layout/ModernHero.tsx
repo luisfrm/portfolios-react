@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { HERO_STYLES, TYPOGRAPHY, SPACING } from '@/lib/constants';
 import { AnimatedSection } from '@/components/common/AnimatedSection';
+import { useScrollTo } from '@/hooks/useScrollTo';
 
 interface ModernHeroProps {
   children?: ReactNode;
@@ -13,7 +14,6 @@ interface HeroContentProps {
   role: string;
   about: string;
   downloadText: string;
-  email: string;
   getInTouchText: string;
   onDownloadCV: () => void;
 }
@@ -69,7 +69,9 @@ export function ModernHero({ children, className }: ModernHeroProps) {
     <section className={cn(
       "min-h-screen relative overflow-hidden flex items-center justify-center w-full",
       className
-    )}>
+    )}
+    id="hero"
+    >
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20 dark:from-background dark:via-background dark:to-background"></div>
       
@@ -89,7 +91,13 @@ export function ModernHero({ children, className }: ModernHeroProps) {
   );
 }
 
-export function HeroContent({ name, role, about, downloadText, email, getInTouchText, onDownloadCV }: HeroContentProps) {
+export function HeroContent({ name, role, about, downloadText, getInTouchText, onDownloadCV }: HeroContentProps) {
+  const { scrollToElement } = useScrollTo();
+
+  const handleContactClick = () => {
+    scrollToElement('contact-form');
+  };
+
   return (
     <>
       {/* Name with gradient effect - Main entrance */}
@@ -129,15 +137,15 @@ export function HeroContent({ name, role, about, downloadText, email, getInTouch
             {downloadText}
           </button>
           
-          <a 
-            href={`mailto:${email}`}
+          <button 
+            onClick={handleContactClick}
             className={cn(HERO_STYLES.secondaryButton, "hover:scale-105 transition-transform duration-300")}
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             {getInTouchText}
-          </a>
+          </button>
         </div>
       </AnimatedSection>
     </>
