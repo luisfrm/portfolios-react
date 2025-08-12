@@ -19,12 +19,19 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Custom theme variants for hero buttons
+        "theme-primary":
+          "border-2 border-transparent bg-gradient-to-r from-blue-600 to-slate-700 text-white hover:from-blue-700 hover:to-slate-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl",
+        "theme-secondary":
+          "bg-theme-secondary border-2 border-slate-800 text-slate-800 dark:border-slate-400 dark:text-slate-100 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-105",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        // Custom size for hero buttons without fixed height
+        hero: "px-8 py-4 rounded-full text-lg [&_svg]:size-5",
       },
     },
     defaultVariants: {

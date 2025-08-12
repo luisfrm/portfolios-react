@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 import { HERO_STYLES, TYPOGRAPHY, SPACING } from '@/lib/constants';
 import { AnimatedSection } from '@/components/common/AnimatedSection';
 import { useScrollTo } from '@/hooks/useScrollTo';
+import { Button } from '@/components/ui/button';
+import { DownloadIcon, MailIcon } from '@/components/Icons';
 
 interface ModernHeroProps {
   children?: ReactNode;
@@ -127,27 +129,25 @@ export function HeroContent({ name, role, about, downloadText, getInTouchText, o
       {/* Call to action buttons - Final elements */}
       <AnimatedSection animation="fade-up" delay={800} threshold={0}>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-          <button 
+          <Button
             id="download-cv-button"
             onClick={onDownloadCV}
-            className={cn(HERO_STYLES.ctaButton, "hover:scale-105 transition-transform duration-300")}
+            variant="theme-primary"
+            size="hero"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+            <DownloadIcon className="mr-2" />
             {downloadText}
-          </button>
+          </Button>
           
-          <button 
+          <Button
             id="get-in-touch-button"
             onClick={handleContactClick}
-            className={cn(HERO_STYLES.secondaryButton, "hover:scale-105 transition-transform duration-300")}
+            variant="theme-secondary"
+            size="hero"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
+            <MailIcon className="mr-2" />
             {getInTouchText}
-          </button>
+          </Button>
         </div>
       </AnimatedSection>
     </>
