@@ -8,7 +8,7 @@ export const en: Data = {
 		title: 'About me',
 		name: "Hello! I'm Luis Rivas👋",
 		role: 'Full Stack Web Developer',
-		about: `Computer Engineer, self-taught and based in Latin America. With over 4 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. Always excited to take on new challenges in the ever-evolving world of technology.`,
+		about: `Computer Engineer, self-taught and based in Latin America. With over 6 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. Always excited to take on new challenges in the ever-evolving world of technology.`,
 		downloadText: 'Download CV',
 		getInTouchText: 'Get in touch',
 	},
