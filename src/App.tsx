@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/Contact/ContactForm";
 import { UpWidget } from "@/components/common/UpWidget";
 import { useLanguage, useHeroActions } from "@/hooks";
 import { Toaster } from "sonner";
+import Education from "./components/Education/Education";
 
 function App() {
 	const { language, data, changeLanguage } = useLanguage();
@@ -52,6 +53,7 @@ function App() {
 				}>
 					<WorkExperience workExperiences={data.workExperiences} />
 					<Projects content={data.projects} />
+					<Education content={data.education} />
 					<ContactForm 
 						title={data.contactForm.title}
 						namePlaceholder={data.contactForm.namePlaceholder}

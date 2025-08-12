@@ -7,6 +7,7 @@ export interface Data {
 	socialMedia: SocialMedia[];
 	projects: Projects;
 	workExperiences: WorkExperiences;
+	education: Education;
 }
 
 export interface Contact {
@@ -96,4 +97,13 @@ export interface WorkExperiencesList {
 	description?: string;
 	descriptionItems?: string[];
 	skills: string[];
+}
+
+export interface Education {
+	title: string;
+	degree: string;
+	institution: string;
+	period: string;
+	description: string;
+	descriptionItems: string[];
 }

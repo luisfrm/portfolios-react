@@ -289,4 +289,16 @@ export const en: Data = {
 			},
 		],
 	},
+	education: {
+		title: 'Education',
+		degree: 'Computer Engineer',
+		institution: 'University Rafael Belloso Chacín',
+		period: 'January, 2017 - December, 2021',
+		description: 'Graduated as Computer Engineer from the University Rafael Belloso Chacín in 2021 after 5 years of study and obtaining approval in the special work of degree.',
+		descriptionItems: [
+			'Special work of degree:',
+			'Web application for the distribution of medicines developed in React.js and Node with Express and MySQL for the server and database.',
+			'The application consisted of a solution for the problem that occurred during the pandemic of 2020 for the distribution of medicines in a safer and more efficient way through a marketplace of different distributors in the region.'
+		],
+	},
 };

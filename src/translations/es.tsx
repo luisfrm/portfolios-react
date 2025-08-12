@@ -282,4 +282,16 @@ export const es: Data = {
 			},
 		],
 	},
+	education: {
+		title: 'Educación',
+		degree: 'Ingeniero Informático',
+		institution: 'Universidad Rafael Belloso Chacín',
+		period: 'Enero, 2017 - Diciembre, 2021',
+		description: 'Graduado como Ingeniero Informático desde la Universidad Rafael Belloso Chacín en el año 2021 tras 5 años de estudio y obtener aprobación en el trabajo especial de grado.',
+		descriptionItems: [
+			'Trabajo especial de grado:',
+			'Aplicación web farmaceutica desarrollada en React.js y Node junto a express y MySQL para el servidor y base de datos.',
+			'La aplicación consistio en una solución para la problematica que hubo durante la pandemia del 2020 para la distribución de medicamentos de una manera mas segura y eficiente a través de un marketplace de distintos distribuidores en la región.'
+		],
+	},
 };
