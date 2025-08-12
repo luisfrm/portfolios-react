@@ -1,8 +1,7 @@
 import { useState, useCallback } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
 import { es, en } from '@/translations';
 import type { Data } from '@/lib/types';
-import { STORAGE_KEYS, URL_PARAMS } from '@/lib/constants';
+import { URL_PARAMS } from '@/lib/constants';
 
 export type Language = 'en' | 'es';
 
@@ -13,23 +12,32 @@ export interface UseLanguageReturn {
 }
 
 export function useLanguage(): UseLanguageReturn {
-  const urlParams = new URLSearchParams(window.location.search);
-  const langParam = urlParams.get(URL_PARAMS.LANGUAGE);
-  
-  const [language, setLanguage] = useLocalStorage<Language>(
-    STORAGE_KEYS.LANGUAGE, 
-    langParam === 'es' ? 'es' : 'en'
-  );
-  
-  const [data, setData] = useState<Data>(language === 'en' ? en : es);
+  const getLanguageFromUrl = (): Language => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get(URL_PARAMS.LANGUAGE);
+    return langParam === 'es' ? 'es' : 'en';
+  };
+
+  const [language, setLanguage] = useState<Language>(getLanguageFromUrl());
+  const [data, setData] = useState<Data>(getLanguageFromUrl() === 'en' ? en : es);
 
   const changeLanguage = useCallback(() => {
     const newLanguage: Language = language === 'en' ? 'es' : 'en';
     const newData = newLanguage === 'en' ? en : es;
-    
+
+    // Update in-memory state
     setData(newData);
     setLanguage(newLanguage);
-  }, [language, setLanguage]);
+
+    // Reflect language in URL without caching in localStorage
+    const url = new URL(window.location.href);
+    if (newLanguage === 'es') {
+      url.searchParams.set(URL_PARAMS.LANGUAGE, 'es');
+    } else {
+      url.searchParams.delete(URL_PARAMS.LANGUAGE);
+    }
+    window.history.replaceState(null, '', url.toString());
+  }, [language]);
 
   return {
     language,
