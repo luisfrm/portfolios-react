@@ -57,7 +57,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems, downloadT
 					</div>
 					{/* Desktop buttons */}
 					<div id="nav_actions" className="hidden sm:flex sm:items-center gap-2">
-						<Button variant="outline" size="sm" onClick={() => openPdfInNewTab(language)}>
+						<Button id="nav-cv-button" variant="outline" size="sm" onClick={() => openPdfInNewTab(language)}>
 							CV
 						</Button>
 						{changeLanguage && (
@@ -102,7 +102,7 @@ const Navigation = ({ socialMedia, changeLanguage, language, navItems, downloadT
 												))}
 										</section>
 										<section>
-											<Button className="flex-1 w-100" variant="outline" onClick={() => openPdfInNewTab(language)}>
+											<Button id="nav-mobile-cv-button" className="flex-1 w-100" variant="outline" onClick={() => openPdfInNewTab(language)}>
 												{downloadText}
 											</Button>
 										</section>

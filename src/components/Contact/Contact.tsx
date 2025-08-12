@@ -75,6 +75,7 @@ const Contact = ({ content, lang }: Props) => {
 				<AnimatedSection animation="fade-up" delay={500}>
 					<div className={CONTACT_STYLES.buttonContainer}>
 						<Button 
+							id="contact-download-cv-button"
 							variant="outline" 
 							size="lg" 
 							onClick={() => goToPdf(lang)}

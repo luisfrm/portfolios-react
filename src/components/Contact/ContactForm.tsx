@@ -25,7 +25,7 @@ interface ContactFormProps {
 }
 
 const CONTACT_FORM_STYLES = {
-  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION, "py-16 sm:py-20 lg:py-24"),
+  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, SPACING.SECTION, "py-16 sm:py-20 lg:py-24"),
   title: cn(
     TYPOGRAPHY.SECTION_TITLE,
     "bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
@@ -42,14 +42,20 @@ const CONTACT_FORM_STYLES = {
     "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
     "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     "transition-all duration-200",
-    "placeholder:text-gray-500 dark:placeholder:text-gray-400"
+    "placeholder:text-gray-500 dark:placeholder:text-gray-400",
+    // iOS Safari fixes
+    "appearance-none focus:outline-none",
+    "transform-gpu will-change-transform"
   ),
   textarea: cn(
     "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600",
     "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
     "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     "transition-all duration-200 resize-vertical min-h-[120px]",
-    "placeholder:text-gray-500 dark:placeholder:text-gray-400"
+    "placeholder:text-gray-500 dark:placeholder:text-gray-400",
+    // iOS Safari fixes
+    "appearance-none focus:outline-none",
+    "transform-gpu will-change-transform"
   ),
   button: cn(
     "w-full bg-gradient-to-r from-blue-600 to-slate-700 text-white",

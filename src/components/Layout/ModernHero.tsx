@@ -128,6 +128,7 @@ export function HeroContent({ name, role, about, downloadText, getInTouchText, o
       <AnimatedSection animation="fade-up" delay={800} threshold={0}>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
           <button 
+            id="download-cv-button"
             onClick={onDownloadCV}
             className={cn(HERO_STYLES.ctaButton, "hover:scale-105 transition-transform duration-300")}
           >
@@ -138,6 +139,7 @@ export function HeroContent({ name, role, about, downloadText, getInTouchText, o
           </button>
           
           <button 
+            id="get-in-touch-button"
             onClick={handleContactClick}
             className={cn(HERO_STYLES.secondaryButton, "hover:scale-105 transition-transform duration-300")}
           >
