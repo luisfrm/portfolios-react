@@ -23,7 +23,7 @@ const buttonVariants = cva(
         "theme-primary":
           "border-2 border-transparent bg-gradient-to-r from-blue-600 to-slate-700 text-white hover:from-blue-700 hover:to-slate-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl",
         "theme-secondary":
-          "bg-theme-secondary border-2 border-slate-800 text-slate-800 dark:border-slate-400 dark:text-slate-100 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-105",
+          "bg-theme-secondary border-2 border-slate-800 text-white dark:border-slate-400 dark:text-slate-100 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-400 dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-105",
       },
       size: {
         default: "h-9 px-4 py-2",
