@@ -252,6 +252,8 @@ export const es: Data = {
 				company: 'Fira onLive',
 				position: 'Desarrollador Front-End',
 				period: 'Mayo 2019 — Marzo 2020',
+				description:
+					'Asignado en la creación de un nuevo reproductor live-streaming y una nueva librería para facilmente manejar las funcionalidades del player.',
 				descriptionItems: [
 					'Desarrollé un reproductor de live streaming utilizando React y Red5Pro.',
 					'Desarrollé un chat para cada uno de los eventos de streaming utilizando la libreria getStreaming.',
