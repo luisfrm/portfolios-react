@@ -38,17 +38,18 @@ const CONTACT_FORM_STYLES = {
   inputGroup: "space-y-2",
   label: "flex items-center space-x-2 text-sm font-medium text-gray-700 dark:text-gray-300",
   input: cn(
-    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600",
+    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-0",
     "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
     "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     "transition-all duration-200",
     "placeholder:text-gray-500 dark:placeholder:text-gray-400",
     // iOS Safari fixes
     "appearance-none focus:outline-none",
-    "transform-gpu will-change-transform"
+    "transform-gpu will-change-transform",
+    "active:border-red-500"
   ),
   textarea: cn(
-    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600",
+    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-0",
     "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
     "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
     "transition-all duration-200 resize-vertical min-h-[120px]",
@@ -63,7 +64,7 @@ const CONTACT_FORM_STYLES = {
     "transition-all duration-300 shadow-lg hover:shadow-xl",
     "py-3 px-6 rounded-lg font-medium"
   ),
-  gridContainer: "grid grid-cols-1 md:grid-cols-2 gap-6"
+  gridContainer: "grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible"
 } as const;
 
 export function ContactForm({
@@ -158,7 +159,7 @@ export function ContactForm({
           <form onSubmit={handleSubmit} className={CONTACT_FORM_STYLES.form}>
             {/* Name and Email Row */}
             <div className={CONTACT_FORM_STYLES.gridContainer}>
-              <AnimatedSection animation="fade-right" delay={300}>
+              <AnimatedSection animation="fade-right" delay={300} className="overflow-visible">
                 <div className={CONTACT_FORM_STYLES.inputGroup}>
                   <label htmlFor="name" className={CONTACT_FORM_STYLES.label}>
                     <User className="w-4 h-4" />
@@ -177,7 +178,7 @@ export function ContactForm({
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection animation="fade-left" delay={300}>
+              <AnimatedSection animation="fade-left" delay={300} className="overflow-visible">
                 <div className={CONTACT_FORM_STYLES.inputGroup}>
                   <label htmlFor="email" className={CONTACT_FORM_STYLES.label}>
                     <Mail className="w-4 h-4" />

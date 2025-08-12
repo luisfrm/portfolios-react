@@ -299,7 +299,8 @@ body[data-scroll-locked] {
   opacity: 0;
   transform: translateX(-15px);
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  /* Allow focus rings and shadows to render outside without clipping */
+  overflow: visible;
 }
 
 .animate-fade-left.is-visible {
@@ -312,7 +313,8 @@ body[data-scroll-locked] {
   opacity: 0;
   transform: translateX(15px);
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  /* Allow focus rings and shadows to render outside without clipping */
+  overflow: visible;
 }
 
 .animate-fade-right.is-visible {

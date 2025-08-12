@@ -69,7 +69,7 @@ function ScrollIndicator() {
 export function ModernHero({ children, className }: ModernHeroProps) {
   return (
     <section className={cn(
-      "min-h-screen relative overflow-hidden flex items-center justify-center w-full",
+      "h-[800px] lg:min-h-screen relative overflow-hidden flex items-center justify-center w-full",
       className
     )}
     id="hero"
