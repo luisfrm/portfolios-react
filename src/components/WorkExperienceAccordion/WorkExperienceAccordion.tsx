@@ -11,7 +11,7 @@ const ACCORDION_STYLES = {
 	content: SPACING.CARD_CONTENT,
 	position: "font-semibold",
 	companyInfo: cn(TYPOGRAPHY.SMALL_TEXT, COLORS.TEXT_ACCENT),
-	descriptionList: "list-disc list-inside",
+  descriptionList: "list-disc list-outside pl-5 space-y-2",
 	skillsContainer: cn("flex flex-wrap", SPACING.FLEX_GAP_2)
 } as const;
 
@@ -24,13 +24,14 @@ interface AccordionItemProps {
 	index: number;
 }
 
-function ExperienceDescription({ description }: { description: string }) {
+function ExperienceDescription({ description }: { description?: string }) {
 	// Assuming description is a single string, but if it needs to be split into list items
 	// we can split by periods, newlines, or other delimiters
-	const descriptionItems = description.split(/[.!?]\s+/).filter(item => item.trim().length > 0);
+	const text = description ?? '';
+	const descriptionItems = text.split(/[.!?]\s+/).filter(item => item.trim().length > 0);
 	
 	if (descriptionItems.length <= 1) {
-		return <p className={COLORS.TEXT_SECONDARY}>{description}</p>;
+		return <p className={COLORS.TEXT_SECONDARY}>{text}</p>;
 	}
 
 	return (

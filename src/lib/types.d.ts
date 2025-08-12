@@ -93,6 +93,7 @@ export interface WorkExperiencesList {
 	company: string;
 	position: string;
 	period: string;
-	description: string;
+	description?: string;
+	descriptionItems?: string[];
 	skills: string[];
 }
