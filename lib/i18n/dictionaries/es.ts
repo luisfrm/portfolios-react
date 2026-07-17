@@ -1,0 +1,212 @@
+export const es = {
+  meta: {
+    title: "Luis Rivas | Portafolio",
+    description:
+      "Portafolio personal de Luis Rivas, Desarrollador Web Full Stack con más de 6 años de experiencia.",
+  },
+  personal: {
+    name: "¡Hola! Soy Luis Rivas",
+    role: "Full Stack Web Developer",
+    about:
+      "Ingeniero informático, autodidacta ubicado en Latinoamérica. Con +6 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatización, innovación y creación de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.",
+    downloadText: "Descargar CV",
+    getInTouchText: "Contactar",
+  },
+  skills: {
+    title: "Habilidades",
+  },
+  contact: {
+    title: "Contacto",
+    email: "luisfrm_@outlook.com",
+    phone: "+58 4124722407",
+    city: "Latinoamérica",
+    download: "Descargar CV",
+  },
+  contactForm: {
+    title: "Contáctame",
+    nameLabel: "Nombre",
+    emailLabel: "Email",
+    subjectLabel: "Asunto",
+    messageLabel: "Mensaje",
+    namePlaceholder: "Tu nombre completo",
+    emailPlaceholder: "tu@email.com",
+    subjectPlaceholder: "Asunto del mensaje",
+    messagePlaceholder: "Escribe tu mensaje aquí...",
+    sendButtonText: "Enviar Mensaje",
+    sendingText: "Enviando...",
+    messages: {
+      validationError: "Por favor, completa todos los campos requeridos",
+      validationDescription:
+        "Todos los campos son obligatorios para enviar tu mensaje.",
+      successMessage: "¡Mensaje enviado exitosamente!",
+      successDescription:
+        "Te responderé lo antes posible. ¡Gracias por contactarme!",
+      errorMessage: "Error al enviar el mensaje",
+      errorDescription:
+        "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+    },
+  },
+  nav: {
+    experience: "Experiencia",
+    projects: "Proyectos",
+    contact: "Contacto",
+    skills: "Habilidades",
+    about: "Sobre mí",
+  },
+  social: {
+    github: "GitHub",
+    linkedin: "LinkedIn",
+  },
+  projects: {
+    title: "Proyectos",
+    viewCode: "Ver Código",
+    liveDemo: "Demo en Vivo",
+    code: "Código",
+    demo: "Demo",
+    list: {
+      gymManager: {
+        title: "Gym Manager",
+        description:
+          "La aplicación Gym Manager es una aplicación Full-Stack para la gestión de gimnasios. Cuenta con una interfaz fácil de usar para el registro de miembros, la programación de clases y el seguimiento del rendimiento. El diseño responsivo garantiza un acceso sin inconvenientes en todos los dispositivos. Construida con Node.js y Express, maneja la autenticación de usuarios, la gestión de membresías y la programación de clases.",
+        imageUrl:
+          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1738956801/gym_manager_mwu7ad.webp",
+        githubUrl: "https://github.com/luisfrm/gym-manager",
+        liveUrl: "https://gym-manager-frontend.onrender.com/",
+      },
+      fishersImports: {
+        title: "Fishers Imports",
+        description:
+          "El sitio web de Fishers Imports, desarrollado por Overfuel, destaca por su diseño elegante y funcionalidad avanzada. Ofrece una presentación impactante del inventario de lujo, búsqueda intuitiva y opciones de financiamiento, demostrando la capacidad de Overfuel para potenciar la presencia digital de concesionarios de alta gama.",
+        imageUrl:
+          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732662466/fishers_zerdbg.webp",
+        liveUrl: "https://www.fishersimports.com/",
+      },
+      portfolio: {
+        title: "Portafolio",
+        description:
+          "Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto.",
+        imageUrl:
+          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732641749/portfolios_qvrtul.png",
+        githubUrl: "https://github.com/luisfrm/portfolios-react",
+        liveUrl: "https://luisrivas.work",
+      },
+      godsGoodBarbershop: {
+        title: "God's Good BarberShop",
+        description:
+          "God's Good BarberShop es una landing page para una barbería. El sitio está diseñado para atraer y mantener a los clientes informados sobre los servicios y promociones disponibles. Con un enfoque en la modernidad y la conveniencia, la página se actualizará continuamente con nuevas funcionalidades y mejoras.",
+        imageUrl:
+          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+        githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
+        liveUrl: "https://god-is-good-barbershop.vercel.app",
+      },
+      taskManager: {
+        title: "Task Manager",
+        description:
+          "Task Manager es una aplicación web que permite a los usuarios crear, editar y eliminar tareas. Usa tecnología moderna para manejar tareas, usuarios y autenticación. Permite a los usuarios crear cuentas, iniciar sesión y gestionar tareas de forma segura.",
+        imageUrl:
+          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732669722/taskmanager_agogip.webp",
+        githubUrl: "https://github.com/luisfrm/task-manager",
+      },
+    },
+  },
+  workExperiences: {
+    title: "Experiencia Laboral",
+    list: {
+      chicksGroup: {
+        company: "Chicks Group",
+        position: "Desarrollador Front-End",
+        period: "Enero 2025 — Presente",
+        description:
+          "Asignado en multiples proyectos como ChicksGold, plataforma de comercio virtual y ChicksX, plataforma de intercambio de criptomonedas.",
+        items: [
+          "Implementación de funcionalidades avanzadas utilizando Aurelia Framework, integrando MDC (Material Design Components) con CDS (Custom Design System), para optimizar la UX/UI.",
+          "Implementación de nuevas funcionalidades para un marketplace desarrollado con Aurelia Framework y distintos web-components construidos con la librería Lit y typescript, en conjunto de StoryBook.",
+          "Uso de StoryBook para documentar sistemáticamente la creación de nuevos componentes estableciendo guías de desarrollo claras y visualización en tiempo real.",
+          "Resolución de problemas complejos e implementación de comunicación en tiempo real mediante SignalR/WebSockets, asegurando performance óptimo en aplicaciones de alto tráfico.",
+          "Manejo de solicitudes técnicas utilizando arquitecturas modulares y patrones avanzados, manteniendo compatibilidad retroactiva mientras se modernizan interfaces legacy.",
+        ],
+      },
+      overfuel: {
+        company: "Overfuel",
+        position: "Desarrollador SR Full-Stack",
+        period: "Mayo 2023 — Septiembre 2024",
+        description:
+          "Aplicación que proporciona plataformas web para concesionarios de automóviles. Fui asignado como líder de la plataforma de 321 ignition y de el mantenimiento de esta.",
+        items: [
+          "Lideré la migración de 321 ignition a Overfuel, además del mantenimiento de la plataforma de 321 ignition.",
+          "Desarrollé una plataforma unificada de componentes y herramientas para los diferentes productos de la empresa y acelerar la entrega de producto en un 35% de incremento.",
+          "Implementé prácticas de CI/CD para mejorar la eficiencia en la entrega de software, reduciendo errores y tiempos de entrega.",
+          "Lideré la mejora del rendimiento web de concesionarias como Indy Auto Man y Fishers Imports en un 15% de incremento.",
+          "Colaboré en la creación de un marketplace unificado para concesionarias de vehículos en React Native con Expo, implementando sincronización de inventarios en tiempo real y con compatibilidad entre dispositivos de iOS y Android.",
+          "Implementé diversos scripts de terceros mediante el manejo de Google Tag Manager.",
+          "Construí una herramienta de gestión de cookies de forma transversal para todos los productos para cumplir con las leyes de consentimiento de permisos de los usuarios en más de 60 concesionarios de vehículos.",
+          "Lideré el manejo de peticiones técnicas de más de 100 clientes, desarrollando así nuevos features y solicitudes.",
+        ],
+      },
+      ignition321: {
+        company: "321ignition",
+        position: "Desarrollador SR Full-Stack",
+        period: "Mayo 2020 — Mayo 2023",
+        description:
+          "Líder de Equipo Multidisciplinario: Comencé en este rol como desarrollador Front-end, y mi desempeño me llevó a asumir un puesto de liderazgo. Fui responsable de la resolución de problemas, la coordinación de actividades y la garantía de calidad en el desarrollo de aplicaciones y funcionalidades tanto en Front-end (web y móvil) como en Back-end.",
+        items: [
+          "Desarrollé una arquitectura Front-end en colaboración con el equipo que mejoró la escalabilidad y el rendimiento del sitio web.",
+          "Colaboré en la construcción y mantenimiento de distintos microservicios API Rest para integrar a las aplicaciones Front-end.",
+          "Optimicé la interfaz de usuario de Front-end para mejorar UX/UI y performance de distintos proyectos.",
+          "Colaboré en la creación de nuevos proyectos en plataformas móviles utilizando React Native, soportando la compatibilidad con dispositivos iOS y Android.",
+          "Colaboré en la migración de la plataforma existente en una nueva infraestructura más escalable y mantenible con un grupo de tecnologías acorde a la necesidad del proyecto.",
+          "Optimicé la implementación de scripts de terceros (analytics, marketing y tracking) usando Google Tag Manager, logrando la reducción del 60% en tiempo de deploy de nuevos tags sin necesidad de nuevos cambios en el código.",
+          "Lideré un equipo multidisciplinario entre Front-end y QA para la gestión, reparto, supervisión y desarrollo de tareas de parte del equipo de client support.",
+          "Dockericé entornos con multistage builds (70% más ligeros) y docker compose, acelerando despliegues y onboarding a 15 minutos.",
+        ],
+      },
+      firaOnlive: {
+        company: "Fira onLive",
+        position: "Desarrollador Front-End",
+        period: "Mayo 2019 — Marzo 2020",
+        description:
+          "Asignado en la creación de un nuevo reproductor live-streaming y una nueva librería para fácilmente manejar las funcionalidades del player.",
+        items: [
+          "Desarrollé un reproductor de live streaming utilizando React y Red5Pro.",
+          "Desarrollé un chat para cada uno de los eventos de streaming utilizando la librería getStreaming.",
+          "Desarrollé una librería en javascript para la implementación del reproductor de streaming en sitios de terceros.",
+          "Colaboré en la creación e implementación de nuevas funcionalidades en el CMS de los eventos de streaming.",
+          "Automaticé el despliegue mediante pipelines CI/CD (GitHub Actions) y pruebas automatizadas con Jest, estandarizando procesos que aceleraron la entrega de features y redujeron fallos.",
+          "Implementé la creación de contenedores de Docker para estandarizar entornos de desarrollo y producción, logrando consistencia en despliegues entre equipos.",
+        ],
+      },
+    },
+  },
+  education: {
+    title: "Educación",
+    degree: "Ingeniero Informático",
+    institution: "Universidad Rafael Belloso Chacín",
+    period: "Enero, 2017 - Diciembre, 2021",
+    description:
+      "Graduado como Ingeniero Informático desde la Universidad Rafael Belloso Chacín en el año 2021 tras 5 años de estudio y obtener aprobación en el trabajo especial de grado.",
+    items: [
+      "Trabajo especial de grado:",
+      "Aplicación web farmacéutica desarrollada en React.js y Node junto a express y MySQL para el servidor y base de datos.",
+      "La aplicación consistió en una solución para la problemática que hubo durante la pandemia del 2020 para la distribución de medicamentos de una manera más segura y eficiente a través de un marketplace de distintos distribuidores en la región.",
+    ],
+  },
+  cv: {
+    url: "https://drive.google.com/file/d/1z6Qk6MLHX2ekxokBYDe-36Hm2tGOTsf_/view?usp=sharing",
+  },
+  theme: {
+    light: "Claro",
+    dark: "Oscuro",
+    system: "Sistema",
+  },
+  common: {
+    languageSwitchTo: "EN",
+    scrollToTop: "Volver arriba",
+    menu: "Menú",
+  },
+  notFound: {
+    code: "404",
+    title: "Página no encontrada",
+    description: "La página que buscas no existe o ha sido movida.",
+    homeButton: "Volver al inicio",
+  },
+} as const;
