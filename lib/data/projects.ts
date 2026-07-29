@@ -49,6 +49,33 @@ export const godsGoodBarbershopTechnologies = [
   "Client components",
 ] as const;
 
+export const dnovaGalleryTechnologies = [
+  "Next.js 16",
+  "React 19",
+  "TypeScript",
+  "Tailwind CSS v4",
+  "Supabase",
+  "Cloudflare R2",
+  "shadcn/ui",
+  "Lucide Icons",
+] as const;
+
+export const deliveryLosLatinosTechnologies = [
+  "Next.js",
+  "React 19",
+  "TypeScript",
+  "Tailwind CSS",
+  "Supabase",
+  "PostgreSQL",
+  "dnd-kit",
+] as const;
+
+export const elPoaigTechnologies = [
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+] as const;
+
 export const taskManagerTechnologies = [
   "React",
   "Tailwind CSS",
@@ -61,14 +88,24 @@ export const taskManagerTechnologies = [
   "Zod",
 ] as const;
 
-// Unified project array — each project carries its technologies internally
+// Media item interface — supports images and videos (video player coming soon)
+export interface ProjectMedia {
+  type: "image" | "video";
+  url: string;
+}
+
+// Project interface
 export interface Project {
   key: string;
   technologies: readonly string[];
 }
 
+// Unified project array — each project carries its technologies internally.
+// Media (images/videos) lives in the i18n dictionaries alongside title and description.
 export const projects: Project[] = [
-  { key: "gymManager",         technologies: [...gymManagerTechnologies] },
+  { key: "dnovaGallery",       technologies: [...dnovaGalleryTechnologies] },
+  { key: "deliveryLosLatinos", technologies: [...deliveryLosLatinosTechnologies] },
+  { key: "elPoaig",            technologies: [...elPoaigTechnologies] },
   { key: "fishersImports",     technologies: [...fishersImportsTechnologies] },
   { key: "portfolio",          technologies: [...portfolioTechnologies] },
   { key: "godsGoodBarbershop", technologies: [...godsGoodBarbershopTechnologies] },

@@ -74,22 +74,61 @@ export const en = {
     demo: "Demo",
     list: [
       {
-        key: "gymManager",
-        title: "Gym manager",
+        key: "dnovaGallery",
+        title: "D'Nova Gallery - Photography Portfolio & Custom CMS",
         description:
-          "Gym Manager's app is a Full-Stack application for gym management. It features a user-friendly interface for member registration, class scheduling, and performance tracking. The responsive design ensures seamless access across devices. Built with Node.js and Express, it powers the gym management system, handling user authentication, membership management, and class scheduling. The API integrates with a MongoDB database for efficient data storage and retrieval.",
-        imageUrl:
-          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1738956801/gym_manager_mwu7ad.webp",
-        githubUrl: "https://github.com/luisfrm/gym-manager",
-        liveUrl: "https://gym-manager-frontend.onrender.com",
+          "Professional web application and Content Management System (CMS) designed for studio photographers. Features interactive portfolio showcases, service package management, dynamic galleries, and booking requests. Includes a dedicated administration dashboard with secure authentication, high-performance image storage via Cloudflare R2, and multi-language support (English/Spanish).",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-4.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-5.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-6.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-7.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-8.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-9.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-10.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/dnova-11.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/photographer-ui",
+        liveUrl: "https://dnovagallery.luisrivas.site/en",
+      },
+      {
+        key: "deliveryLosLatinos",
+        title: "Delivery Los Latinos - Food Delivery Platform",
+        description:
+          "Full-stack food delivery and restaurant management web platform built for Orihuela. Features an intuitive admin dashboard for store and catalog management, interactive menu editor with drag-and-drop reordering, role-based access control (RBAC) with Supabase Auth and database Row Level Security (RLS), and a mobile-first responsive user interface.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/loslatinos-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/loslatinos-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/loslatinos-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/loslatinos-4.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/delivery-orihuela",
+        liveUrl: "https://deliveryloslatinos.es",
+      },
+      {
+        key: "elPoaig",
+        title: "El Poaig — El Mil del Poaig",
+        description:
+          "Luxury high-end landing page crafted for El Mil del Poaig, the world's first organic extra virgin olive oil harvested from millenary Farga olive trees (1,000 to 3,000 years old). Features a cinematic editorial aesthetic, custom color grading, subtle micro-animations, infinite press marquee, interactive media gallery, and a fully self-contained multilingual web experience.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/elpoaig-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/elpoaig-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/elpoaig-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/elpoaig-4.webp" },
+        ],
+        liveUrl: "http://elpoaig.luisrivas.site",
       },
       {
         key: "fishersImports",
         title: "Fishers Imports",
         description:
           "Fishers Imports' website, developed by Overfuel, showcases elegant design and advanced functionality. It features an impressive luxury inventory display, intuitive search, and financing options, demonstrating Overfuel's ability to boost high-end dealerships' digital presence.",
-        imageUrl:
-          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732662466/fishers_zerdbg.webp",
+        media: [
+          { type: "image", url: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732662466/fishers_zerdbg.webp" },
+        ],
         liveUrl: "https://www.fishersimports.com/",
       },
       {
@@ -97,8 +136,9 @@ export const en = {
         title: "Portfolio",
         description:
           "My portfolio is a web application that showcases my projects and skills. It uses modern technology to present information clearly and attractively. It displays featured projects, skills, and contact information.",
-        imageUrl:
-          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732641749/portfolios_qvrtul.png",
+        media: [
+          { type: "image", url: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732641749/portfolios_qvrtul.png" },
+        ],
         githubUrl: "https://github.com/luisfrm/portfolios-react",
         liveUrl: "https://luisrivas.work",
       },
@@ -107,8 +147,9 @@ export const en = {
         title: "God's Good BarberShop",
         description:
           "God's Good BarberShop is a landing page for a barbershop. The site is designed to attract and keep customers informed about available services and promotions. With a focus on modernity and convenience, the page will be continuously updated with new features and improvements.",
-        imageUrl:
-          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp",
+        media: [
+          { type: "image", url: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732264975/god-is-good-compress_drf1ce.webp" },
+        ],
         githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
         liveUrl: "https://god-is-good-barbershop.vercel.app",
       },
@@ -117,8 +158,9 @@ export const en = {
         title: "Task Manager",
         description:
           "Task Manager is a web application for managing tasks and projects. It offers a user-friendly interface for creating, assigning, and tracking tasks. The application uses modern technology to ensure seamless task management, featuring real-time updates, task prioritization, and detailed reporting.",
-        imageUrl:
-          "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732669722/taskmanager_agogip.webp",
+        media: [
+          { type: "image", url: "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732669722/taskmanager_agogip.webp" },
+        ],
         githubUrl: "https://github.com/luisfrm/task-manager",
       },
     ],
@@ -233,6 +275,7 @@ export const en = {
     status: "Available for new opportunities",
     builtWith: "Built with Next.js & TypeScript",
     rights: "All rights reserved.",
+    sitemap: "Sitemap",
   },
   notFound: {
     code: "404",
