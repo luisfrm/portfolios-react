@@ -27,7 +27,7 @@ export async function generateMetadata({
     "Professional portfolio of Luis Rivas, Senior Full Stack Engineer specializing in React, Next.js, Node.js, .NET, and AI Engineering.";
   const keywords = t.meta?.keywords ?? "Luis Rivas, Full Stack Developer, Next.js, React, TypeScript";
 
-  const baseUrl = "https://luisrivas.dev";
+  const baseUrl = "https://luisrivas.site";
 
   return {
     metadataBase: new URL(baseUrl),
@@ -97,7 +97,7 @@ export default async function LocaleLayout({
     "@type": "Person",
     name: "Luis Rivas",
     jobTitle: "Senior Full Stack Developer",
-    url: "https://luisrivas.dev",
+    url: "https://luisrivas.site",
     sameAs: [
       "https://github.com/luisfrm/",
       "https://www.linkedin.com/in/luisrivasm/",
