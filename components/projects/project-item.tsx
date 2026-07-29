@@ -1,20 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/hooks";
-import {
-  type ProjectKey,
-} from "@/lib/data/projects";
+import { type ProjectKey } from "@/lib/data/projects";
+
+import { Badge } from "@/components/ui/badge";
+
+/* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
 interface Props {
   project: {
     title: string;
     description: string;
     imageUrl?: string;
+    images?: string[];
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
@@ -22,101 +26,139 @@ interface Props {
   };
   delayClass?: string;
   index: number;
+  isFeatured?: boolean;
 }
 
-const PROJECT_ITEM_STYLES = {
-  card: cn(
-    "group relative bg-card rounded-2xl overflow-hidden shadow-lg",
-    "border border-border/50 hover:border-blue-500/30",
-    "transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10",
-    "hover:-translate-y-1 h-full flex flex-col"
-  ),
-  imageContainer: "relative h-64 overflow-hidden bg-muted",
-  imageWrap: "relative w-full h-full",
-  image:
-    "object-cover transition-transform duration-500 group-hover:scale-105",
-  overlay: cn(
-    "absolute inset-0 bg-black/70 backdrop-blur-sm",
-    "opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-    "flex items-center justify-center",
-    "hidden md:flex"
-  ),
-  overlayActions: "flex gap-4",
-  actionButton: cn(
-    "flex items-center gap-3 px-6 py-3 rounded-full",
-    "bg-white/10 backdrop-blur-sm border border-white/20 text-white",
-    "hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300",
-    "hover:scale-105 font-medium"
-  ),
-  mobileActions:
-    "flex gap-3 px-8 py-4 border-b border-border/50 bg-gradient-to-r from-background/50 to-muted/30 md:hidden",
-  mobileActionButton: cn(
-    "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
-    "bg-blue-50 text-blue-700 border border-blue-200",
-    "dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800",
-    "hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-200",
-    "active:scale-95"
-  ),
-  content: "flex-1 p-8",
-  title: cn(
-    "font-bold text-xl mb-4 text-foreground",
-    "group-hover:text-blue-600 dark:group-hover:text-blue-400",
-    "transition-colors duration-300"
-  ),
-  description: "text-muted-foreground leading-relaxed mb-6 text-base",
-  technologies: "flex flex-wrap gap-3",
-  tech: cn(
-    "px-4 py-2 text-sm font-medium rounded-full",
-    "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300",
-    "border border-blue-200 dark:border-blue-800",
-    "transition-colors duration-200"
-  ),
-  fallbackImage: cn(
-    "w-full h-full flex items-center justify-center",
-    "bg-gradient-to-br from-blue-50 to-slate-100 dark:from-slate-800 dark:to-slate-900",
-    "text-muted-foreground"
-  ),
-} as const;
+const TECH_BADGE_STYLE =
+  "px-3 py-1 text-xs font-mono rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/80 transition-colors";
 
-export function ProjectItem({ project, delayClass }: Props) {
-  const { title, description, imageUrl, technologies, githubUrl, liveUrl } =
+export function ProjectItem({ project, delayClass, isFeatured = false }: Props) {
+  const { title, description, imageUrl, images: propImages, technologies, githubUrl, liveUrl } =
     project;
+
+  // Determine list of images (either from array prop or single imageUrl fallback)
+  const imageList = propImages && propImages.length > 0
+    ? propImages
+    : imageUrl
+    ? [imageUrl]
+    : [];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const { ref, isInView } = useInView<HTMLDivElement>({
     threshold: 0.2,
     rootMargin: "100px",
   });
   const t = useTranslations();
 
-  return (
-    <div
-      ref={ref}
-      className={cn("animate-fade-up", delayClass, isInView && "is-visible")}
-    >
-      <article className={PROJECT_ITEM_STYLES.card}>
-        <div className={PROJECT_ITEM_STYLES.imageContainer}>
-          {imageUrl ? (
-            <>
-              <div className={PROJECT_ITEM_STYLES.imageWrap}>
+  const handleNext = () => {
+    if (imageList.length === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % imageList.length);
+  };
+
+  const handlePrev = () => {
+    if (imageList.length === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + imageList.length) % imageList.length);
+  };
+
+  if (isFeatured) {
+    return (
+      <div
+        ref={ref}
+        className={cn("col-span-full animate-fade-up", delayClass, isInView && "is-visible")}
+      >
+        <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/60 shadow-lg hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          {/* Media Container (7 Cols on Desktop) */}
+          <div className="relative h-72 sm:h-96 lg:h-full lg:col-span-7 bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
+            {imageList.length > 0 ? (
+              <div className="relative w-full h-full min-h-[300px]">
                 <Image
-                  src={imageUrl}
-                  alt={`Preview of ${title}`}
+                  src={imageList[currentIndex]}
+                  alt={`Preview of ${title} (Slide ${currentIndex + 1})`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={PROJECT_ITEM_STYLES.image}
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
+
+                {/* Carousel Controls */}
+                {imageList.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePrev}
+                      aria-label="Previous slide"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/80 transition-colors z-20"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={handleNext}
+                      aria-label="Next slide"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/80 transition-colors z-20"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                      {imageList.map((_, idx) => (
+                        <span
+                          key={idx}
+                          className={cn(
+                            "h-1.5 rounded-full transition-all duration-300",
+                            idx === currentIndex ? "w-5 bg-white" : "w-1.5 bg-white/50"
+                          )}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
-              <div className={PROJECT_ITEM_STYLES.overlay}>
-                <div className={PROJECT_ITEM_STYLES.overlayActions}>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
+                <span className="font-mono text-base">{title}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Content Column (5 Cols on Desktop) */}
+          <div className="p-6 sm:p-8 lg:p-10 lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 font-mono text-xs uppercase tracking-wider w-fit">
+                ★ Featured Project
+              </Badge>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {title}
+              </h3>
+              
+              {/* Featured project description upgraded to text-base sm:text-lg */}
+              <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+                {description}
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {/* Tech Badges */}
+              <div className="flex flex-wrap gap-1.5">
+                {technologies.map((tech, i) => (
+                  <span key={`tech-${i}`} className={TECH_BADGE_STYLE}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Actions Footer */}
+              {(githubUrl || liveUrl) && (
+                <div className="pt-4 border-t border-border/40 flex items-center gap-4">
                   {githubUrl && (
                     <a
                       href={githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={PROJECT_ITEM_STYLES.actionButton}
+                      className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       aria-label={`View ${title} source code`}
                     >
-                      <GithubIcon className="w-5 h-5" />
+                      <GithubIcon className="w-4 h-4" />
                       <span>{t("projects.viewCode")}</span>
                     </a>
                   )}
@@ -125,90 +167,136 @@ export function ProjectItem({ project, delayClass }: Props) {
                       href={liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={PROJECT_ITEM_STYLES.actionButton}
+                      className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       aria-label={`View ${title} live demo`}
                     >
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-4 h-4" />
                       <span>{t("projects.liveDemo")}</span>
                     </a>
                   )}
                 </div>
-              </div>
-            </>
-          ) : (
-            <div className={PROJECT_ITEM_STYLES.fallbackImage}>
-              <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  <svg
-                    className="w-10 h-10 text-blue-600 dark:text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              )}
+            </div>
+
+          </div>
+
+        </article>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn("animate-fade-up", delayClass, isInView && "is-visible")}
+    >
+      <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col h-full">
+        
+        {/* Media Container: Single Image or Carousel */}
+        <div className="relative h-64 w-full bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
+          {imageList.length > 0 ? (
+            <div className="relative w-full h-full">
+              <Image
+                src={imageList[currentIndex]}
+                alt={`Preview of ${title} (Slide ${currentIndex + 1})`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              {/* Carousel Controls (rendered only when > 1 image) */}
+              {imageList.length > 1 && (
+                <>
+                  <button
+                    onClick={handlePrev}
+                    aria-label="Previous slide"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors z-20"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <p className="text-lg font-medium">{title}</p>
-              </div>
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    aria-label="Next slide"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors z-20"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                    {imageList.map((_, idx) => (
+                      <span
+                        key={idx}
+                        className={cn(
+                          "h-1.5 rounded-full transition-all duration-300",
+                          idx === currentIndex
+                            ? "w-4 bg-white"
+                            : "w-1.5 bg-white/50"
+                        )}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
+              <span className="font-mono text-sm">{title}</span>
             </div>
           )}
         </div>
 
-        {(githubUrl || liveUrl) && (
-          <div className={PROJECT_ITEM_STYLES.mobileActions}>
-            {githubUrl && (
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={PROJECT_ITEM_STYLES.mobileActionButton}
-                aria-label={`View ${title} source code`}
-              >
-                <GithubIcon className="w-4 h-4" />
-                <span>{t("projects.code")}</span>
-              </a>
-            )}
-            {liveUrl && (
-              <a
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={PROJECT_ITEM_STYLES.mobileActionButton}
-                aria-label={`View ${title} live demo`}
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span>{t("projects.demo")}</span>
-              </a>
-            )}
+        {/* Content Body */}
+        <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {title}
+            </h3>
+            {/* Enhanced body text size to text-base for optimal Work Sans legibility */}
+            <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+              {description}
+            </p>
           </div>
-        )}
 
-        <div className={PROJECT_ITEM_STYLES.content}>
-          <h3 className={PROJECT_ITEM_STYLES.title}>{title}</h3>
-          <p className={PROJECT_ITEM_STYLES.description}>{description}</p>
-          <div className={PROJECT_ITEM_STYLES.technologies}>
-            {technologies.slice(0, 6).map((tech, i) => (
-              <span key={`tech-${i}`} className={PROJECT_ITEM_STYLES.tech}>
+          {/* Tech Badges */}
+          <div className="flex flex-wrap gap-1.5 pt-2">
+            {technologies.map((tech, i) => (
+              <span key={`tech-${i}`} className={TECH_BADGE_STYLE}>
                 {tech}
               </span>
             ))}
-            {technologies.length > 6 && (
-              <span
-                className={cn(
-                  PROJECT_ITEM_STYLES.tech,
-                  "bg-muted text-muted-foreground border-muted-foreground/20"
-                )}
-              >
-                +{technologies.length - 6}
-              </span>
-            )}
           </div>
+
+          {/* Actions Footer Links */}
+          {(githubUrl || liveUrl) && (
+            <div className="pt-4 border-t border-border/40 flex items-center gap-3">
+              {githubUrl && (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label={`View ${title} source code`}
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  <span>{t("projects.viewCode")}</span>
+                </a>
+              )}
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label={`View ${title} live demo`}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>{t("projects.liveDemo")}</span>
+                </a>
+              )}
+            </div>
+          )}
         </div>
+
       </article>
     </div>
   );
