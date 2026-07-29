@@ -8,11 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, COLORS, SPACING } from "@/lib/constants";
 import { AnimatedSection } from "@/components/common/animated-section";
-import {
-  workExperienceOrder,
-  workExperienceSkills,
-  type WorkExperienceKey,
-} from "@/lib/data/workExperience";
+import { workExperiences } from "@/lib/data/workExperience";
 
 /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
@@ -113,20 +109,28 @@ export function WorkExperience() {
   const t = useTranslations();
   const locale = useLocale();
 
-  const experiences = workExperienceOrder.map((key: WorkExperienceKey) => {
-    const data = t.raw(`workExperiences.list.${key}`) as {
-      company: string;
-      position: string;
-      period: string;
-      description: string;
-      items: string[];
-    };
-    return {
-      key,
-      ...data,
-      skills: [...workExperienceSkills[key]],
-    };
-  });
+  // Merge static data (skills) with i18n text by key
+  const i18nList = t.raw("workExperiences.list") as Array<{
+    key: string;
+    company: string;
+    position: string;
+    period: string;
+    description: string;
+    items: string[];
+  }>;
+
+  const experiences = workExperiences.map((we) => ({
+    ...we,
+    ...i18nList.find((item) => item.key === we.key),
+  })) as Array<{
+    key: string;
+    company: string;
+    position: string;
+    period: string;
+    description: string;
+    items: string[];
+    skills: readonly string[];
+  }>;
 
   return (
     <section id="experience" className={cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION)}>

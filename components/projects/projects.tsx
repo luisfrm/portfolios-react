@@ -8,11 +8,7 @@ import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, SPACING } from "@/lib/constants";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { ProjectItem } from "./project-item";
-import {
-  projectOrder,
-  projectTechnologies,
-  type ProjectKey,
-} from "@/lib/data/projects";
+import { projects } from "@/lib/data/projects";
 
 /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
@@ -25,26 +21,26 @@ export function Projects() {
   const t = useTranslations();
   const locale = useLocale();
 
-  const projects = projectOrder.map((key: ProjectKey) => {
-    const data = t.raw(`projects.list.${key}`) as {
-      title: string;
-      description: string;
-      imageUrl?: string;
-      images?: string[];
-      githubUrl?: string;
-      liveUrl?: string;
-    };
-    return {
-      key,
-      ...data,
-      technologies: [...projectTechnologies[key]],
-    };
-  });
+  // Merge static data (technologies) with i18n text (title, description, urls) by key
+  const i18nList = t.raw("projects.list") as Array<{
+    key: string;
+    title: string;
+    description: string;
+    imageUrl?: string;
+    images?: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  }>;
 
-  if (projects.length === 0) return null;
+  const mergedProjects = projects.map((p) => ({
+    ...p,
+    ...i18nList.find((item) => item.key === p.key),
+  }));
+
+  if (mergedProjects.length === 0) return null;
 
   // Limit to top 3 preview projects on home page (1 Featured Hero + 2 Secondary)
-  const previewProjects = projects.slice(0, 3);
+  const previewProjects = mergedProjects.slice(0, 3);
   const featuredProject = previewProjects[0];
   const secondaryProjects = previewProjects.slice(1);
 
@@ -86,20 +82,17 @@ export function Projects() {
         )}
       </div>
 
-      {/* Blur Fade Transition Overlay & View All Button */}
-      <div className="relative -mt-20 pt-28 pb-4 text-center z-10">
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none" />
-        <div className="relative z-20">
-          <Link href={`/${locale}/projects`}>
-            <Button
-              variant="outline"
-              className="gap-2.5 px-8 py-6 text-sm font-mono uppercase tracking-wider rounded-full bg-background/80 backdrop-blur-md border-2 border-blue-500/40 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-xl transition-all duration-300 group"
-            >
-              {t("projects.viewAll")}
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </div>
+      {/* View All Projects Button Section */}
+      <div className="pt-10 text-center">
+        <Link href={`/${locale}/projects`}>
+          <Button
+            variant="outline"
+            className="gap-2.5 px-8 py-6 text-sm font-mono uppercase tracking-wider rounded-full bg-background/80 backdrop-blur-md border-2 border-blue-500/40 hover:border-blue-600 hover:bg-blue-600 hover:text-white shadow-xl transition-all duration-300 group"
+          >
+            {t("projects.viewAll")}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </Link>
       </div>
     </section>
   );

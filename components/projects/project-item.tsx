@@ -3,26 +3,24 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight, Mail } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { cn } from "@/lib/utils";
-import { useInView } from "@/hooks";
-import { type ProjectKey } from "@/lib/data/projects";
+import { useInView, useScrollTo } from "@/hooks";
+import { type Project } from "@/lib/data/projects";
 
 import { Badge } from "@/components/ui/badge";
 
-/* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
+/* Hallmark · component: project-item · genre: editorial · theme: custom · archetype: Split Ledger / Card */
 
 interface Props {
-  project: {
-    title: string;
-    description: string;
+  project: Project & {
+    title?: string;
+    description?: string;
     imageUrl?: string;
     images?: string[];
-    technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
-    key: ProjectKey;
   };
   delayClass?: string;
   index: number;
@@ -49,6 +47,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     threshold: 0.2,
     rootMargin: "100px",
   });
+  const { scrollToElement } = useScrollTo();
   const t = useTranslations();
 
   const handleNext = () => {
@@ -59,6 +58,60 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   const handlePrev = () => {
     if (imageList.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + imageList.length) % imageList.length);
+  };
+
+  // Determine link presence & space-between layout logic
+  const hasGithub = Boolean(githubUrl && githubUrl.trim() !== "");
+  const hasLive = Boolean(liveUrl && liveUrl.trim() !== "");
+  // If githubUrl is missing/empty, display Contact link as fallback
+  const isJustifyBetween = hasLive;
+
+  const renderCodeOrContactLink = () => {
+    if (hasGithub) {
+      return (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          aria-label={`View ${title} source code`}
+        >
+          <GithubIcon className="w-4 h-4" />
+          <span>{t("projects.viewCode")}</span>
+        </a>
+      );
+    }
+
+    return (
+      <a
+        href="#contact-form"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToElement("#contact-form");
+        }}
+        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+        aria-label={`Contact regarding ${title}`}
+      >
+        <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+        <span>{t("projects.contactCode")}</span>
+      </a>
+    );
+  };
+
+  const renderLiveLink = () => {
+    if (!hasLive) return null;
+    return (
+      <a
+        href={liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        aria-label={`View ${title} live demo`}
+      >
+        <ExternalLink className="w-4 h-4" />
+        <span>{t("projects.liveDemo")}</span>
+      </a>
+    );
   };
 
   if (isFeatured) {
@@ -131,7 +184,6 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                 {title}
               </h3>
               
-              {/* Featured project description upgraded to text-base sm:text-lg */}
               <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                 {description}
               </p>
@@ -147,35 +199,11 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                 ))}
               </div>
 
-              {/* Actions Footer */}
-              {(githubUrl || liveUrl) && (
-                <div className="pt-4 border-t border-border/40 flex items-center gap-4">
-                  {githubUrl && (
-                    <a
-                      href={githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      aria-label={`View ${title} source code`}
-                    >
-                      <GithubIcon className="w-4 h-4" />
-                      <span>{t("projects.viewCode")}</span>
-                    </a>
-                  )}
-                  {liveUrl && (
-                    <a
-                      href={liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      aria-label={`View ${title} live demo`}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>{t("projects.liveDemo")}</span>
-                    </a>
-                  )}
-                </div>
-              )}
+              {/* Actions Footer Links */}
+              <div className={cn("pt-4 border-t border-border/40 flex items-center w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
+                {renderCodeOrContactLink()}
+                {renderLiveLink()}
+              </div>
             </div>
 
           </div>
@@ -205,7 +233,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                 loading="lazy"
               />
 
-              {/* Carousel Controls (rendered only when > 1 image) */}
+              {/* Carousel Controls */}
               {imageList.length > 1 && (
                 <>
                   <button
@@ -251,7 +279,6 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
             <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {title}
             </h3>
-            {/* Enhanced body text size to text-base for optimal Work Sans legibility */}
             <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
               {description}
             </p>
@@ -267,34 +294,10 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
           </div>
 
           {/* Actions Footer Links */}
-          {(githubUrl || liveUrl) && (
-            <div className="pt-4 border-t border-border/40 flex items-center gap-3">
-              {githubUrl && (
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  aria-label={`View ${title} source code`}
-                >
-                  <GithubIcon className="w-4 h-4" />
-                  <span>{t("projects.viewCode")}</span>
-                </a>
-              )}
-              {liveUrl && (
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  aria-label={`View ${title} live demo`}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>{t("projects.liveDemo")}</span>
-                </a>
-              )}
-            </div>
-          )}
+          <div className={cn("pt-4 border-t border-border/40 flex items-center w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
+            {renderCodeOrContactLink()}
+            {renderLiveLink()}
+          </div>
         </div>
 
       </article>

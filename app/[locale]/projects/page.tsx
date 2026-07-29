@@ -12,11 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ProjectItem } from "@/components/projects/project-item";
 import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/constants";
-import {
-  projectOrder,
-  projectTechnologies,
-  type ProjectKey,
-} from "@/lib/data/projects";
+import { projects } from "@/lib/data/projects";
 
 /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
@@ -24,21 +20,21 @@ export default function ProjectsPage() {
   const t = useTranslations();
   const locale = useLocale();
 
-  const projects = projectOrder.map((key: ProjectKey) => {
-    const data = t.raw(`projects.list.${key}`) as {
-      title: string;
-      description: string;
-      imageUrl?: string;
-      images?: string[];
-      githubUrl?: string;
-      liveUrl?: string;
-    };
-    return {
-      key,
-      ...data,
-      technologies: [...projectTechnologies[key]],
-    };
-  });
+  // Merge static data (technologies) with i18n text (title, description, urls) by key
+  const i18nList = t.raw("projects.list") as Array<{
+    key: string;
+    title: string;
+    description: string;
+    imageUrl?: string;
+    images?: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  }>;
+
+  const mergedProjects = projects.map((p) => ({
+    ...p,
+    ...i18nList.find((item) => item.key === p.key),
+  }));
 
   return (
     <Layout>
@@ -85,19 +81,19 @@ export default function ProjectsPage() {
           </AnimatedSection>
 
           {/* Studio Showcase Project Layout */}
-          {projects.length > 0 && (
+          {mergedProjects.length > 0 && (
             <div className="space-y-10 sm:space-y-12">
               {/* Featured Hero Project (Full Width) */}
               <ProjectItem
-                project={projects[0]}
+                project={mergedProjects[0]}
                 index={0}
                 isFeatured={true}
               />
 
               {/* Secondary Projects Grid (2 Columns) */}
-              {projects.length > 1 && (
+              {mergedProjects.length > 1 && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
-                  {projects.slice(1).map((project, index) => (
+                  {mergedProjects.slice(1).map((project, index) => (
                     <ProjectItem
                       key={project.key}
                       project={project}

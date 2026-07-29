@@ -13,11 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/constants";
-import {
-  workExperienceOrder,
-  workExperienceSkills,
-  type WorkExperienceKey,
-} from "@/lib/data/workExperience";
+import { workExperiences } from "@/lib/data/workExperience";
 
 /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
@@ -28,20 +24,20 @@ export default function WorkExperiencePage() {
   const t = useTranslations();
   const locale = useLocale();
 
-  const experiences = workExperienceOrder.map((key: WorkExperienceKey) => {
-    const data = t.raw(`workExperiences.list.${key}`) as {
-      company: string;
-      position: string;
-      period: string;
-      description: string;
-      items: string[];
-    };
-    return {
-      key,
-      ...data,
-      skills: [...workExperienceSkills[key]],
-    };
-  });
+  // Merge static data (skills) with i18n text (company, position, etc.) by key
+  const i18nList = t.raw("workExperiences.list") as Array<{
+    key: string;
+    company: string;
+    position: string;
+    period: string;
+    description: string;
+    items: string[];
+  }>;
+
+  const experiences = workExperiences.map((we) => ({
+    ...we,
+    ...i18nList.find((item) => item.key === we.key),
+  }));
 
   return (
     <Layout>
