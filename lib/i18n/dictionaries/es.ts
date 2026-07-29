@@ -1,8 +1,10 @@
 export const es = {
   meta: {
-    title: "Luis Rivas | Portafolio",
+    title: "Luis Rivas — Senior Full Stack Developer & AI Engineer",
     description:
-      "Portafolio personal de Luis Rivas, Desarrollador Web Full Stack con más de 6 años de experiencia.",
+      "Portafolio profesional de Luis Rivas, Ingeniero de Software Full Stack con +6 años de experiencia especializado en React, Next.js, Node.js, .NET, Serverless y Soluciones impulsadas por IA.",
+    keywords:
+      "Luis Rivas, Full Stack Developer, Senior Software Engineer, React Developer, Next.js, Node.js, .NET, AI Engineering, Serverless, Web Developer Latinoamérica",
   },
   personal: {
     name: "¡Hola! Soy Luis Rivas",
@@ -23,7 +25,10 @@ export const es = {
     download: "Descargar CV",
   },
   contactForm: {
-    title: "Contáctame",
+    title: "Contacto",
+    subtitle: "PONTE EN CONTACTO",
+    headline: "Construyamos algo excepcional juntos.",
+    responseTime: "Respuesta habitual en <24 horas",
     nameLabel: "Nombre",
     emailLabel: "Email",
     subjectLabel: "Asunto",

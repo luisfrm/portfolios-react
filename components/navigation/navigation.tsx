@@ -12,7 +12,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SocialItem } from "@/components/social-media/social-item";
 import Logo from "@/components/logo/logo";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
-import { NAV_CONFIG, ANIMATION_CLASSES } from "@/lib/constants";
+import { NAV_CONFIG } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useHeroActions, useLanguage } from "@/hooks";
 
@@ -114,7 +114,7 @@ export function Navigation() {
               <ThemeToggle />
             </div>
             <div id="nav_actions" className="sm:hidden">
-              <Sheet modal={false} onOpenChange={setIsSheetOpen}>
+              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" className="bg-transparent" size="icon">
                     <Menu className="h-6 w-6" />
@@ -122,17 +122,34 @@ export function Navigation() {
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                  <nav className="flex flex-col gap-4">
+                  <nav className="flex flex-col gap-4 mt-6">
                     {navItems.map((item) => (
-                      <NavItemMobile key={item.key} url={item.href}>
+                      <NavItemMobile
+                        key={item.key}
+                        url={item.href}
+                        onClick={() => setIsSheetOpen(false)}
+                      >
                         {t(`nav.${item.key}`)}
                       </NavItemMobile>
                     ))}
+                    
+                    {/* CV Download Nav Item */}
+                    <NavItemMobile
+                      url="#"
+                      onClick={() => {
+                        setIsSheetOpen(false);
+                        handleDownloadCV();
+                      }}
+                    >
+                      {t("personal.downloadText")}
+                    </NavItemMobile>
+
+                    {/* Social & Language Controls */}
                     <div
                       id="nav_actions_mobile"
-                      className="flex flex-col gap-3"
+                      className="flex flex-col gap-3 pt-4 border-t border-slate-200 dark:border-slate-800"
                     >
-                      <section className="flex gap-3">
+                      <section className="flex items-center gap-3">
                         <Button
                           variant="outline"
                           size="icon"
@@ -149,16 +166,6 @@ export function Navigation() {
                             size="icon"
                           />
                         ))}
-                      </section>
-                      <section>
-                        <Button
-                          id="nav-mobile-cv-button"
-                          className="flex-1 w-100"
-                          variant="outline"
-                          onClick={handleDownloadCV}
-                        >
-                          {t("personal.downloadText")}
-                        </Button>
                       </section>
                     </div>
                   </nav>

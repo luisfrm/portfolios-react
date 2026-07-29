@@ -2,60 +2,15 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Send, User, Mail, MessageSquare, FileText } from "lucide-react";
+import { Send, User, Mail, MessageSquare, FileText, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, SPACING } from "@/lib/constants";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { toast } from "sonner";
 
-const CONTACT_FORM_STYLES = {
-  container: cn(
-    LAYOUT.CONTAINER_MAX_WIDTH,
-    SPACING.SECTION,
-    "py-16 sm:py-20 lg:py-24"
-  ),
-  title: cn(
-    TYPOGRAPHY.SECTION_TITLE,
-    "bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
-    "dark:from-blue-400 dark:via-slate-400 dark:to-gray-300",
-    "mb-4"
-  ),
-  decorativeLine:
-    "w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mb-8 sm:mb-12 lg:mb-16 rounded-full",
-  formContainer:
-    "max-w-2xl mx-auto border border-gray-200 dark:border-gray-800 p-8 rounded-xl shadow-xl",
-  form: "space-y-6",
-  inputGroup: "space-y-2",
-  label:
-    "flex items-center space-x-2 text-sm font-medium text-gray-700 dark:text-gray-300",
-  input: cn(
-    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-0",
-    "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
-    "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-    "transition-all duration-200",
-    "placeholder:text-gray-500 dark:placeholder:text-gray-400",
-    "appearance-none focus:outline-none",
-    "transform-gpu will-change-transform",
-    "active:border-red-500"
-  ),
-  textarea: cn(
-    "w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-0",
-    "bg-white dark:bg-gray-800 text-gray-900 dark:text-white",
-    "focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-    "transition-all duration-200 resize-vertical min-h-[120px]",
-    "placeholder:text-gray-500 dark:placeholder:text-gray-400",
-    "appearance-none focus:outline-none",
-    "transform-gpu will-change-transform"
-  ),
-  button: cn(
-    "w-full bg-gradient-to-r from-blue-600 to-slate-700 text-white",
-    "hover:from-blue-700 hover:to-slate-800 transform hover:scale-105",
-    "transition-all duration-300 shadow-lg hover:shadow-xl",
-    "py-3 px-6 rounded-lg font-medium"
-  ),
-  gridContainer: "grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible",
-} as const;
+/* Hallmark · component: contact-form · genre: editorial · theme: custom · archetype: Split 12-Col Ledger */
 
 export function ContactForm() {
   const t = useTranslations();
@@ -96,14 +51,11 @@ export function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "https://formspree.io/f/mvgqkavr",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("https://formspree.io/f/mvgqkavr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
         toast.success(t("contactForm.messages.successMessage"), {
@@ -123,29 +75,102 @@ export function ContactForm() {
     }
   };
 
+  const socialLinks = [
+    {
+      name: t("social.github"),
+      url: "https://github.com/luisfrm/",
+      icon: <GithubIcon className="w-3.5 h-3.5" />,
+    },
+    {
+      name: t("social.linkedin"),
+      url: "https://www.linkedin.com/in/luisrivasm/",
+      icon: <LinkedinIcon className="w-3.5 h-3.5" />,
+    },
+  ];
+
   return (
-    <section id="contact-form" className={CONTACT_FORM_STYLES.container}>
+    <section id="contact-form" className={cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION)}>
+      
+      {/* Title Section */}
       <AnimatedSection animation="fade-scale" delay={0}>
-        <div className="text-center">
-          <h2 className={CONTACT_FORM_STYLES.title}>
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className={cn(TYPOGRAPHY.SECTION_TITLE, "text-3xl sm:text-4xl font-bold tracking-tight text-foreground")}>
             {t("contactForm.title")}
           </h2>
-          <div className={CONTACT_FORM_STYLES.decorativeLine} />
+          <div className="w-16 h-1 bg-blue-600 dark:bg-blue-400 mx-auto mt-3 rounded-full" />
         </div>
       </AnimatedSection>
 
-      <div className={CONTACT_FORM_STYLES.formContainer}>
-        <AnimatedSection animation="fade-up" delay={200}>
-          <form onSubmit={handleSubmit} className={CONTACT_FORM_STYLES.form}>
-            <div className={CONTACT_FORM_STYLES.gridContainer}>
-              <AnimatedSection
-                animation="fade-right"
-                delay={300}
-                className="overflow-visible"
+      {/* Asymmetric 12-Column Split Grid (Hallmark Anti-Slop Layout) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
+        
+        {/* Left Rail (5 Columns): Direct Contact Ledger & Identity */}
+        <AnimatedSection animation="fade-right" delay={150} className="lg:col-span-5 space-y-6">
+          <div className="space-y-4">
+            <span className="font-mono text-xs text-blue-600 dark:text-blue-400 uppercase tracking-widest font-semibold">
+              {t("contactForm.subtitle")}
+            </span>
+            
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-tight">
+              {t("contactForm.headline")}
+            </h3>
+            
+            <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+              {t("personal.about")}
+            </p>
+          </div>
+
+          {/* Quick Response & Location Badges */}
+          <div className="space-y-3 pt-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs font-medium text-emerald-600 dark:text-emerald-400">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{t("contactForm.responseTime")}</span>
+            </div>
+
+            <div className="flex flex-col gap-2 font-mono text-xs text-slate-600 dark:text-slate-400 pt-2">
+              <a
+                href={`mailto:${t("contact.email")}`}
+                className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors w-fit"
               >
-                <div className={CONTACT_FORM_STYLES.inputGroup}>
-                  <label htmlFor="name" className={CONTACT_FORM_STYLES.label}>
-                    <User className="w-4 h-4" />
+                <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span className="underline underline-offset-4">{t("contact.email")}</span>
+              </a>
+
+              <div className="inline-flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-slate-400" />
+                <span>{t("contact.city")}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Pills */}
+          <div className="flex flex-wrap gap-2 pt-2">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-card border border-slate-300 dark:border-slate-800 font-mono text-xs font-medium text-slate-700 dark:text-slate-300 shadow-2xs hover:border-blue-500/60 hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group"
+              >
+                {link.icon}
+                <span>{link.name}</span>
+                <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:text-blue-500 transition-colors" />
+              </a>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Right Panel (7 Columns): High-Contrast Form */}
+        <AnimatedSection animation="fade-left" delay={250} className="lg:col-span-7">
+          <div className="bg-card/90 backdrop-blur-md rounded-2xl border border-slate-300 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-xs">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {/* Name & Email 2-Col Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                    <User className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                     <span>{t("contactForm.nameLabel")}</span>
                   </label>
                   <input
@@ -155,20 +180,14 @@ export function ContactForm() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder={t("contactForm.namePlaceholder")}
-                    className={CONTACT_FORM_STYLES.input}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-foreground placeholder:text-slate-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-600 font-sans text-sm transition-all duration-200"
                     required
                   />
                 </div>
-              </AnimatedSection>
 
-              <AnimatedSection
-                animation="fade-left"
-                delay={300}
-                className="overflow-visible"
-              >
-                <div className={CONTACT_FORM_STYLES.inputGroup}>
-                  <label htmlFor="email" className={CONTACT_FORM_STYLES.label}>
-                    <Mail className="w-4 h-4" />
+                <div className="space-y-2">
+                  <label htmlFor="email" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                    <Mail className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                     <span>{t("contactForm.emailLabel")}</span>
                   </label>
                   <input
@@ -178,17 +197,16 @@ export function ContactForm() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder={t("contactForm.emailPlaceholder")}
-                    className={CONTACT_FORM_STYLES.input}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-foreground placeholder:text-slate-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-600 font-sans text-sm transition-all duration-200"
                     required
                   />
                 </div>
-              </AnimatedSection>
-            </div>
+              </div>
 
-            <AnimatedSection animation="fade-up" delay={400}>
-              <div className={CONTACT_FORM_STYLES.inputGroup}>
-                <label htmlFor="subject" className={CONTACT_FORM_STYLES.label}>
-                  <FileText className="w-4 h-4" />
+              {/* Subject Input */}
+              <div className="space-y-2">
+                <label htmlFor="subject" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  <FileText className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <span>{t("contactForm.subjectLabel")}</span>
                 </label>
                 <input
@@ -198,16 +216,15 @@ export function ContactForm() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder={t("contactForm.subjectPlaceholder")}
-                  className={CONTACT_FORM_STYLES.input}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-foreground placeholder:text-slate-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-600 font-sans text-sm transition-all duration-200"
                   required
                 />
               </div>
-            </AnimatedSection>
 
-            <AnimatedSection animation="fade-up" delay={500}>
-              <div className={CONTACT_FORM_STYLES.inputGroup}>
-                <label htmlFor="message" className={CONTACT_FORM_STYLES.label}>
-                  <MessageSquare className="w-4 h-4" />
+              {/* Message Input */}
+              <div className="space-y-2">
+                <label htmlFor="message" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  <MessageSquare className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <span>{t("contactForm.messageLabel")}</span>
                 </label>
                 <textarea
@@ -216,32 +233,26 @@ export function ContactForm() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t("contactForm.messagePlaceholder")}
-                  className={CONTACT_FORM_STYLES.textarea}
-                  rows={6}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-foreground placeholder:text-slate-400 focus:outline-none focus:border-blue-600 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-600 font-sans text-sm transition-all duration-200 min-h-[140px] resize-vertical"
+                  rows={5}
                   required
                 />
               </div>
-            </AnimatedSection>
 
-            <AnimatedSection animation="fade-up" delay={600}>
+              {/* Submit Button */}
               <Button
                 type="submit"
-                className={CONTACT_FORM_STYLES.button}
-                size="lg"
                 disabled={isSubmitting}
+                className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-mono text-xs font-bold uppercase tracking-wider py-3.5 px-6 rounded-xl transition-all duration-200 shadow-md shadow-blue-500/20 active:scale-[0.98] disabled:opacity-50"
               >
-                <Send
-                  className={`w-5 h-5 mr-2 ${
-                    isSubmitting ? "animate-pulse" : ""
-                  }`}
-                />
-                {isSubmitting
-                  ? t("contactForm.sendingText")
-                  : t("contactForm.sendButtonText")}
+                <Send className={cn("w-4 h-4 mr-2", isSubmitting && "animate-pulse")} />
+                {isSubmitting ? t("contactForm.sendingText") : t("contactForm.sendButtonText")}
               </Button>
-            </AnimatedSection>
-          </form>
+
+            </form>
+          </div>
         </AnimatedSection>
+
       </div>
     </section>
   );

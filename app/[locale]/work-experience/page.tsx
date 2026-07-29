@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowLeft, ArrowUpRight, Building2, MapPin } from "lucide-react";
+import { ArrowLeft, Building2 } from "lucide-react";
 import { Layout, MainContent, Footer } from "@/components/layout";
 import Navigation from "@/components/navigation/navigation";
 import { MouseMoveEffect } from "@/components/mouse-move/mouse-move-effect";
 import { UpWidget } from "@/components/common/up-widget";
 import { AnimatedSection } from "@/components/common/animated-section";
+import Skills from "@/components/skills/skills";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -159,6 +160,9 @@ export default function WorkExperiencePage() {
               </AnimatedSection>
             ))}
           </div>
+
+          <div className="w-full border-t border-slate-200 dark:border-slate-800 my-12 sm:my-16" />
+          <Skills />
 
         </div>
       </MainContent>

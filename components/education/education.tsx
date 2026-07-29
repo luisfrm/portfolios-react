@@ -56,14 +56,14 @@ export function Education() {
             </Badge>
           </div>
 
-          {/* Body Content & Thesis Showcase */}
+          {/* Body Content & Thesis Showcase (Clean Accent Rail without nested card slop) */}
           <div className="pt-6 space-y-6">
             <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
               {t("education.description")}
             </p>
 
             {items && items.length > 0 && (
-              <div className="bg-slate-50/60 dark:bg-slate-900/50 rounded-xl p-5 sm:p-6 border border-border/40 space-y-3">
+              <div className="border-l-2 border-blue-600/40 dark:border-blue-400/40 pl-4 sm:pl-5 py-1 space-y-3">
                 {items.map((item: string, idx: number) => (
                   <div key={idx}>
                     {idx === 0 ? (

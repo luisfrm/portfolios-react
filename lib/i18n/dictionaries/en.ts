@@ -1,8 +1,10 @@
 export const en = {
   meta: {
-    title: "Luis Rivas | Portfolio",
+    title: "Luis Rivas — Senior Full Stack Developer & AI Engineer",
     description:
-      "Personal portfolio of Luis Rivas, a Full Stack Web Developer with 6+ years of experience.",
+      "Professional portfolio of Luis Rivas, Senior Full Stack Engineer with 6+ years of experience specializing in React, Next.js, Node.js, .NET, Serverless, and AI Solutions.",
+    keywords:
+      "Luis Rivas, Full Stack Developer, Senior Software Engineer, React Developer, Next.js, Node.js, .NET, AI Engineering, Serverless, Web Developer",
   },
   personal: {
     name: "Hello! I'm Luis Rivas",
@@ -23,7 +25,10 @@ export const en = {
     download: "Download CV",
   },
   contactForm: {
-    title: "Contact Me",
+    title: "Contact",
+    subtitle: "GET IN TOUCH",
+    headline: "Let's build something exceptional together.",
+    responseTime: "Typical response within <24 hours",
     nameLabel: "Name",
     emailLabel: "Email",
     subjectLabel: "Subject",
@@ -39,7 +44,7 @@ export const en = {
       validationDescription: "All fields are required to send your message.",
       successMessage: "Message sent successfully!",
       successDescription:
-        "I'll get back to you as soon as possible. Thanks for contacting me!",
+        "I will respond as soon as possible. Thank you for reaching out!",
       errorMessage: "Error sending message",
       errorDescription: "An unexpected error occurred. Please try again.",
     },

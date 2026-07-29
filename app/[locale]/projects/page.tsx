@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { ArrowLeft, ExternalLink, Code2, FolderGit2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Layout, MainContent, Footer } from "@/components/layout";
 import Navigation from "@/components/navigation/navigation";
 import { MouseMoveEffect } from "@/components/mouse-move/mouse-move-effect";
 import { UpWidget } from "@/components/common/up-widget";
 import { AnimatedSection } from "@/components/common/animated-section";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { GithubIcon } from "@/components/icons/brand-icons";
 import { ProjectItem } from "@/components/projects/project-item";
 import { cn } from "@/lib/utils";
 import { LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/constants";
@@ -50,7 +48,7 @@ export default function ProjectsPage() {
       {/* Added pt-24 sm:pt-28 lg:pt-32 to clear fixed top navigation bar */}
       <MainContent className="pt-24 sm:pt-28 lg:pt-32">
         <div className={cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 pb-12")}>
-          
+
           {/* Header section with back navigation */}
           <AnimatedSection animation="fade-down" delay={0}>
             <div className="space-y-6 border-b border-border/40 pb-8">

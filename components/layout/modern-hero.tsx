@@ -41,8 +41,13 @@ function DecorativeElements() {
 
 function ScrollIndicator() {
   return (
-    <AnimatedSection animation="fade-up" delay={2000} threshold={0}>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center text-gray-400 dark:text-gray-500 z-20">
+    <AnimatedSection
+      animation="fade-up"
+      delay={2000}
+      threshold={0}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+    >
+      <div className="animate-bounce flex flex-col items-center text-gray-400 dark:text-gray-500">
         <span className="text-xs font-mono uppercase tracking-wider mb-2">Scroll</span>
         <div className="w-px h-8 bg-current" />
         <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-current mt-1" />
