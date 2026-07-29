@@ -6,9 +6,9 @@ export const es = {
   },
   personal: {
     name: "¡Hola! Soy Luis Rivas",
-    role: "Full Stack Web Developer",
+    role: "Desarrollador Full Stack Senior",
     about:
-      "Ingeniero informático, autodidacta ubicado en Latinoamérica. Con +6 años de experiencia en el desarrollo web, me especializo en Full-Stack Web Development. Mi pasión radica en la automatización, innovación y creación de nuevos productos. Siempre estoy emocionado por asumir nuevos desafíos en el mundo en constante evolución de la tecnología.",
+      "Ingeniero en Computación Bilingüe con +6 años de experiencia en desarrollo Full Stack (React, Next.js, Node, .NET). Especializado en arquitectura serverless y desarrollo impulsado por IA (Claude, Cursor, RAG y Function Calling) para construir productos web y móviles escalables.",
     downloadText: "Descargar CV",
     getInTouchText: "Contactar",
   },
@@ -17,7 +17,7 @@ export const es = {
   },
   contact: {
     title: "Contacto",
-    email: "luisfrm_@outlook.com",
+    email: "luisfrm1610@gmail.com",
     phone: "+58 4124722407",
     city: "Latinoamérica",
     download: "Descargar CV",
@@ -59,6 +59,11 @@ export const es = {
   },
   projects: {
     title: "Proyectos",
+    pageTitle: "Proyectos Destacados",
+    pageSubtitle:
+      "Explora la colección completa de aplicaciones web, plataformas e innovaciones que he desarrollado.",
+    backToHome: "Volver al inicio",
+    viewAll: "Ver todos los proyectos",
     viewCode: "Ver Código",
     liveDemo: "Demo en Vivo",
     code: "Código",
@@ -111,19 +116,27 @@ export const es = {
   },
   workExperiences: {
     title: "Experiencia Laboral",
+    viewMore: "Ver más",
+    pageTitle: "Experiencia Laboral",
+    pageSubtitle:
+      "Detalle completo de mi trayectoria profesional, responsabilidades y logros destacados.",
+    backToHome: "Volver al inicio",
     list: {
       chicksGroup: {
         company: "Chicks Group",
-        position: "Desarrollador Front-End",
-        period: "Enero 2025 — Presente",
+        position: "Desarrollador Full-Stack",
+        period: "Enero, 2025 – Actualidad",
         description:
-          "Asignado en multiples proyectos como ChicksGold, plataforma de comercio virtual y ChicksX, plataforma de intercambio de criptomonedas.",
+          "Asignado a múltiples proyectos como ChicksGold, una plataforma de comercio electrónico; y ChicksX, una plataforma de intercambio de criptomonedas.",
         items: [
-          "Implementación de funcionalidades avanzadas utilizando Aurelia Framework, integrando MDC (Material Design Components) con CDS (Custom Design System), para optimizar la UX/UI.",
-          "Implementación de nuevas funcionalidades para un marketplace desarrollado con Aurelia Framework y distintos web-components construidos con la librería Lit y typescript, en conjunto de StoryBook.",
-          "Uso de StoryBook para documentar sistemáticamente la creación de nuevos componentes estableciendo guías de desarrollo claras y visualización en tiempo real.",
-          "Resolución de problemas complejos e implementación de comunicación en tiempo real mediante SignalR/WebSockets, asegurando performance óptimo en aplicaciones de alto tráfico.",
-          "Manejo de solicitudes técnicas utilizando arquitecturas modulares y patrones avanzados, manteniendo compatibilidad retroactiva mientras se modernizan interfaces legacy.",
+          "Implementación de nuevas funcionalidades avanzadas utilizando Aurelia Framework, integrando MDC (Material Design Components) y CDS (Custom Design Components), para la optimización de UX/UI.",
+          "Implementación de nuevas funcionalidades para un Marketplace desarrollado en Aurelia Framework y múltiples componentes web construidos con la librería Lit, TypeScript, y StoryBook.",
+          "Implementación de soluciones potenciadas por IA utilizando RAG y function calling para automatizar flujos de trabajo complejos, incluyendo el desarrollo de agentes de chat inteligentes integrados con Groq y OpenRouter para mejorar las capacidades de la aplicación.",
+          "Uso de Storybook para documentar sistemáticamente la creación de nuevos componentes, estableciendo pautas de desarrollo claras y visualización en tiempo real.",
+          "Resolución de problemas complejos e implementación de comunicación en tiempo real mediante SignalR/WebSockets, asegurando un rendimiento óptimo en aplicaciones de alto tráfico.",
+          "Gestión de requerimientos técnicos utilizando arquitecturas modulares y patrones avanzados, manteniendo la compatibilidad con versiones anteriores mientras se modernizan interfaces heredadas.",
+          "Mantenimiento y mejora de servicios backend utilizando C# y .NET, incluyendo la implementación de nuevas características, corrección de errores y optimización de rendimiento y escalabilidad.",
+          "Diseño y creación de migraciones de bases de datos con Entity Framework Core para garantizar la integridad de los datos y dar soporte a los requisitos comerciales en evolución.",
         ],
       },
       overfuel: {
@@ -202,6 +215,11 @@ export const es = {
     languageSwitchTo: "EN",
     scrollToTop: "Volver arriba",
     menu: "Menú",
+  },
+  footer: {
+    status: "Disponible para nuevos proyectos",
+    builtWith: "Desarrollado con Next.js & TypeScript",
+    rights: "Todos los derechos reservados.",
   },
   notFound: {
     code: "404",

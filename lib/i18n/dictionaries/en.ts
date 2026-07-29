@@ -6,9 +6,9 @@ export const en = {
   },
   personal: {
     name: "Hello! I'm Luis Rivas",
-    role: "Full Stack Web Developer",
+    role: "Senior Full Stack Developer",
     about:
-      "Computer Engineer, self-taught and based in Latin America. With over 6 years of experience in web development, I specialize in Full-Stack Web Development. My passion lies in automation, innovation, and creating new products. Always excited to take on new challenges in the ever-evolving world of technology.",
+      "Bilingual Computer Engineer with 6+ years of experience in Full Stack development (React, Next.js, Node, .NET). Specialized in serverless architecture and AI-powered engineering (Claude, Cursor, RAG & Function Calling) to build high-performance web and mobile products.",
     downloadText: "Download CV",
     getInTouchText: "Get in touch",
   },
@@ -17,7 +17,7 @@ export const en = {
   },
   contact: {
     title: "Contact",
-    email: "luisfrm_@outlook.com",
+    email: "luisfrm1610@gmail.com",
     phone: "+58 4124722407",
     city: "Latin America",
     download: "Download CV",
@@ -57,6 +57,11 @@ export const en = {
   },
   projects: {
     title: "Projects",
+    pageTitle: "Featured Projects",
+    pageSubtitle:
+      "Explore the full collection of web applications, platforms, and innovations I have built.",
+    backToHome: "Back to home",
+    viewAll: "View all projects",
     viewCode: "View Code",
     liveDemo: "Live Demo",
     code: "Code",
@@ -109,19 +114,27 @@ export const en = {
   },
   workExperiences: {
     title: "Work Experience",
+    viewMore: "View more",
+    pageTitle: "Work Experience",
+    pageSubtitle:
+      "Detailed overview of my professional career, responsibilities, and key achievements.",
+    backToHome: "Back to home",
     list: {
       chicksGroup: {
         company: "Chicks Group",
-        position: "Front-End Developer",
-        period: "January 2025 — Present",
+        position: "Full-Stack Developer",
+        period: "January 2025 — Current",
         description:
           "Assigned to multiple projects such as ChicksGold, an e-commerce platform; and ChicksX, a cryptocurrency exchange platform.",
         items: [
           "Implementation of new advanced functionalities using the Aurelia Framework, integrating MDC (Material Design Components) and CDS (Custom Design Components), for optimizing UX/UI.",
-          "Implementations of new functionalities for a Marketplace developed in Aurelia Framework and multiple web components built with Lit library, Typescript and StoryBook.",
+          "Implementation of new functionalities for a Marketplace developed in Aurelia Framework and multiple web components built with Lit library, TypeScript, and StoryBook.",
+          "Implemented AI-powered solutions leveraging RAG and function calling to automate complex workflows, including the development of intelligent chat agents integrated with Groq and OpenRouter to enhance application capabilities.",
           "Use of Storybook to systematically document the creation of new components by establishing clear development guidelines and real-time visualization.",
           "Complex problem-solving and real-time communication implementation using SignalR/WebSockets, ensuring optimal performance in high-traffic applications.",
           "Handle technical requests using modular architectures and advanced patterns, maintaining backward compatibility while modernizing legacy interfaces.",
+          "Maintenance and enhancement of backend services using C# and .NET, including the implementation of new features, bug fixes, and optimization for performance and scalability.",
+          "Design and creation of database migrations with Entity Framework Core to ensure data integrity and support evolving business requirements.",
         ],
       },
       overfuel: {
@@ -200,6 +213,11 @@ export const en = {
     languageSwitchTo: "ES",
     scrollToTop: "Scroll to top",
     menu: "Menu",
+  },
+  footer: {
+    status: "Available for new opportunities",
+    builtWith: "Built with Next.js & TypeScript",
+    rights: "All rights reserved.",
   },
   notFound: {
     code: "404",
