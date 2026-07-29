@@ -26,8 +26,7 @@ export function Projects() {
     key: string;
     title: string;
     description: string;
-    imageUrl?: string;
-    images?: string[];
+    media?: { type: "image" | "video"; url: string }[];
     githubUrl?: string;
     liveUrl?: string;
   }>;

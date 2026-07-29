@@ -1,15 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ExternalLink, ChevronLeft, ChevronRight, Mail } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight, Mail, Maximize2 } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { cn } from "@/lib/utils";
 import { useInView, useScrollTo } from "@/hooks";
-import { type Project } from "@/lib/data/projects";
+import { type Project, type ProjectMedia } from "@/lib/data/projects";
 
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 /* Hallmark · component: project-item · genre: editorial · theme: custom · archetype: Split Ledger / Card */
 
@@ -17,8 +30,7 @@ interface Props {
   project: Project & {
     title?: string;
     description?: string;
-    imageUrl?: string;
-    images?: string[];
+    media?: ProjectMedia[];
     githubUrl?: string;
     liveUrl?: string;
   };
@@ -31,17 +43,14 @@ const TECH_BADGE_STYLE =
   "px-3 py-1 text-xs font-mono rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/80 transition-colors";
 
 export function ProjectItem({ project, delayClass, isFeatured = false }: Props) {
-  const { title, description, imageUrl, images: propImages, technologies, githubUrl, liveUrl } =
-    project;
+  const { title, description, media, technologies, githubUrl, liveUrl } = project;
 
-  // Determine list of images (either from array prop or single imageUrl fallback)
-  const imageList = propImages && propImages.length > 0
-    ? propImages
-    : imageUrl
-    ? [imageUrl]
-    : [];
+  // Build the media list — images share the carousel slot
+  const mediaList: ProjectMedia[] = media ?? [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [api, setApi] = useState<CarouselApi>();
 
   const { ref, isInView } = useInView<HTMLDivElement>({
     threshold: 0.2,
@@ -50,15 +59,57 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   const { scrollToElement } = useScrollTo();
   const t = useTranslations();
 
-  const handleNext = () => {
-    if (imageList.length === 0) return;
-    setCurrentIndex((prev) => (prev + 1) % imageList.length);
-  };
+  // Listen to Embla carousel slide changes
+  useEffect(() => {
+    if (!api) return;
 
-  const handlePrev = () => {
-    if (imageList.length === 0) return;
-    setCurrentIndex((prev) => (prev - 1 + imageList.length) % imageList.length);
-  };
+    const onSelect = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const handleNext = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      if (mediaList.length === 0) return;
+      const nextIdx = (currentIndex + 1) % mediaList.length;
+      setCurrentIndex(nextIdx);
+      api?.scrollTo(nextIdx);
+    },
+    [mediaList.length, currentIndex, api]
+  );
+
+  const handlePrev = useCallback(
+    (e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      if (mediaList.length === 0) return;
+      const prevIdx = (currentIndex - 1 + mediaList.length) % mediaList.length;
+      setCurrentIndex(prevIdx);
+      api?.scrollTo(prevIdx);
+    },
+    [mediaList.length, currentIndex, api]
+  );
+
+  // Keyboard navigation when Lightbox Modal is open
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isLightboxOpen, handleNext, handlePrev]);
 
   // Determine link presence & space-between layout logic
   const hasGithub = Boolean(githubUrl && githubUrl.trim() !== "");
@@ -114,6 +165,93 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     );
   };
 
+  const renderLightboxModal = () => {
+    if (mediaList.length === 0) return null;
+    const currentMedia = mediaList[currentIndex];
+
+    return (
+      <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
+        <DialogContent className="max-w-6xl w-[95vw] h-[90vh] bg-black/95 border-slate-800 text-white p-4 sm:p-6 flex flex-col justify-between overflow-hidden outline-none">
+          <DialogTitle className="sr-only">
+            {title} - Image {currentIndex + 1} of {mediaList.length}
+          </DialogTitle>
+
+          {/* Modal Header */}
+          <div className="flex items-center justify-between pb-3 border-b border-white/10 z-10">
+            <h4 className="font-semibold text-sm sm:text-base text-slate-200 truncate pr-4">
+              {title}
+            </h4>
+            <span className="font-mono text-xs text-slate-400">
+              {currentIndex + 1} / {mediaList.length}
+            </span>
+          </div>
+
+          {/* Modal Media Display Container */}
+          <div className="relative flex-1 w-full h-full flex items-center justify-center my-2 overflow-hidden">
+            {currentMedia.type === "image" ? (
+              <div className="relative w-full h-full max-h-[75vh]">
+                <Image
+                  src={currentMedia.url}
+                  alt={`${title} fullscreen view ${currentIndex + 1}`}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
+                <span className="font-mono text-base">▶ Video Player</span>
+              </div>
+            )}
+
+            {/* Prev / Next Buttons in Modal */}
+            {mediaList.length > 1 && (
+              <>
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous image"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 text-white hover:bg-black/90 hover:scale-105 transition-all z-20"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next image"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 text-white hover:bg-black/90 hover:scale-105 transition-all z-20"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Modal Dots Navigation Footer */}
+          {mediaList.length > 1 && (
+            <div className="flex items-center justify-center gap-2 pt-3 border-t border-white/10 z-10">
+              {mediaList.map((_, idx) => (
+                <button
+                  key={`dot-${idx}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(idx);
+                  }}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-300",
+                    idx === currentIndex
+                      ? "w-6 bg-blue-500"
+                      : "w-2 bg-white/40 hover:bg-white/70"
+                  )}
+                />
+              ))}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
   if (isFeatured) {
     return (
       <div
@@ -124,40 +262,57 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
           
           {/* Media Container (7 Cols on Desktop) */}
           <div className="relative h-72 sm:h-96 lg:h-full lg:col-span-7 bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
-            {imageList.length > 0 ? (
-              <div className="relative w-full h-full min-h-[300px]">
-                <Image
-                  src={imageList[currentIndex]}
-                  alt={`Preview of ${title} (Slide ${currentIndex + 1})`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
+            {mediaList.length > 0 ? (
+              <Carousel
+                setApi={setApi}
+                opts={{ loop: true }}
+                className="w-full h-full"
+              >
+                <CarouselContent className="h-full min-h-[300px] -ml-0">
+                  {mediaList.map((item, idx) => (
+                    <CarouselItem key={idx} className="pl-0 h-full">
+                      <div
+                        onClick={() => setIsLightboxOpen(true)}
+                        className="relative w-full h-full min-h-[300px] cursor-zoom-in group/img"
+                      >
+                        {/* Expand Icon Hint */}
+                        <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 text-white backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-opacity z-10 pointer-events-none">
+                          <Maximize2 className="w-4 h-4" />
+                        </div>
 
-                {/* Carousel Controls */}
-                {imageList.length > 1 && (
+                        {item.type === "image" ? (
+                          <Image
+                            src={item.url}
+                            alt={`Preview of ${title} (Slide ${idx + 1})`}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 60vw"
+                            className="object-cover"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
+                            <span className="font-mono text-sm opacity-60">▶ Video</span>
+                          </div>
+                        )}
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                {mediaList.length > 1 && (
                   <>
-                    <button
-                      onClick={handlePrev}
-                      aria-label="Previous slide"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/80 transition-colors z-20"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      aria-label="Next slide"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/80 transition-colors z-20"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-                      {imageList.map((_, idx) => (
+                    <CarouselPrevious />
+                    <CarouselNext />
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-auto">
+                      {mediaList.map((_, idx) => (
                         <span
                           key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            api?.scrollTo(idx);
+                          }}
                           className={cn(
-                            "h-1.5 rounded-full transition-all duration-300",
+                            "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
                             idx === currentIndex ? "w-5 bg-white" : "w-1.5 bg-white/50"
                           )}
                         />
@@ -165,7 +320,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                     </div>
                   </>
                 )}
-              </div>
+              </Carousel>
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
                 <span className="font-mono text-base">{title}</span>
@@ -209,6 +364,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
           </div>
 
         </article>
+        {renderLightboxModal()}
       </div>
     );
   }
@@ -220,52 +376,67 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     >
       <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col h-full">
         
-        {/* Media Container: Single Image or Carousel */}
+        {/* Media Container: Single Item or Carousel */}
         <div className="relative h-64 w-full bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
-          {imageList.length > 0 ? (
-            <div className="relative w-full h-full">
-              <Image
-                src={imageList[currentIndex]}
-                alt={`Preview of ${title} (Slide ${currentIndex + 1})`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
+          {mediaList.length > 0 ? (
+            <Carousel
+              setApi={setApi}
+              opts={{ loop: true }}
+              className="w-full h-full"
+            >
+              <CarouselContent className="h-full -ml-0">
+                {mediaList.map((item, idx) => (
+                  <CarouselItem key={idx} className="pl-0 h-full">
+                    <div
+                      onClick={() => setIsLightboxOpen(true)}
+                      className="relative w-full h-full cursor-zoom-in group/img"
+                    >
+                      {/* Expand Icon Hint */}
+                      <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 text-white backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-opacity z-10 pointer-events-none">
+                        <Maximize2 className="w-4 h-4" />
+                      </div>
 
-              {/* Carousel Controls */}
-              {imageList.length > 1 && (
+                      {item.type === "image" ? (
+                        <Image
+                          src={item.url}
+                          alt={`Preview of ${title} (Slide ${idx + 1})`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
+                          <span className="font-mono text-sm opacity-60">▶ Video</span>
+                        </div>
+                      )}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {mediaList.length > 1 && (
                 <>
-                  <button
-                    onClick={handlePrev}
-                    aria-label="Previous slide"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors z-20"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    aria-label="Next slide"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors z-20"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-                    {imageList.map((_, idx) => (
+                  <CarouselPrevious />
+                  <CarouselNext />
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-auto">
+                    {mediaList.map((_, idx) => (
                       <span
                         key={idx}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          api?.scrollTo(idx);
+                        }}
                         className={cn(
-                          "h-1.5 rounded-full transition-all duration-300",
-                          idx === currentIndex
-                            ? "w-4 bg-white"
-                            : "w-1.5 bg-white/50"
+                          "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                          idx === currentIndex ? "w-4 bg-white" : "w-1.5 bg-white/50"
                         )}
                       />
                     ))}
                   </div>
                 </>
               )}
-            </div>
+            </Carousel>
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
               <span className="font-mono text-sm">{title}</span>
@@ -301,6 +472,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
         </div>
 
       </article>
+      {renderLightboxModal()}
     </div>
   );
 }
