@@ -1,6 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import { Work_Sans, Bitter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+
+// Configure Work Sans for body typography
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-work-sans",
+  display: "swap",
+});
+
+// Configure Bitter for heading typography
+const bitter = Bitter({
+  subsets: ["latin"],
+  variable: "--font-bitter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -43,10 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" className={`${workSans.variable} ${bitter.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
 }
+
