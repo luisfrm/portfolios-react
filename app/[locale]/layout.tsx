@@ -14,7 +14,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale ?? routing.defaultLocale;
   const messages = await getMessages({ locale });
   const t = messages as { meta?: { title?: string; description?: string } };
   return {
@@ -30,14 +31,15 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale ?? routing.defaultLocale;
 
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <NextIntlClientProvider messages={messages}>
