@@ -71,10 +71,12 @@ export const es = {
     viewAll: "Ver todos los proyectos",
     viewCode: "Ver Código",
     liveDemo: "Demo en Vivo",
+    contactCode: "Contactar",
     code: "Código",
     demo: "Demo",
-    list: {
-      gymManager: {
+    list: [
+      {
+        key: "gymManager",
         title: "Gym Manager",
         description:
           "La aplicación Gym Manager es una aplicación Full-Stack para la gestión de gimnasios. Cuenta con una interfaz fácil de usar para el registro de miembros, la programación de clases y el seguimiento del rendimiento. El diseño responsivo garantiza un acceso sin inconvenientes en todos los dispositivos. Construida con Node.js y Express, maneja la autenticación de usuarios, la gestión de membresías y la programación de clases.",
@@ -83,7 +85,8 @@ export const es = {
         githubUrl: "https://github.com/luisfrm/gym-manager",
         liveUrl: "https://gym-manager-frontend.onrender.com/",
       },
-      fishersImports: {
+      {
+        key: "fishersImports",
         title: "Fishers Imports",
         description:
           "El sitio web de Fishers Imports, desarrollado por Overfuel, destaca por su diseño elegante y funcionalidad avanzada. Ofrece una presentación impactante del inventario de lujo, búsqueda intuitiva y opciones de financiamiento, demostrando la capacidad de Overfuel para potenciar la presencia digital de concesionarios de alta gama.",
@@ -91,7 +94,8 @@ export const es = {
           "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732662466/fishers_zerdbg.webp",
         liveUrl: "https://www.fishersimports.com/",
       },
-      portfolio: {
+      {
+        key: "portfolio",
         title: "Portafolio",
         description:
           "Mi portafolio es una aplicación web que muestra mis proyectos y habilidades. Usa tecnología moderna para presentar información de forma clara y atractiva. Muestra proyectos destacados, habilidades y formas de contacto.",
@@ -100,7 +104,8 @@ export const es = {
         githubUrl: "https://github.com/luisfrm/portfolios-react",
         liveUrl: "https://luisrivas.work",
       },
-      godsGoodBarbershop: {
+      {
+        key: "godsGoodBarbershop",
         title: "God's Good BarberShop",
         description:
           "God's Good BarberShop es una landing page para una barbería. El sitio está diseñado para atraer y mantener a los clientes informados sobre los servicios y promociones disponibles. Con un enfoque en la modernidad y la conveniencia, la página se actualizará continuamente con nuevas funcionalidades y mejoras.",
@@ -109,7 +114,8 @@ export const es = {
         githubUrl: "https://github.com/luisfrm/god-is-good-barbershop",
         liveUrl: "https://god-is-good-barbershop.vercel.app",
       },
-      taskManager: {
+      {
+        key: "taskManager",
         title: "Task Manager",
         description:
           "Task Manager es una aplicación web que permite a los usuarios crear, editar y eliminar tareas. Usa tecnología moderna para manejar tareas, usuarios y autenticación. Permite a los usuarios crear cuentas, iniciar sesión y gestionar tareas de forma segura.",
@@ -117,7 +123,7 @@ export const es = {
           "https://res.cloudinary.com/dw4ecbwo9/image/upload/v1732669722/taskmanager_agogip.webp",
         githubUrl: "https://github.com/luisfrm/task-manager",
       },
-    },
+    ],
   },
   workExperiences: {
     title: "Experiencia Laboral",
@@ -126,8 +132,9 @@ export const es = {
     pageSubtitle:
       "Detalle completo de mi trayectoria profesional, responsabilidades y logros destacados.",
     backToHome: "Volver al inicio",
-    list: {
-      chicksGroup: {
+    list: [
+      {
+        key: "chicksGroup",
         company: "Chicks Group",
         position: "Desarrollador Full-Stack",
         period: "Enero, 2025 – Actualidad",
@@ -144,7 +151,8 @@ export const es = {
           "Diseño y creación de migraciones de bases de datos con Entity Framework Core para garantizar la integridad de los datos y dar soporte a los requisitos comerciales en evolución.",
         ],
       },
-      overfuel: {
+      {
+        key: "overfuel",
         company: "Overfuel",
         position: "Desarrollador SR Full-Stack",
         period: "Mayo 2023 — Septiembre 2024",
@@ -161,7 +169,8 @@ export const es = {
           "Lideré el manejo de peticiones técnicas de más de 100 clientes, desarrollando así nuevos features y solicitudes.",
         ],
       },
-      ignition321: {
+      {
+        key: "ignition321",
         company: "321ignition",
         position: "Desarrollador SR Full-Stack",
         period: "Mayo 2020 — Mayo 2023",
@@ -178,7 +187,8 @@ export const es = {
           "Dockericé entornos con multistage builds (70% más ligeros) y docker compose, acelerando despliegues y onboarding a 15 minutos.",
         ],
       },
-      firaOnlive: {
+      {
+        key: "firaOnlive",
         company: "Fira onLive",
         position: "Desarrollador Front-End",
         period: "Mayo 2019 — Marzo 2020",
@@ -193,7 +203,7 @@ export const es = {
           "Implementé la creación de contenedores de Docker para estandarizar entornos de desarrollo y producción, logrando consistencia en despliegues entre equipos.",
         ],
       },
-    },
+    ],
   },
   education: {
     title: "Educación",
