@@ -16,12 +16,16 @@ export default function HomePage() {
       <ModernHero>
         <HeroContent />
       </ModernHero>
-      <MainContent footer={<Footer />}>
+      <MainContent>
         <WorkExperience />
+        <div className="w-full max-w-7xl mx-auto border-t border-slate-200 dark:border-slate-800 my-12 sm:my-16" />
         <Projects />
+        <div className="w-full max-w-7xl mx-auto border-t border-slate-200 dark:border-slate-800 my-12 sm:my-16" />
         <Education />
+        <div className="w-full max-w-7xl mx-auto border-t border-slate-200 dark:border-slate-800 my-12 sm:my-16" />
         <ContactForm />
       </MainContent>
+      <Footer />
     </Layout>
   );
 }

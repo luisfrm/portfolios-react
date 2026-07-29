@@ -115,9 +115,9 @@ This project is under the MIT License - see the [LICENSE.md](LICENSE.md) file fo
 
 ## 📞 Contact
 
-- LinkedIn: [Luis Rivas](https://www.linkedin.com/in/luisfrm10/)
+- LinkedIn: [Luis Rivas](https://www.linkedin.com/in/luisrivasm/)
 - GitHub: [Luisfrm](https://github.com/luisfrm/)
-- Email: [luisfrm_@outlook.com](mailto:luisfrm_@outlook.com)
+- Email: [luisfrm1610@gmail.com](mailto:luisfrm1610@gmail.com)
 
 
 ## 🤝 Contributions

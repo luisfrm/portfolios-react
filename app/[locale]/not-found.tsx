@@ -8,7 +8,8 @@ interface NotFoundPageProps {
 }
 
 export default async function NotFoundPage({ params }: NotFoundPageProps) {
-  const { locale } = await params;
+  const resolvedParams = await params;
+  const locale = resolvedParams?.locale ?? "en";
   const t = await getTranslations("notFound");
 
   return (

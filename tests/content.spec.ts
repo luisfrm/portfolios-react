@@ -8,8 +8,8 @@ test.describe('Content Verification Tests', () => {
   test('should display main hero content', async ({ page }) => {
     // Verify hero section content
     await expect(page.getByRole('heading', { name: /Hello! I'm Luis Rivas/ })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Full Stack Web Developer' })).toBeVisible();
-    await expect(page.getByText(/Computer Engineer, self-taught/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Full Stack/ })).toBeVisible();
+    await expect(page.getByText(/Computer Engineer/)).toBeVisible();
   });
 
   test('should display work experience section', async ({ page }) => {

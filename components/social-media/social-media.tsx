@@ -14,7 +14,7 @@ export function SocialMedia() {
     {
       name: t("social.linkedin"),
       icon: <LinkedinIcon className="w-4 h-4" />,
-      url: "https://www.linkedin.com/in/luisfrm10/",
+      url: "https://www.linkedin.com/in/luisrivasm/",
     },
   ];
 

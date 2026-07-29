@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Menu } from "lucide-react";
 import { NavItem } from "./nav-item";
 import { NavItemMobile } from "./nav-item-mobile";
@@ -18,6 +19,7 @@ import { useHeroActions, useLanguage } from "@/hooks";
 export function Navigation() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const t = useTranslations();
+  const locale = useLocale();
   const { handleDownloadCV } = useHeroActions();
   const { changeLanguage, languageLabel } = useLanguage();
 
@@ -37,7 +39,7 @@ export function Navigation() {
     },
     {
       icon: <LinkedinIcon className="w-4 h-4" />,
-      url: "https://www.linkedin.com/in/luisfrm10/",
+      url: "https://www.linkedin.com/in/luisrivasm/",
       name: t("social.linkedin"),
     },
   ];
@@ -61,15 +63,14 @@ export function Navigation() {
         >
           <div className="flex justify-between relative">
             <div id="nav_logo" className="flex-shrink-0">
-              <NavItem url="#">
+              <Link href={`/${locale}`} aria-label="Go to home">
                 <Logo
                   className={cn(
-                    "text-black dark:text-white h-8 w-8 md:h-14 md:w-14",
-                    ANIMATION_CLASSES.HOVER_SCALE,
-                    ANIMATION_CLASSES.TRANSITION
+                    "text-black dark:text-white h-8 w-8 md:h-14 md:w-14 cursor-pointer",
+                    "transition-all duration-300 hover:scale-110 hover:opacity-90 active:scale-95"
                   )}
                 />
-              </NavItem>
+              </Link>
             </div>
             <div
               id="nav_listElement"
