@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 
 /* Hallmark · component: footer · genre: editorial · theme: custom · archetype: Ft5 Statement */
@@ -82,9 +82,19 @@ export function Footer() {
         {/* Legal & Tech Credit Bottom Bar */}
         <div className="pt-6 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500 dark:text-slate-400">
           <p>© {currentYear} Luis Rivas. {t("footer.rights")}</p>
-          <p className="flex items-center gap-1.5">
-            <span>{t("footer.builtWith")}</span>
-          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="/sitemap.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5 text-slate-400" />
+              <span>{t("footer.sitemap")}</span>
+            </a>
+            <span className="text-slate-300 dark:text-slate-700">•</span>
+            <p>{t("footer.builtWith")}</p>
+          </div>
         </div>
 
       </div>
