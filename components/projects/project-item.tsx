@@ -51,6 +51,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [api, setApi] = useState<CarouselApi>();
+  const [modalApi, setModalApi] = useState<CarouselApi>();
 
   const { ref, isInView } = useInView<HTMLDivElement>({
     threshold: 0.2,
@@ -59,19 +60,44 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   const { scrollToElement } = useScrollTo();
   const t = useTranslations();
 
-  // Listen to Embla carousel slide changes
+  // Listen to main card Embla carousel slide changes
   useEffect(() => {
     if (!api) return;
 
     const onSelect = () => {
-      setCurrentIndex(api.selectedScrollSnap());
+      const idx = api.selectedScrollSnap();
+      setCurrentIndex(idx);
+      modalApi?.scrollTo(idx);
     };
 
     api.on("select", onSelect);
     return () => {
       api.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, modalApi]);
+
+  // Listen to Lightbox modal Embla carousel slide changes
+  useEffect(() => {
+    if (!modalApi) return;
+
+    const onSelect = () => {
+      const idx = modalApi.selectedScrollSnap();
+      setCurrentIndex(idx);
+      api?.scrollTo(idx);
+    };
+
+    modalApi.on("select", onSelect);
+    return () => {
+      modalApi.off("select", onSelect);
+    };
+  }, [modalApi, api]);
+
+  // Scroll modal carousel to target index when modal opens
+  useEffect(() => {
+    if (isLightboxOpen && modalApi) {
+      modalApi.scrollTo(currentIndex);
+    }
+  }, [isLightboxOpen, modalApi, currentIndex]);
 
   const handleNext = useCallback(
     (e?: React.MouseEvent) => {
@@ -167,81 +193,80 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
 
   const renderLightboxModal = () => {
     if (mediaList.length === 0) return null;
-    const currentMedia = mediaList[currentIndex];
 
     return (
       <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
-        <DialogContent className="max-w-6xl w-[95vw] h-[90vh] bg-black/95 border-slate-800 text-white p-4 sm:p-6 flex flex-col justify-between overflow-hidden outline-none">
+        <DialogContent className="max-w-[92vw] sm:max-w-5xl max-h-[80vh] sm:max-h-[85vh] bg-black/95 border-slate-800 text-white p-3 sm:p-5 flex flex-col justify-between overflow-hidden rounded-2xl outline-none">
           <DialogTitle className="sr-only">
             {title} - Image {currentIndex + 1} of {mediaList.length}
           </DialogTitle>
 
-          {/* Modal Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-white/10 z-10">
-            <h4 className="font-semibold text-sm sm:text-base text-slate-200 truncate pr-4">
+          {/* Modal Header: Clear pr-12 padding prevents collision with the absolute close (X) button */}
+          <div className="flex items-center justify-between pb-2.5 border-b border-white/10 z-10 pr-10">
+            <h4 className="font-semibold text-xs sm:text-sm text-slate-200 truncate pr-2">
               {title}
             </h4>
-            <span className="font-mono text-xs text-slate-400">
+            <span className="font-mono text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full whitespace-nowrap shrink-0">
               {currentIndex + 1} / {mediaList.length}
             </span>
           </div>
 
-          {/* Modal Media Display Container */}
-          <div className="relative flex-1 w-full h-full flex items-center justify-center my-2 overflow-hidden">
-            {currentMedia.type === "image" ? (
-              <div className="relative w-full h-full max-h-[75vh]">
-                <Image
-                  src={currentMedia.url}
-                  alt={`${title} fullscreen view ${currentIndex + 1}`}
-                  fill
-                  sizes="100vw"
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
-                <span className="font-mono text-base">▶ Video Player</span>
-              </div>
-            )}
+          {/* Modal Media Carousel Display Container */}
+          <div className="relative flex-1 w-full my-2 overflow-hidden flex items-center justify-center">
+            <Carousel
+              setApi={setModalApi}
+              opts={{ loop: true, startIndex: currentIndex }}
+              className="w-full h-full"
+            >
+              <CarouselContent className="h-full -ml-0 items-center">
+                {mediaList.map((item, idx) => (
+                  <CarouselItem key={`modal-${idx}`} className="pl-0 h-full flex items-center justify-center">
+                    {item.type === "image" ? (
+                      <div className="relative w-full h-[45vh] sm:h-[60vh] max-h-[60vh] flex items-center justify-center">
+                        <Image
+                          src={item.url}
+                          alt={`${title} fullscreen view ${idx + 1}`}
+                          fill
+                          sizes="100vw"
+                          className="object-contain"
+                          priority={idx === currentIndex}
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full h-[45vh] flex items-center justify-center bg-slate-900 text-slate-300">
+                        <span className="font-mono text-base">▶ Video Player</span>
+                      </div>
+                    )}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
 
-            {/* Prev / Next Buttons in Modal */}
-            {mediaList.length > 1 && (
-              <>
-                <button
-                  onClick={handlePrev}
-                  aria-label="Previous image"
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 text-white hover:bg-black/90 hover:scale-105 transition-all z-20"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  aria-label="Next image"
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 text-white hover:bg-black/90 hover:scale-105 transition-all z-20"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </>
-            )}
+              {mediaList.length > 1 && (
+                <>
+                  <CarouselPrevious className="left-1 sm:left-3 h-9 w-9 bg-black/70 hover:bg-black/90 text-white border-none" />
+                  <CarouselNext className="right-1 sm:right-3 h-9 w-9 bg-black/70 hover:bg-black/90 text-white border-none" />
+                </>
+              )}
+            </Carousel>
           </div>
 
           {/* Modal Dots Navigation Footer */}
           {mediaList.length > 1 && (
-            <div className="flex items-center justify-center gap-2 pt-3 border-t border-white/10 z-10">
+            <div className="flex items-center justify-center gap-1.5 pt-2.5 border-t border-white/10 z-10">
               {mediaList.map((_, idx) => (
                 <button
-                  key={`dot-${idx}`}
+                  key={`modal-dot-${idx}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentIndex(idx);
+                    modalApi?.scrollTo(idx);
                   }}
                   aria-label={`Go to slide ${idx + 1}`}
                   className={cn(
-                    "h-2 rounded-full transition-all duration-300",
+                    "h-1.5 rounded-full transition-all duration-300",
                     idx === currentIndex
-                      ? "w-6 bg-blue-500"
-                      : "w-2 bg-white/40 hover:bg-white/70"
+                      ? "w-5 bg-blue-500"
+                      : "w-1.5 bg-white/40 hover:bg-white/70"
                   )}
                 />
               ))}
