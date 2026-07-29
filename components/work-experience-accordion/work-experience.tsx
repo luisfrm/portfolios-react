@@ -1,16 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
+import { ArrowRight, Building2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  LAYOUT,
-  TYPOGRAPHY,
-  COLORS,
-  SPACING,
-  ANIMATION_CLASSES,
-} from "@/lib/constants";
+import { LAYOUT, TYPOGRAPHY, COLORS, SPACING } from "@/lib/constants";
 import { AnimatedSection } from "@/components/common/animated-section";
 import {
   workExperienceOrder,
@@ -18,53 +14,15 @@ import {
   type WorkExperienceKey,
 } from "@/lib/data/workExperience";
 
-const TIMELINE_STYLES = {
-  container: cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION),
-  timeline: "relative",
-  timelineLine:
-    "absolute left-8 top-0 h-full w-0.5 bg-gradient-to-b from-blue-600 via-slate-600 to-gray-700 md:left-1/2 opacity-40",
-  timelineDot:
-    "absolute left-8 h-5 w-5 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 md:left-1/2 shadow-lg ring-4 ring-background z-10",
-  experienceContainer: cn(
-    "mb-8 sm:mb-12 lg:mb-16 flex flex-col",
-    SPACING.FLEX_GAP_8,
-    "group"
-  ),
-  spacer: "hidden flex-1 md:block",
-} as const;
-
-const CARD_STYLES = {
-  base: cn(
-    "relative flex-1 bg-gradient-to-br from-card via-card to-card/90 backdrop-blur-sm border-2 border-border/50",
-    "hover:border-blue-600/30 hover:shadow-xl hover:shadow-blue-600/10",
-    "transition-all duration-300 ease-out",
-    COLORS.TEXT_PRIMARY,
-    ANIMATION_CLASSES.ANIMATE_SHOW
-  ),
-  time: cn(
-    TYPOGRAPHY.SMALL_TEXT,
-    "text-blue-600 dark:text-blue-400 font-medium"
-  ),
-  title: cn(
-    TYPOGRAPHY.CARD_TITLE,
-    "bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text"
-  ),
-  company: cn("text-slate-600 dark:text-slate-400 font-medium"),
-  description: cn(
-    COLORS.TEXT_SECONDARY,
-    TYPOGRAPHY.DESCRIPTION,
-    "leading-relaxed text-pretty"
-  ),
-  skillsContainer: cn("flex flex-wrap", SPACING.FLEX_GAP_2),
-} as const;
+/* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
 const SKILL_BADGE_STYLE =
-  "bg-gradient-to-r from-slate-100 to-gray-100 dark:from-slate-800 dark:to-gray-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:from-blue-50 hover:to-slate-100 dark:hover:from-slate-700 dark:hover:to-slate-600 transition-all duration-200 hover:scale-105";
+  "bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-blue-500/60 dark:hover:border-blue-400/60 transition-all duration-200 text-xs font-mono font-medium shadow-2xs";
 
-function ExperienceCard({
+function ExperienceRow({
   data,
-  isEven,
   index,
+  isLast,
 }: {
   data: {
     company: string;
@@ -74,51 +32,69 @@ function ExperienceCard({
     items: string[];
     skills: readonly string[];
   };
-  isEven: boolean;
   index: number;
+  isLast?: boolean;
 }) {
-  const animationType = isEven ? "fade-left" : "fade-right";
+  const t = useTranslations();
+
+  const previewItems = data.items ? data.items.slice(0, 3) : [];
 
   return (
     <AnimatedSection
-      animation={animationType}
-      delay={index * 200}
+      animation="fade-up"
+      delay={index * 100}
       className={cn(
-        TIMELINE_STYLES.experienceContainer,
-        isEven ? "md:flex-row" : "md:flex-row-reverse"
+        "group relative pb-8 pt-4 transition-colors",
+        !isLast && "border-b border-slate-200 dark:border-slate-800"
       )}
     >
-      {index !== 0 && (
-        <div className={cn(TIMELINE_STYLES.timelineDot, "animate-pulse")}>
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-slate-700 animate-ping opacity-20" />
-        </div>
-      )}
-
-      <Card className={CARD_STYLES.base}>
-        <CardHeader className="pb-4">
-          <time className={CARD_STYLES.time}>{data.period}</time>
-          <h3 className={CARD_STYLES.title}>
-            {data.position}{" "}
-            <span className={CARD_STYLES.company}>@ {data.company}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
+        
+        {/* Left Column: Index & Dates */}
+        <div className="lg:col-span-4 space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">
+              0{index + 1}
+            </span>
+            <span className="h-px w-4 bg-border/60" />
+            <time className="font-mono text-xs uppercase tracking-wider font-semibold text-blue-600 dark:text-blue-400">
+              {data.period}
+            </time>
+          </div>
+          <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {data.position}
           </h3>
-        </CardHeader>
-        <CardContent className={SPACING.CARD_CONTENT}>
+          <div className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 font-medium">
+            <Building2 className="w-3.5 h-3.5 text-slate-400" />
+            <span>{data.company}</span>
+          </div>
+        </div>
+
+        {/* Right Column: Description, Item preview & Skill badges */}
+        <div className="lg:col-span-8 space-y-4">
           {data.description && (
-            <p className={CARD_STYLES.description}>{data.description}</p>
+            <p className={cn(COLORS.TEXT_SECONDARY, "text-base leading-relaxed")}>
+              {data.description}
+            </p>
           )}
-          {data.items && data.items.length > 0 && (
-            <ul className="list-disc list-outside pl-5 space-y-2">
-              {data.items.map((item, i) => (
-                <li key={i} className="leading-relaxed">
-                  <p className={CARD_STYLES.description}>{item}</p>
+
+          {previewItems.length > 0 && (
+            <ul className="space-y-2 pt-1">
+              {previewItems.map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                  {/* Upgraded bullet item body text to text-base */}
+                  <span className="font-mono text-slate-400 select-none mt-0.5">—</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           )}
-          <div className={CARD_STYLES.skillsContainer}>
+
+          {/* All skill badges rendered without truncation */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
             {data.skills.map((skill, i) => (
               <Badge
-                key={`skill-${i}`}
+                key={`skill-preview-${i}`}
                 variant="outline"
                 className={SKILL_BADGE_STYLE}
               >
@@ -126,16 +102,16 @@ function ExperienceCard({
               </Badge>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      <div className={TIMELINE_STYLES.spacer} />
+      </div>
     </AnimatedSection>
   );
 }
 
 export function WorkExperience() {
   const t = useTranslations();
+  const locale = useLocale();
 
   const experiences = workExperienceOrder.map((key: WorkExperienceKey) => {
     const data = t.raw(`workExperiences.list.${key}`) as {
@@ -153,33 +129,42 @@ export function WorkExperience() {
   });
 
   return (
-    <section id="experience" className={TIMELINE_STYLES.container}>
+    <section id="experience" className={cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION)}>
       <AnimatedSection animation="fade-scale" delay={0}>
-        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <h2
             className={cn(
               TYPOGRAPHY.SECTION_TITLE,
-              "bg-gradient-to-r from-blue-600 via-slate-700 to-gray-800 bg-clip-text text-transparent",
-              "dark:from-blue-400 dark:via-slate-400 dark:to-gray-300"
+              "text-3xl sm:text-4xl font-bold tracking-tight text-foreground"
             )}
           >
             {t("workExperiences.title")}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-slate-700 mx-auto mt-2 sm:mt-3 lg:mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-blue-600 dark:bg-blue-400 mx-auto mt-3 rounded-full" />
         </div>
       </AnimatedSection>
-      <div className={TIMELINE_STYLES.timeline}>
-        <div className={TIMELINE_STYLES.timelineLine}>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-600/20 to-transparent blur-sm" />
-        </div>
+
+      <div className="space-y-2">
         {experiences.map((exp, index) => (
-          <ExperienceCard
+          <ExperienceRow
             key={exp.key}
             data={exp}
-            isEven={index % 2 === 0}
             index={index}
+            isLast={index === experiences.length - 1}
           />
         ))}
+      </div>
+
+      <div className="text-center pt-8">
+        <Link href={`/${locale}/work-experience`}>
+          <Button
+            variant="outline"
+            className="gap-2 px-6 py-5 text-sm font-mono uppercase tracking-wider rounded-full border-border hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
+          >
+            {t("workExperiences.viewMore")}
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
       </div>
     </section>
   );
