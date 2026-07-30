@@ -49,6 +49,27 @@ export const godsGoodBarbershopTechnologies = [
   "Client components",
 ] as const;
 
+export const fitStackTechnologies = [
+  "Next.js 16 (App Router)",
+  "React 19",
+  "TypeScript 5",
+  "Turborepo",
+  "Cloudflare Workers (Edge Functions)",
+  "Cloudflare Queues",
+  "Cloudflare R2",
+  "Hono API",
+  "Drizzle ORM",
+  "Neon Serverless Postgres",
+  "Upstash Redis",
+  "Better Auth (Multi-tenant RBAC)",
+  "Python (Flet Desktop)",
+  "Tailwind CSS v4",
+  "shadcn/ui",
+  "Resend API",
+  "Terraform (IaC)",
+  "GitHub Actions (CI/CD)",
+] as const;
+
 export const dnovaGalleryTechnologies = [
   "Next.js 16",
   "React 19",
@@ -103,6 +124,7 @@ export interface Project {
 // Unified project array — each project carries its technologies internally.
 // Media (images/videos) lives in the i18n dictionaries alongside title and description.
 export const projects: Project[] = [
+  { key: "fitStack",           technologies: [...fitStackTechnologies] },
   { key: "dnovaGallery",       technologies: [...dnovaGalleryTechnologies] },
   { key: "deliveryLosLatinos", technologies: [...deliveryLosLatinosTechnologies] },
   { key: "elPoaig",            technologies: [...elPoaigTechnologies] },

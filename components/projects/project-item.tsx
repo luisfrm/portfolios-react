@@ -60,44 +60,47 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   const { scrollToElement } = useScrollTo();
   const t = useTranslations();
 
-  // Listen to main card Embla carousel slide changes
+  // Listen to main card Embla carousel slide changes (when modal is closed)
   useEffect(() => {
     if (!api) return;
 
     const onSelect = () => {
-      const idx = api.selectedScrollSnap();
-      setCurrentIndex(idx);
-      modalApi?.scrollTo(idx);
+      if (!isLightboxOpen) {
+        setCurrentIndex(api.selectedScrollSnap());
+      }
     };
 
     api.on("select", onSelect);
     return () => {
       api.off("select", onSelect);
     };
-  }, [api, modalApi]);
+  }, [api, isLightboxOpen]);
 
-  // Listen to Lightbox modal Embla carousel slide changes
+  // Listen to Lightbox modal Embla carousel slide changes (when modal is open)
   useEffect(() => {
     if (!modalApi) return;
 
     const onSelect = () => {
-      const idx = modalApi.selectedScrollSnap();
-      setCurrentIndex(idx);
-      api?.scrollTo(idx);
+      if (isLightboxOpen) {
+        const idx = modalApi.selectedScrollSnap();
+        setCurrentIndex(idx);
+      }
     };
 
     modalApi.on("select", onSelect);
     return () => {
       modalApi.off("select", onSelect);
     };
-  }, [modalApi, api]);
+  }, [modalApi, isLightboxOpen]);
 
-  // Scroll modal carousel to target index when modal opens
+  // Sync state between card and modal on open/close without animation loops
   useEffect(() => {
-    if (isLightboxOpen && modalApi) {
-      modalApi.scrollTo(currentIndex);
+    if (isLightboxOpen) {
+      modalApi?.scrollTo(currentIndex, true);
+    } else {
+      api?.scrollTo(currentIndex, true);
     }
-  }, [isLightboxOpen, modalApi, currentIndex]);
+  }, [isLightboxOpen, modalApi, api]);
 
   const handleNext = useCallback(
     (e?: React.MouseEvent) => {

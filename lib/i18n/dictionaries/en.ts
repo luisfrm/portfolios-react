@@ -74,6 +74,25 @@ export const en = {
     demo: "Demo",
     list: [
       {
+        key: "fitStack",
+        title:
+          "Fit-Stack - Multi-Tenant B2B Gym Management SaaS & Hardware Access Control",
+        description:
+          "High-performance B2B SaaS platform for gym operations, financial auditability, and automated physical access. Engineered as a Turborepo monorepo featuring an Edge Serverless API on Cloudflare Workers using Hono, a serverless Neon Postgres database powered by Drizzle ORM, and Upstash Redis edge caching. Comprises a Gym Admin Panel (Next.js 16 / React 19) with cumulative renewal logic and multi-currency billing; a SaaS Super-Admin Console (Next.js 16) tracking real-time grace period states; a Member Portal (Next.js 16) with dynamic CMS rendering; asynchronous background task processing via Cloudflare Queues and Resend transactional emails; and a native Desktop Bridge (Python / Flet) interfacing on-site turnstiles with biometric/QR hardware. Infrastructure fully managed via Terraform and deployed with GitHub Actions CI/CD pipelines.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-4.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-6.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-7.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-8.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/fit-stack",
+        liveUrl: "https://panel.luisrivas.site",
+      },
+      {
         key: "dnovaGallery",
         title: "D'Nova Gallery - Photography Portfolio & Custom CMS",
         description:

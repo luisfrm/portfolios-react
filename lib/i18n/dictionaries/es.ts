@@ -76,6 +76,25 @@ export const es = {
     demo: "Demo",
     list: [
       {
+        key: "fitStack",
+        title:
+          "Fit-Stack - Plataforma B2B SaaS Multi-inquilino de Gestión de Gimnasios e Integración de Hardware",
+        description:
+          "Plataforma B2B SaaS de alto rendimiento para la automatización operativa y financiera de gimnasios. Arquitectura monorepo (Turborepo + pnpm) impulsada por una API Edge Serverless en Cloudflare Workers con Hono, base de datos Serverless Neon Postgres con Drizzle ORM y almacenamiento en caché distribuido con Upstash Redis. Incluye un Panel de Gestión (Next.js 16 / React 19) con reglas de renovación acumulativa y facturación multimoneda; una Consola de Super-Admin SaaS (Next.js 16) con gestión dinámica de ciclos de facturación; un Portal de Miembros (Next.js 16) impulsado por un motor CMS dinámico; procesamiento asíncrono distribuido con Cloudflare Queues y envío de correos transaccionales con Resend; y un cliente nativo de escritorio (Python / Flet) para la integración local con torniquetes y lectores biométricos/QR. Infraestructura automatizada con Terraform e integración continua mediante GitHub Actions CI/CD.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-4.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-6.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-7.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-8.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/fit-stack",
+        liveUrl: "https://panel.luisrivas.site",
+      },
+      {
         key: "dnovaGallery",
         title: "D'Nova Gallery - Portafolio Fotográfico y CMS Autogestionable",
         description:
