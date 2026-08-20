@@ -105,7 +105,7 @@ export const es = {
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-5.webp" },
         ],
         githubUrl: "https://github.com/luisfrm/pulse-stream",
-        liveUrl: "https://pulse.luisrivas.site",
+        liveUrl: "https://pulse-stream.luisrivas.site",
       },
       {
         key: "dnovaGallery",
