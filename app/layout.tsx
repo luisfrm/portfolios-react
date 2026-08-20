@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Work_Sans, Bitter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 // Configure Work Sans for body typography
 const workSans = Work_Sans({
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en" className={`${workSans.variable} ${bitter.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
