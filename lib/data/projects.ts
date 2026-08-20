@@ -55,9 +55,13 @@ export const fitStackTechnologies = [
   "TypeScript 5",
   "Turborepo",
   "Cloudflare Workers (Edge Functions)",
+  "Cloudflare Workers AI",
+  "OpenRouter API",
+  "LLM Chat Streaming (SSE)",
   "Cloudflare Queues",
   "Cloudflare R2",
   "Hono API",
+  "Vitest (Automated Testing)",
   "Drizzle ORM",
   "Neon Serverless Postgres",
   "Upstash Redis",
@@ -67,6 +71,30 @@ export const fitStackTechnologies = [
   "shadcn/ui",
   "Resend API",
   "Terraform (IaC)",
+  "GitHub Actions (CI/CD)",
+] as const;
+
+export const pulseStreamTechnologies = [
+  "Next.js 16 (App Router)",
+  "React 19 (React Compiler)",
+  "TypeScript 5",
+  "Turborepo & pnpm",
+  "Python 3.13 (uv)",
+  "FastAPI",
+  "SQLAlchemy 2.0 (Async)",
+  "Neon Serverless Postgres",
+  "Cloudflare R2 (Audio Streaming & Storage)",
+  "Alembic (DB Migrations)",
+  "fastapi-users (JWT HttpOnly & Argon2)",
+  "PWA & Cache API (Offline Audio)",
+  "Media Session API",
+  "Tailwind CSS v4 (OKLCH)",
+  "Radix UI & CVA",
+  "boto3 (Presigned S3/R2)",
+  "mutagen (ID3 Metadata Parser)",
+  "slowapi (Rate Limiting)",
+  "OpenAPI to TypeScript Codegen",
+  "Pytest & Vitest (Testing Suite)",
   "GitHub Actions (CI/CD)",
 ] as const;
 
@@ -125,6 +153,7 @@ export interface Project {
 // Media (images/videos) lives in the i18n dictionaries alongside title and description.
 export const projects: Project[] = [
   { key: "fitStack",           technologies: [...fitStackTechnologies] },
+  { key: "pulseStream",        technologies: [...pulseStreamTechnologies] },
   { key: "dnovaGallery",       technologies: [...dnovaGalleryTechnologies] },
   { key: "deliveryLosLatinos", technologies: [...deliveryLosLatinosTechnologies] },
   { key: "elPoaig",            technologies: [...elPoaigTechnologies] },

@@ -38,8 +38,8 @@ export function Projects() {
 
   if (mergedProjects.length === 0) return null;
 
-  // Limit to top 3 preview projects on home page (1 Featured Hero + 2 Secondary)
-  const previewProjects = mergedProjects.slice(0, 3);
+  // Limit to top 5 preview projects on home page (1 Featured Hero + 4 Secondary)
+  const previewProjects = mergedProjects.slice(0, 5);
   const featuredProject = previewProjects[0];
   const secondaryProjects = previewProjects.slice(1);
 

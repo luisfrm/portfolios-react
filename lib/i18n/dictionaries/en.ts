@@ -76,21 +76,34 @@ export const en = {
       {
         key: "fitStack",
         title:
-          "Fit-Stack - Multi-Tenant B2B Gym Management SaaS & Hardware Access Control",
+          "Fit-Stack - Multi-Tenant B2B Gym SaaS, AI Assistant & Hardware Access Control",
         description:
-          "High-performance B2B SaaS platform for gym operations, financial auditability, and automated physical access. Engineered as a Turborepo monorepo featuring an Edge Serverless API on Cloudflare Workers using Hono, a serverless Neon Postgres database powered by Drizzle ORM, and Upstash Redis edge caching. Comprises a Gym Admin Panel (Next.js 16 / React 19) with cumulative renewal logic and multi-currency billing; a SaaS Super-Admin Console (Next.js 16) tracking real-time grace period states; a Member Portal (Next.js 16) with dynamic CMS rendering; asynchronous background task processing via Cloudflare Queues and Resend transactional emails; and a native Desktop Bridge (Python / Flet) interfacing on-site turnstiles with biometric/QR hardware. Infrastructure fully managed via Terraform and deployed with GitHub Actions CI/CD pipelines.",
+          "High-performance B2B SaaS platform for gym operations, financial auditability, AI assistance, and physical access control. Engineered as a Turborepo monorepo featuring an Edge Serverless API on Cloudflare Workers using Hono, a serverless Neon Postgres database powered by Drizzle ORM, Upstash Redis edge caching, and an AI Chat engine with real-time SSE streaming leveraging Cloudflare Workers AI and OpenRouter models. Comprises a Gym Admin Panel (Next.js 16 / React 19) with cumulative renewal logic and multi-currency billing; a SaaS Super-Admin Console (Next.js 16); a Member Portal (Next.js 16) with dynamic CMS rendering; full monorepo test suite with Vitest; asynchronous task queues via Cloudflare Queues and Resend transactional emails; and a native Desktop Bridge (Python / Flet) for turnstile hardware integration via biometric/QR sensors. Infrastructure fully managed via Terraform and deployed with GitHub Actions CI/CD pipelines.",
         media: [
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-3.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-4.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-6.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-7.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-8.webp" },
         ],
         githubUrl: "https://github.com/luisfrm/fit-stack",
         liveUrl: "https://panel.luisrivas.site",
+      },
+      {
+        key: "pulseStream",
+        title:
+          "Pulse Stream - High-Performance Music Streaming Platform, Catalog Management & Offline PWA",
+        description:
+          "Full-featured audio streaming platform inspired by Spotify engineered with a Turborepo and pnpm workspaces monorepo. High-concurrency asynchronous backend built with Python 3.13, FastAPI, SQLAlchemy 2.0 Async, Neon Serverless PostgreSQL, and Alembic database migrations. Media storage and audio streaming powered by Cloudflare R2 using presigned URLs via Boto3, alongside ID3 metadata extraction via Mutagen for automated batch ZIP album imports. Modern frontend built on Next.js 16 (App Router) and React 19 with a custom dark UI in Tailwind CSS v4 and Radix UI; features a persistent global player integrated with the OS Media Session API, Progressive Web App (PWA) offline audio caching via Cache API, and end-to-end type safety with OpenAPI-to-TypeScript code generation. Implements RBAC authentication via HttpOnly JWT session cookies (fastapi-users with Argon2 hashing), rate limiting via Slowapi, comprehensive admin management dashboards, and robust test suites using Pytest (real Postgres integration) and Vitest.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-4.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-5.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/pulse-stream",
+        liveUrl: "https://pulse.luisrivas.site",
       },
       {
         key: "dnovaGallery",

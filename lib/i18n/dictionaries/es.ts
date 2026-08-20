@@ -78,21 +78,34 @@ export const es = {
       {
         key: "fitStack",
         title:
-          "Fit-Stack - Plataforma B2B SaaS Multi-inquilino de Gestión de Gimnasios e Integración de Hardware",
+          "Fit-Stack - Plataforma B2B SaaS Multi-inquilino de Gestión de Gimnasios, Asistente IA y Control de Acceso",
         description:
-          "Plataforma B2B SaaS de alto rendimiento para la automatización operativa y financiera de gimnasios. Arquitectura monorepo (Turborepo + pnpm) impulsada por una API Edge Serverless en Cloudflare Workers con Hono, base de datos Serverless Neon Postgres con Drizzle ORM y almacenamiento en caché distribuido con Upstash Redis. Incluye un Panel de Gestión (Next.js 16 / React 19) con reglas de renovación acumulativa y facturación multimoneda; una Consola de Super-Admin SaaS (Next.js 16) con gestión dinámica de ciclos de facturación; un Portal de Miembros (Next.js 16) impulsado por un motor CMS dinámico; procesamiento asíncrono distribuido con Cloudflare Queues y envío de correos transaccionales con Resend; y un cliente nativo de escritorio (Python / Flet) para la integración local con torniquetes y lectores biométricos/QR. Infraestructura automatizada con Terraform e integración continua mediante GitHub Actions CI/CD.",
+          "Plataforma B2B SaaS de alto rendimiento para la automatización operativa, financiera y asistida por Inteligencia Artificial en gimnasios. Arquitectura monorepo (Turborepo + pnpm) impulsada por una API Edge Serverless en Cloudflare Workers con Hono, base de datos Serverless Neon Postgres con Drizzle ORM, caché distribuido en Upstash Redis y un motor de Asistente IA con streaming SSE (Server-Sent Events) multi-proveedor (Cloudflare Workers AI + OpenRouter). Incluye un Panel de Gestión (Next.js 16 / React 19) con reglas de renovación acumulativa y cobros multimoneda; una Consola de Super-Admin SaaS (Next.js 16); un Portal de Miembros (Next.js 16) con CMS dinámico; suite de pruebas automatizadas con Vitest a lo largo de todo el monorepo; procesamiento asíncrono en colas con Cloudflare Queues y correos transaccionales con Resend; y un cliente nativo de escritorio (Python / Flet) para control de acceso por hardware (biometría/QR). Infraestructura declarada en Terraform y CI/CD con GitHub Actions.",
         media: [
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-3.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-4.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-6.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-7.webp" },
-          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-8.webp" },
         ],
         githubUrl: "https://github.com/luisfrm/fit-stack",
         liveUrl: "https://panel.luisrivas.site",
+      },
+      {
+        key: "pulseStream",
+        title:
+          "Pulse Stream - Plataforma de Streaming de Música, Gestión de Catálogo y Reproducción Offline PWA",
+        description:
+          "Plataforma integral de streaming de audio inspirada en Spotify con arquitectura monorepo (Turborepo + pnpm workspaces). Backend asíncrono de alto rendimiento desarrollado en Python 3.13 con FastAPI, SQLAlchemy 2.0 Async, PostgreSQL Serverless en Neon y migraciones controladas con Alembic. Almacenamiento y streaming de audio distribuido en Cloudflare R2 mediante URLs prefirmadas con Boto3 y procesamiento ID3 con Mutagen para importación masiva de álbumes por ZIP. Frontend en Next.js 16 (App Router) y React 19 con diseño oscuro personalizado en Tailwind CSS v4 y Radix UI; cuenta con un reproductor global persistente sincronizado con la Media Session API del sistema operativo, soporte PWA con descargas a la Cache API para reproducción offline y tipado estricto extremo a extremo mediante generación automática de tipos TypeScript desde OpenAPI. Incluye control de acceso basado en roles (RBAC) con cookies HttpOnly y JWT (fastapi-users con hash Argon2), rate limiting con Slowapi, panel de administración con métricas y suites completas de pruebas automatizadas con Pytest (integración en Postgres real) y Vitest.",
+        media: [
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-1.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-2.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-3.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-4.webp" },
+          { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/pulsestream-5.webp" },
+        ],
+        githubUrl: "https://github.com/luisfrm/pulse-stream",
+        liveUrl: "https://pulse.luisrivas.site",
       },
       {
         key: "dnovaGallery",
