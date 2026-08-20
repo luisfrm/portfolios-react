@@ -23,6 +23,7 @@ import {
   CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { ExpandableText } from "@/components/common/expandable-text";
 
 /* Hallmark · component: project-item · genre: editorial · theme: custom · archetype: Split Ledger / Card */
 
@@ -286,10 +287,10 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
         ref={ref}
         className={cn("col-span-full animate-fade-up", delayClass, isInView && "is-visible")}
       >
-        <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/60 shadow-lg hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0">
+        <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/60 shadow-lg hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300">
           
-          {/* Media Container (7 Cols on Desktop) */}
-          <div className="relative h-72 sm:h-96 lg:h-full lg:col-span-7 bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
+          {/* Media Container (Full Width — 2:1 aspect ratio images) */}
+          <div className="relative w-full aspect-[2/1] bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
             {mediaList.length > 0 ? (
               <Carousel
                 setApi={setApi}
@@ -356,8 +357,8 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
             )}
           </div>
 
-          {/* Content Column (5 Cols on Desktop) */}
-          <div className="p-6 sm:p-8 lg:p-10 lg:col-span-5 flex flex-col justify-between space-y-6">
+          {/* Content Column (Full Width below image) */}
+          <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 font-mono text-xs uppercase tracking-wider w-fit">
                 ★ Featured Project
@@ -367,9 +368,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                 {title}
               </h3>
               
-              <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
-                {description}
-              </p>
+              <ExpandableText text={description ?? ""} lines={4} toggleLabel="Ver más" />
             </div>
 
             <div className="space-y-6">
@@ -473,14 +472,12 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
         </div>
 
         {/* Content Body */}
-        <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div className="p-6 flex flex-col space-y-4">
           <div className="space-y-3">
             <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {title}
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
-              {description}
-            </p>
+            <ExpandableText text={description ?? ""} lines={3} toggleLabel="Ver más" />
           </div>
 
           {/* Tech Badges */}
