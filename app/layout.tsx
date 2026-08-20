@@ -18,6 +18,9 @@ const bitter = Bitter({
   display: "swap",
 });
 
+// Root layout metadata serves as a minimal fallback.
+// The locale layout (app/[locale]/layout.tsx) provides full SEO metadata
+// including canonical, hreflang, OpenGraph, and Twitter tags per locale.
 export const metadata: Metadata = {
   title: {
     default: "Luis Rivas | Portfolio",
@@ -25,22 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "Personal portfolio of Luis Rivas, a Full Stack Web Developer with 6+ years of experience.",
-  metadataBase: new URL("https://luisrivas.work"),
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://luisrivas.work",
-    title: "Luis Rivas | Portfolio",
-    description:
-      "Personal portfolio of Luis Rivas, a Full Stack Web Developer with 6+ years of experience.",
-    siteName: "Luis Rivas Portfolio",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Luis Rivas | Portfolio",
-    description:
-      "Personal portfolio of Luis Rivas, a Full Stack Web Developer with 6+ years of experience.",
-  },
+  metadataBase: new URL("https://luisrivas.site"),
   icons: {
     icon: "/favicon.svg",
   },
