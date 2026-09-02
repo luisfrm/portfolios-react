@@ -213,14 +213,14 @@ export const en = {
         description:
           "Assigned to multiple projects such as ChicksGold, an e-commerce platform; and ChicksX, a cryptocurrency exchange platform.",
         items: [
-          "Implementation of new advanced functionalities using the Aurelia Framework, integrating MDC (Material Design Components) and CDS (Custom Design Components), for optimizing UX/UI.",
-          "Implementation of new functionalities for a Marketplace developed in Aurelia Framework and multiple web components built with Lit library, TypeScript, and StoryBook.",
+          "Implementation of new advanced functionalities using component-based modular frameworks (Aurelia and Angular), integrating MDC (Material Design Components) and CDS (Custom Design Components) for UX/UI optimization.",
+          "Implementation of new features for an enterprise Marketplace developed with Aurelia and Angular, alongside multiple web components built with Lit library, TypeScript, and StoryBook.",
           "Implemented AI-powered solutions leveraging RAG and function calling to automate complex workflows, including the development of intelligent chat agents integrated with Groq and OpenRouter to enhance application capabilities.",
           "Use of Storybook to systematically document the creation of new components by establishing clear development guidelines and real-time visualization.",
           "Complex problem-solving and real-time communication implementation using SignalR/WebSockets, ensuring optimal performance in high-traffic applications.",
           "Handle technical requests using modular architectures and advanced patterns, maintaining backward compatibility while modernizing legacy interfaces.",
           "Maintenance and enhancement of backend services using C# and .NET, including the implementation of new features, bug fixes, and optimization for performance and scalability.",
-          "Design and creation of database migrations with Entity Framework Core to ensure data integrity and support evolving business requirements.",
+          "Design and execution of relational database migrations in MySQL with Entity Framework Core to ensure data integrity and support evolving business requirements.",
         ],
       },
       {

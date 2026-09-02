@@ -215,14 +215,14 @@ export const es = {
         description:
           "Asignado a múltiples proyectos como ChicksGold, una plataforma de comercio electrónico; y ChicksX, una plataforma de intercambio de criptomonedas.",
         items: [
-          "Implementación de nuevas funcionalidades avanzadas utilizando Aurelia Framework, integrando MDC (Material Design Components) y CDS (Custom Design Components), para la optimización de UX/UI.",
-          "Implementación de nuevas funcionalidades para un Marketplace desarrollado en Aurelia Framework y múltiples componentes web construidos con la librería Lit, TypeScript, y StoryBook.",
+          "Implementación de nuevas funcionalidades avanzadas utilizando frameworks modulares basados en componentes (Aurelia y Angular), integrando MDC (Material Design Components) y CDS (Custom Design Components) para la optimización de UX/UI.",
+          "Implementación de nuevas funcionalidades para un Marketplace desarrollado en Aurelia y Angular, junto a múltiples componentes web construidos con la librería Lit, TypeScript y StoryBook.",
           "Implementación de soluciones potenciadas por IA utilizando RAG y function calling para automatizar flujos de trabajo complejos, incluyendo el desarrollo de agentes de chat inteligentes integrados con Groq y OpenRouter para mejorar las capacidades de la aplicación.",
           "Uso de Storybook para documentar sistemáticamente la creación de nuevos componentes, estableciendo pautas de desarrollo claras y visualización en tiempo real.",
           "Resolución de problemas complejos e implementación de comunicación en tiempo real mediante SignalR/WebSockets, asegurando un rendimiento óptimo en aplicaciones de alto tráfico.",
           "Gestión de requerimientos técnicos utilizando arquitecturas modulares y patrones avanzados, manteniendo la compatibilidad con versiones anteriores mientras se modernizan interfaces heredadas.",
           "Mantenimiento y mejora de servicios backend utilizando C# y .NET, incluyendo la implementación de nuevas características, corrección de errores y optimización de rendimiento y escalabilidad.",
-          "Diseño y creación de migraciones de bases de datos con Entity Framework Core para garantizar la integridad de los datos y dar soporte a los requisitos comerciales en evolución.",
+          "Diseño y creación de migraciones de bases de datos relacionales en MySQL con Entity Framework Core para garantizar la integridad de los datos y dar soporte a los requisitos comerciales en evolución.",
         ],
       },
       {
