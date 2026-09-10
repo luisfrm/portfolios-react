@@ -18,16 +18,15 @@ const bitter = Bitter({
   display: "swap",
 });
 
-// Root layout metadata serves as a minimal fallback.
-// The locale layout (app/[locale]/layout.tsx) provides full SEO metadata
-// including canonical, hreflang, OpenGraph, and Twitter tags per locale.
+// Root layout metadata serves as the foundational SEO configuration for the site.
+// The locale layout (app/[locale]/layout.tsx) provides full localized metadata per route.
 export const metadata: Metadata = {
   title: {
-    default: "Luis Rivas | Portfolio",
+    default: "Luis Rivas — Senior Full Stack Developer & AI Engineer",
     template: "%s | Luis Rivas",
   },
   description:
-    "Personal portfolio of Luis Rivas, a Full Stack Web Developer with 6+ years of experience.",
+    "Professional portfolio of Luis Rivas, Senior Full Stack Engineer with 6+ years of experience specializing in React, Next.js, Node.js, .NET, Serverless, and AI Solutions.",
   metadataBase: new URL("https://luisrivas.site"),
   icons: {
     icon: "/favicon.svg",
@@ -43,9 +42,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" className={`${workSans.variable} ${bitter.variable}`} suppressHydrationWarning>
       <body>

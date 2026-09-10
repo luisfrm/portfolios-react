@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Home, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-// Metadata for the global 404 page ensuring search engines do not index missing pages
-export const metadata: Metadata = {
-  title: "404 - Page Not Found | Luis Rivas",
-  description: "The page you are looking for does not exist or has been moved.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
 
 // Global 404 Not Found page - English only, without redirects
 export default function NotFound() {

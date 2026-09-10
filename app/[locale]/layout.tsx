@@ -4,6 +4,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import type { Locale } from "@/lib/i18n/config";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -15,24 +17,16 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const locale = resolvedParams?.locale ?? routing.defaultLocale;
-  const messages = await getMessages({ locale });
-  const t = messages as {
-    meta?: { title?: string; description?: string; keywords?: string };
-  };
-
-  const title = t.meta?.title ?? "Luis Rivas — Senior Full Stack Developer & AI Engineer";
-  const description =
-    t.meta?.description ??
-    "Professional portfolio of Luis Rivas, Senior Full Stack Engineer specializing in React, Next.js, Node.js, .NET, and AI Engineering.";
-  const keywords = t.meta?.keywords ?? "Luis Rivas, Full Stack Developer, Next.js, React, TypeScript";
+  const locale = (resolvedParams?.locale ?? routing.defaultLocale) as Locale;
+  const dict = await getDictionary(locale);
+  const { title, description, keywords } = dict.meta;
 
   const baseUrl = "https://luisrivas.site";
 
   return {
     metadataBase: new URL(baseUrl),
     title: {
-      default: title,
+      absolute: title,
       template: "%s | Luis Rivas",
     },
     description,
@@ -78,10 +72,10 @@ export async function generateMetadata({
 export default async function LocaleLayout({
   children,
   params,
-}: {
+}: Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}) {
+}>) {
   const resolvedParams = await params;
   const locale = resolvedParams?.locale ?? routing.defaultLocale;
 
