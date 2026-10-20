@@ -44,7 +44,7 @@ Run from the repository root:
 | `pnpm build` | Production build of the main portfolio |
 | `pnpm typecheck` | Typecheck every workspace package |
 | `pnpm test` | Playwright E2E for the main portfolio |
-| `pnpm lint` | ESLint (currently broken — see `AGENTS.md`) |
+| `pnpm lint` | ESLint 9 with `eslint-config-next` flat configs |
 
 App-scoped examples:
 
