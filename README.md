@@ -1,136 +1,162 @@
-# Personal Portfolio - Luis Rivas
+# Portfolios Monorepo
 
-A modern personal portfolio built with React, Vite, and shadcn/ui, showcasing my experience as a Full Stack Developer.
+Personal portfolio of Luis Rivas plus the shared foundation for future portfolio projects.
 
-## 🚀 Features
+Built with **Next.js 16** (App Router, Turbopack), **React 19**, **TypeScript** (strict), **Tailwind v4**, **shadcn/ui** and **next-intl**.
 
-- ⚡ Developed with React + Vite for optimal performance
-- 🎨 Modern and responsive design using Tailwind CSS
-- 🌓 Dark/light mode with persistence
-- 🧩 Reusable components from shadcn/ui
-- 📱 Fully responsive layout
-- 🎯 Organized sections to showcase:
-  - Personal information
-  - Work experience
-  - Featured projects
-  - Technical skills
-  - Contact information
+## Structure
 
-## 🛠️ Technologies Used
+```
+.
+├── apps/
+│   └── web/                  # Main portfolio (luisrivas.site)
+│       ├── app/              # App Router routes, global styles
+│       ├── components/       # Site-specific sections (hero, nav, projects, ...)
+│       ├── hooks/            # Site-specific hooks (language, hero actions)
+│       ├── lib/              # i18n dictionaries, portfolio data, site constants
+│       ├── public/
+│       └── tests/            # Playwright E2E
+├── packages/
+│   ├── ui/                   # @portfolio/ui — design system
+│   │   └── src/
+│   │       ├── components/   # shadcn primitives + ThemeProvider + Toaster
+│   │       ├── lib/utils.ts  # cn()
+│   │       └── styles/theme.css  # design tokens, base theme, animations
+│   └── shared/               # @portfolio/shared — cross-app logic
+│       └── src/
+│           ├── components/   # AnimatedSection, ExpandableText, icons, ...
+│           ├── hooks/        # useInView, useScrollTo
+│           └── constants.ts  # LAYOUT, TYPOGRAPHY, SPACING, COLORS, ...
+├── tsconfig.base.json        # shared TS compiler options
+├── pnpm-workspace.yaml
+└── package.json              # workspace scripts
+```
 
-- React
-- Vite
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Lucide Icons
+## Commands
 
-## 📦 Installation
+Run from the repository root:
 
-1. Clone the repository:
+| Command | Description |
+| --- | --- |
+| `pnpm install` | Install every workspace package |
+| `pnpm dev` | Start the main portfolio on http://localhost:3000 |
+| `pnpm dev:all` | Start every app that has a `dev` script |
+| `pnpm build` | Production build of the main portfolio |
+| `pnpm typecheck` | Typecheck every workspace package |
+| `pnpm test` | Playwright E2E for the main portfolio |
+| `pnpm lint` | ESLint (currently broken — see `AGENTS.md`) |
+
+App-scoped examples:
+
 ```bash
-git clone https://github.com/yourusername/personal-portfolio.git
+pnpm --filter @portfolio/web dev
+pnpm --filter @portfolio/web exec playwright test tests/navigation.spec.ts --project=chromium
+pnpm --filter @portfolio/ui typecheck
 ```
 
-2. Install dependencies:
+## Packages
 
+### `@portfolio/ui`
 
-```bash
-cd personal-portfolio
-npm install
+Design system shared by every portfolio app:
+
+- shadcn/ui primitives (`button`, `card`, `dialog`, `carousel`, `sheet`, ...)
+- `ThemeProvider` (next-themes) and `Toaster` (sonner)
+- `cn()` helper
+- `styles/theme.css` with CSS variables, radii, colors and animations
+
+Import primitives through subpaths to keep bundles small:
+
+```tsx
+import { Button } from "@portfolio/ui/components/button";
+import { cn } from "@portfolio/ui/lib/utils";
 ```
 
-3. Start the development server:
+### `@portfolio/shared`
 
+Framework-level logic and generic building blocks:
 
-```bash
-npm run dev
+```tsx
+import { LAYOUT, TYPOGRAPHY } from "@portfolio/shared/constants";
+import { useInView, useScrollTo } from "@portfolio/shared/hooks";
+import { AnimatedSection } from "@portfolio/shared/components/animated-section";
+import { GithubIcon } from "@portfolio/shared/components/icons/brand-icons";
 ```
 
-## 🔧 Configuration
+Both packages ship TypeScript source directly; the app compiles them via
+`transpilePackages` in `next.config.ts`. There is no package build step.
 
-The project uses Vite as a bundler and development tool. You can modify the configuration in the following files:
+## Creating a new portfolio project
 
-- `vite.config.ts` - Vite configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `tsconfig.json` - TypeScript configuration
+1. Create `apps/<name>/` with its own `package.json`:
 
+   ```json
+   {
+     "name": "@portfolio/<name>",
+     "private": true,
+     "scripts": {
+       "dev": "next dev --port 3001",
+       "build": "next build",
+       "start": "next start --port 3001",
+       "typecheck": "tsc --noEmit"
+     },
+     "dependencies": {
+       "@portfolio/shared": "workspace:*",
+       "@portfolio/ui": "workspace:*",
+       "next": "^16.2.10",
+       "react": "^19.2.7",
+       "react-dom": "^19.2.7"
+     }
+   }
+   ```
 
-## 📁 Project Structure
+2. Extend the shared TypeScript config in `apps/<name>/tsconfig.json`:
 
-```
-personal-portfolio/
-├── src/
-│   ├── components/
-│   │   ├── ui/          # shadcn/ui components
-│   │   ├── Navigation/ # Navigation components
-│   │   │   ├── Navigation.tsx
-│   │   │   ├── NavItem.tsx
-│   │   │   └── NavItemMobile.tsx
-│   │   ├── SocialMedia/ # SocialMedia components
-│   │   │   ├── SocialMedia.tsx
-│   │   │   └── SocialItems.tsx
-│   │   ├── Projects/ # Projects components
-│   │   │   ├── Projects.tsx
-│   │   │   └── ProjectItems.tsx
-│   │   ├── Contact.tsx
-│   │   ├── PersonalInfo.tsx
-│   │   ├── Skills.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── context/
-│   │   └── useTheme.tsx
-│   ├── lib/
-│   │   └── utils.ts
-│   ├── App.tsx
-│   └── main.tsx
-├── public/
-├── index.html
-└── package.json
-```
+   ```json
+   {
+     "extends": "../../tsconfig.base.json",
+     "compilerOptions": {
+       "plugins": [{ "name": "next" }],
+       "paths": { "@/*": ["./*"] }
+     },
+     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+     "exclude": ["node_modules"]
+   }
+   ```
 
-## 🎨 Customization
+3. Add `transpilePackages: ["@portfolio/ui", "@portfolio/shared"]` to its `next.config.ts`.
 
-1. **Personal Information**: Modify the `PersonalInfo.tsx` component with your information.
-2. **Themes**: Adjust colors and styles in `tailwind.config.js`.
-3. **Navigation**: Update links in `Navigation.tsx` according to your needs.
+4. In its global stylesheet, import Tailwind and the shared theme, then teach
+   Tailwind to scan the workspace packages:
 
+   ```css
+   @import "tailwindcss";
+   @import "../../../packages/ui/src/styles/theme.css";
 
-## 🚀 Deployment
+   @source "../../../packages/ui/src";
+   @source "../../../packages/shared/src";
+   ```
 
-The project is ready to be deployed on platforms like Vercel, Netlify, or GitHub Pages.
+   Provide the font variables expected by the theme (`--font-work-sans`,
+   `--font-bitter`) or override `--font-sans` / `--font-heading`.
 
-1. Build the project:
+5. Run `pnpm install` and `pnpm --filter @portfolio/<name> dev`.
 
+Apps are independent deployments: each one has its own `next.config.ts`,
+routes and dictionaries, while the design system and generic logic stay
+centralized in `packages/`.
 
-```shellscript
-npm run build
-```
+## Testing
 
-2. The distribution files will be generated in the `dist/` folder.
+E2E tests live in `apps/web/tests` and run with Playwright against
+`http://localhost:3000` (the dev server is started automatically). See
+`apps/web/tests/README.md`.
 
+> `apps/web/tests/contact-form.spec.ts` submits to the real Formspree endpoint
+> and sends an actual email. Mock the request before running it.
 
-## 📄 License
+## Deployment
 
-This project is under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## 📞 Contact
-
-- LinkedIn: [Luis Rivas](https://www.linkedin.com/in/luisrivasm/)
-- GitHub: [Luisfrm](https://github.com/luisfrm/)
-- Email: [luisfrm1610@gmail.com](mailto:luisfrm1610@gmail.com)
-
-
-## 🤝 Contributions
-
-Contributions are welcome. Please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
----
-
-Developed with ❤️ by Luis Rivas
+Each app builds independently with `pnpm --filter @portfolio/<app> build`.
+The main portfolio deploys to Vercel; per-app root directories are
+`apps/<app>`.

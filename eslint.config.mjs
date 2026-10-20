@@ -1,16 +1,26 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+export default defineConfig([
+  ...nextVitals,
+  ...nextTypescript,
+  {
+    rules: {
+      // The workspace has no `pages/` directory: every route is an App Router
+      // segment under `apps/web/app`, so this rule cannot resolve page paths.
+      "@next/next/no-html-link-for-pages": "off",
+    },
+  },
+  globalIgnores([
+    "**/.next/**",
+    "**/node_modules/**",
+    "**/next-env.d.ts",
+    "**/playwright-report/**",
+    "**/test-results/**",
+    "**/out/**",
+    "**/build/**",
+    "next.config.ts",
+    "apps/web/next.config.ts",
+  ]),
+]);
