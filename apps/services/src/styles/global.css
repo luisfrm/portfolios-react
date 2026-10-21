@@ -473,6 +473,13 @@ html:has(.site-menu[open]) {
   border-bottom: var(--rule-hair) solid var(--color-rule);
 }
 
+/* The sticky topbar changes height on scroll (compact header and banner
+   collapse). Scroll anchoring compensates by moving scrollY, which the header
+   script reads as user intent and turns into an endless show/hide loop. */
+main {
+  overflow-anchor: none;
+}
+
 .topbar__banner {
   max-height: 4rem;
   overflow: hidden;

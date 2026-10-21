@@ -130,7 +130,20 @@ const isActive = (href: string) => {
     }
   });
 
+  // The topbar changes height while sticky (banner collapse and compact
+  // header). Browsers compensate for that with scroll anchoring and emit a
+  // scroll event; without a cooldown it is mistaken for a direction change
+  // and the banner flips back and forth in a loop.
+  const BANNER_COOLDOWN_MS = 320; // --dur-slow (280ms) + buffer
   let lastY = window.scrollY;
+  let bannerLockedUntil = 0;
+
+  const setBannerHidden = (hidden: boolean) => {
+    if (!topbar) return;
+    if (topbar.classList.contains("is-banner-hidden") === hidden) return;
+    topbar.classList.toggle("is-banner-hidden", hidden);
+    bannerLockedUntil = performance.now() + BANNER_COOLDOWN_MS;
+  };
 
   window.addEventListener(
     "scroll",
@@ -138,11 +151,11 @@ const isActive = (href: string) => {
       const y = window.scrollY;
       topbar?.classList.toggle("is-scrolled", y > 8);
 
-      if (!dismissed) {
+      if (!dismissed && performance.now() >= bannerLockedUntil) {
         if (y > lastY + 6 && y > 80) {
-          topbar?.classList.add("is-banner-hidden");
+          setBannerHidden(true);
         } else if (y < lastY - 6) {
-          topbar?.classList.remove("is-banner-hidden");
+          setBannerHidden(false);
         }
       }
 
