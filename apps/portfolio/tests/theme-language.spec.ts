@@ -49,6 +49,10 @@ test.describe('Theme and Language Toggle Tests', () => {
     await themeButton.click();
     await page.getByRole('menuitem', { name: 'Dark', exact: true }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    // Let the dropdown finish its close animation before reopening it.
+    await expect(
+      page.getByRole('menuitem', { name: 'Dark', exact: true }),
+    ).toBeHidden();
 
     await themeButton.click();
     await page.getByRole('menuitem', { name: 'Light', exact: true }).click();

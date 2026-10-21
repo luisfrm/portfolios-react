@@ -4,16 +4,16 @@
   "version": "5.0.0",
   "packageManager": "pnpm@11.5.3",
   "scripts": {
-    "dev": "pnpm --filter @portfolio/web dev",
+    "dev": "pnpm --filter @portfolio/portfolio dev",
     "dev:services": "pnpm --filter @portfolio/services dev",
     "dev:all": "pnpm -r --parallel dev",
-    "build": "pnpm --filter @portfolio/web build",
+    "build": "pnpm --filter @portfolio/portfolio build",
     "build:services": "pnpm --filter @portfolio/services build",
     "deploy:services": "pnpm --filter @portfolio/services deploy",
-    "start": "pnpm --filter @portfolio/web start",
+    "start": "pnpm --filter @portfolio/portfolio start",
     "lint": "eslint .",
     "typecheck": "pnpm -r --workspace-concurrency=4 typecheck",
-    "test": "pnpm --filter @portfolio/web test"
+    "test": "pnpm --filter @portfolio/portfolio test"
   },
   "devDependencies": {
     "eslint": "^9.39.5",

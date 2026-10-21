@@ -8,7 +8,7 @@ export default defineConfig([
   {
     rules: {
       // The workspace has no `pages/` directory: every route is an App Router
-      // segment under `apps/web/app`, so this rule cannot resolve page paths.
+      // segment under `apps/portfolio/app`, so this rule cannot resolve page paths.
       "@next/next/no-html-link-for-pages": "off",
     },
   },
@@ -24,6 +24,6 @@ export default defineConfig([
     "**/out/**",
     "**/build/**",
     "next.config.ts",
-    "apps/web/next.config.ts",
+    "apps/portfolio/next.config.ts",
   ]),
 ]);

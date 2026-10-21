@@ -1,6 +1,6 @@
 # Automated Testing Setup for Portfolio
 
-This directory contains automated tests for the portfolio website using Playwright. Run the commands from `apps/web` (or prefix them with `pnpm --filter @portfolio/web`).
+This directory contains automated tests for the portfolio website using Playwright. Run the commands from `apps/portfolio` (or prefix them with `pnpm --filter @portfolio/portfolio`).
 
 ## Test Structure
 

@@ -9,7 +9,7 @@ The main app is built with **Next.js 16** (App Router, Turbopack), **React 19**,
 ```
 .
 ├── apps/
-│   ├── web/                  # Main portfolio (luisrivas.site)
+│   ├── portfolio/            # Main portfolio (luisrivas.site)
 │   │   ├── app/              # App Router routes, global styles
 │   │   ├── components/       # Site-specific sections (hero, nav, projects, ...)
 │   │   ├── hooks/            # Site-specific hooks (language, hero actions)
@@ -61,8 +61,8 @@ Run from the repository root:
 App-scoped examples:
 
 ```bash
-pnpm --filter @portfolio/web dev
-pnpm --filter @portfolio/web exec playwright test tests/navigation.spec.ts --project=chromium
+pnpm --filter @portfolio/portfolio dev
+pnpm --filter @portfolio/portfolio exec playwright test tests/navigation.spec.ts --project=chromium
 pnpm --filter @portfolio/services dev
 pnpm --filter @portfolio/ui typecheck
 ```
@@ -176,11 +176,11 @@ centralized in `packages/`.
 
 ## Testing
 
-E2E tests live in `apps/web/tests` and run with Playwright against
+E2E tests live in `apps/portfolio/tests` and run with Playwright against
 `http://localhost:3000` (the dev server is started automatically). See
-`apps/web/tests/README.md`.
+`apps/portfolio/tests/README.md`.
 
-> `apps/web/tests/contact-form.spec.ts` submits to the real Formspree endpoint
+> `apps/portfolio/tests/contact-form.spec.ts` submits to the real Formspree endpoint
 > and sends an actual email. Mock the request before running it.
 
 ## Deployment
