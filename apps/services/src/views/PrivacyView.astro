@@ -1,0 +1,46 @@
+---
+import Base from "@/layouts/Base.astro";
+import { site } from "@/data/site";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const copy = dict.privacy;
+const alternates = pageAlternates("privacy");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.privacy.title}
+  description={dict.seo.privacy.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <h1>{copy.pageTitle}</h1>
+      <p>{copy.pageLede}</p>
+      <p class="mono privacy-updated">{copy.updated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell prose">
+      {
+        copy.sections.map((section) => (
+          <>
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+          </>
+        ))
+      }
+      <p>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,19 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const target = getRelativeLocaleUrl("es");
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luis Rivas — Diseño y desarrollo web</title>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <meta name="robots" content="noindex, follow" />
+  </head>
+  <body>
+    <p><a href={target}>Continuar a la versión en español</a></p>
+  </body>
+</html>

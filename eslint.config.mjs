@@ -14,6 +14,9 @@ export default defineConfig([
   },
   globalIgnores([
     "**/.next/**",
+    "**/.astro/**",
+    "**/.wrangler/**",
+    "**/dist/**",
     "**/node_modules/**",
     "**/next-env.d.ts",
     "**/playwright-report/**",

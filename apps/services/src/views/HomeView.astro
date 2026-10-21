@@ -1,0 +1,285 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import Faq from "@/components/Faq.astro";
+import ServiceLedger from "@/components/ServiceLedger.astro";
+import Steps from "@/components/Steps.astro";
+import WorkGrid from "@/components/WorkGrid.astro";
+import { getCase } from "@/data/services";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const alternates = pageAlternates("home");
+
+const homeCases = [
+  "el-poaig",
+  "delivery-los-latinos",
+  "dnova",
+  "fit-stack",
+  "pulse-stream",
+].map((key) => getCase(key as Parameters<typeof getCase>[0]));
+
+const heroMain = getCase("dnova");
+const heroMainCopy = dict.cases.dnova;
+const heroSide = [getCase("el-poaig"), getCase("fit-stack")];
+const heroSideCopy = [dict.cases["el-poaig"], dict.cases["fit-stack"]];
+
+const homeSteps = dict.process.steps.filter((_, index) =>
+  [0, 1, 3, 4].includes(index),
+);
+
+const leadTestimonial = dict.home.testimonials[0];
+const restTestimonials = dict.home.testimonials.slice(1);
+const hasPlaceholders = dict.home.testimonials.some(
+  (item) => item.placeholder,
+);
+
+const markIndex = dict.home.title.indexOf(dict.home.titleMark);
+const hasTitleMark = markIndex >= 0;
+const titleBefore = hasTitleMark
+  ? dict.home.title.slice(0, markIndex)
+  : dict.home.title;
+const titleAfter = hasTitleMark
+  ? dict.home.title.slice(markIndex + dict.home.titleMark.length)
+  : "";
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.home.title}
+  description={dict.seo.home.description}
+  alternates={alternates}
+>
+  <section class="hero">
+    <div class="shell hero__grid">
+      <div>
+        <p class="hero__status">{dict.home.kicker}</p>
+        <h1 class="hero__title">
+          {
+            hasTitleMark ? (
+              <>
+                {titleBefore}
+                <mark>{dict.home.titleMark}</mark>
+                {titleAfter}
+              </>
+            ) : (
+              dict.home.title
+            )
+          }
+        </h1>
+        <p class="hero__lede">{dict.home.lede}</p>
+        <div class="hero__actions">
+          <a class="btn" href={pagePath(locale, "contact")}>{dict.ui.talk}</a>
+          <a class="link-arrow" href={pagePath(locale, "work")}>
+            {dict.ui.seeWork}
+            <span class="link-arrow__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="hero__meta">{dict.home.meta}</p>
+      </div>
+
+      <div class="hero__media">
+        <div class="hero-stack">
+          <figure class="hero-stack__item hero-stack__item--main">
+            <img
+              src={heroMain.cover}
+              alt={heroMain.coverAlt[locale]}
+              width="1200"
+              height="750"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <figcaption>
+              <span>{heroMainCopy.title}</span>
+              <span>{heroMainCopy.serviceLabel}</span>
+            </figcaption>
+          </figure>
+
+          {
+            heroSide.map((study, index) => (
+              <figure class="hero-stack__item hero-stack__item--side">
+                <img
+                  src={study.cover}
+                  alt={study.coverAlt[locale]}
+                  width="1200"
+                  height="750"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>{heroSideCopy[index].title}</span>
+                  <span>{heroSideCopy[index].serviceLabel}</span>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell">
+      <div class="proof">
+        {
+          dict.home.proof.map((item) => (
+            <div class="proof__item">
+              <span class="proof__value">{item.value}</span>
+              <span class="proof__label">{item.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head section-head--split">
+        <h2>{dict.home.workTitle}</h2>
+        <p>{dict.home.workLede}</p>
+      </div>
+
+      <WorkGrid studies={homeCases} locale={locale} dict={dict} />
+
+      <div class="section-foot">
+        <a class="link-arrow" href={pagePath(locale, "work")}>
+          {dict.ui.allWork}
+          <span class="link-arrow__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.home.servicesTitle}</h2>
+        <p>{dict.home.servicesLede}</p>
+      </div>
+      <ServiceLedger locale={locale} dict={dict} />
+      <div class="section-foot">
+        <a class="link-arrow" href={pagePath(locale, "services")}>
+          {dict.ui.seeServices}
+          <span class="link-arrow__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-band section">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.home.processTitle}</h2>
+        <p>{dict.home.processLede}</p>
+      </div>
+      <Steps steps={homeSteps} compact />
+      <p class="steps__note">{dict.home.processNote}</p>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head section-head--split">
+        <h2>{dict.home.guaranteesTitle}</h2>
+        <p>{dict.home.guaranteesLede}</p>
+      </div>
+
+      <ul class="guarantees">
+        {
+          dict.home.guarantees.map((item, index) => (
+            <li class="guarantee">
+              <p class="guarantee__index" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.home.testimonialsTitle}</h2>
+        <p>{dict.home.testimonialsLede}</p>
+      </div>
+
+      <div class="testimonials">
+        <article class="testimonial testimonial--lead">
+          <blockquote class="testimonial__quote">
+            “{leadTestimonial.quote}”
+          </blockquote>
+          <div class="testimonial__meta">
+            <span class="testimonial__name">{leadTestimonial.name}</span>
+            <span>{leadTestimonial.role}</span>
+            {
+              leadTestimonial.placeholder && (
+                <span class="testimonial__flag">
+                  {dict.home.testimonialFlag}
+                </span>
+              )
+            }
+          </div>
+        </article>
+
+        <div class="testimonials__aside">
+          {
+            restTestimonials.map((item) => (
+              <article class="testimonial">
+                <blockquote class="testimonial__quote">
+                  “{item.quote}”
+                </blockquote>
+                <div class="testimonial__meta">
+                  <span class="testimonial__name">{item.name}</span>
+                  <span>{item.role}</span>
+                  {item.placeholder && (
+                    <span class="testimonial__flag">
+                      {dict.home.testimonialFlag}
+                    </span>
+                  )}
+                </div>
+              </article>
+            ))
+          }
+          {
+            hasPlaceholders && (
+              <p class="testimonials__note">
+                {dict.home.testimonialsNote}
+              </p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head section-head--split">
+        <h2>{dict.home.faqTitle}</h2>
+        <p>{dict.home.faqLede}</p>
+      </div>
+      <Faq items={dict.home.faq} />
+    </div>
+  </section>
+
+  <Cta
+    title={dict.home.closingLine}
+    text={dict.home.closingText}
+    primaryLabel={dict.ui.talk}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.ui.seeWork}
+    secondaryHref={pagePath(locale, "work")}
+    note={`${dict.contact.availability} · ${dict.contact.response}`}
+  />
+</Base>

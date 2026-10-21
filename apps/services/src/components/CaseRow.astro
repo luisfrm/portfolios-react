@@ -1,0 +1,58 @@
+---
+import type { CaseKey, CaseStudy } from "@/data/services";
+import type { Dictionary } from "@/i18n";
+import { casePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  study: CaseStudy;
+  locale: Locale;
+  dict: Dictionary;
+  feature?: boolean;
+}
+
+const { study, locale, dict, feature = false } = Astro.props;
+const copy = dict.cases[study.key as CaseKey];
+const href = casePath(locale, study.key);
+const clientLabel =
+  study.clientType === "product" ? dict.ui.ownProduct : dict.ui.client;
+---
+
+<article
+  class:list={["work-card", feature && "work-card--feature"]}
+  data-work-card
+  data-service={study.service}
+>
+  <figure class="work-card__media">
+    <a
+      href={href}
+      tabindex="-1"
+      aria-label={`${dict.ui.viewCase}: ${copy.title}`}
+    >
+      <img
+        src={study.cover}
+        alt={study.coverAlt[locale]}
+        width="1200"
+        height="750"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </figure>
+
+  <div class="work-card__body">
+    <p class="work-card__meta">
+      <span class="work-card__flag">
+        {clientLabel}
+        {study.clientType !== "product" && ` · ${copy.serviceLabel}`}
+        {" · "}
+        {study.status === "live" ? dict.ui.statusLive : dict.ui.statusCode}
+      </span>
+    </p>
+    <h3 class="work-card__title"><a href={href}>{copy.title}</a></h3>
+    <p class="work-card__outcome">{copy.outcomeLine}</p>
+    <a class="link-arrow work-card__link" href={href}>
+      {dict.ui.viewCase}
+      <span class="link-arrow__arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>

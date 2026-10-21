@@ -1,0 +1,68 @@
+---
+import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n";
+import { pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const year = new Date().getFullYear();
+
+const links = [
+  { href: pagePath(locale, "services"), label: dict.nav.services },
+  { href: pagePath(locale, "work"), label: dict.nav.work },
+  { href: pagePath(locale, "process"), label: dict.nav.process },
+  { href: pagePath(locale, "about"), label: dict.nav.about },
+  { href: pagePath(locale, "contact"), label: dict.nav.contact },
+  { href: pagePath(locale, "privacy"), label: dict.nav.privacy },
+];
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer__mast">
+      <p class="footer__wordmark">
+        {site.name}<span class="brand__dot" aria-hidden="true">.</span>
+      </p>
+      <div>
+        <p class="footer__tagline">{dict.footer.tagline}</p>
+        <p class="footer__status">{dict.footer.available}</p>
+      </div>
+    </div>
+
+    <div class="footer__meta">
+      <div>
+        <nav class="footer__links" aria-label={dict.nav.footer}>
+          {
+            links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))
+          }
+        </nav>
+        <div class="footer__links">
+          <a href={site.github} rel="me noopener" target="_blank">GitHub</a>
+          <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+          <a href={site.portfolio} rel="me noopener" target="_blank">
+            {dict.footer.portfolio}
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__signature">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.whatsapp} rel="noopener" target="_blank">
+          {dict.footer.whatsapp} · {site.phone}
+        </a>
+        <span>© {year} {site.name}. {dict.footer.rights}</span>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>{dict.footer.tagline}</span>
+      <span>Astro · Cloudflare · ES / EN</span>
+    </div>
+  </div>
+</footer>

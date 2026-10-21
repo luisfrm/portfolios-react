@@ -1,0 +1,70 @@
+---
+import { site } from "@/data/site";
+import { absoluteUrl } from "@/lib/seo";
+import type { Locale } from "@/lib/routes";
+
+interface Props {
+  title: string;
+  description: string;
+  alternates: Record<Locale, string>;
+  locale: Locale;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  canonical?: string | null;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  alternates,
+  locale,
+  image = site.ogImage,
+  type = "website",
+  noindex = false,
+  canonical: canonicalProp,
+  jsonLd = [],
+} = Astro.props;
+
+const canonical =
+  canonicalProp === undefined ? absoluteUrl(alternates[locale]) : canonicalProp;
+const ogLocale = locale === "es" ? "es_ES" : "en_US";
+const ogLocaleAlternate = locale === "es" ? "en_US" : "es_ES";
+const schemas = jsonLd.map((schema) =>
+  JSON.stringify(schema).replace(/</g, "\\u003c"),
+);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{
+  canonical && (
+    <>
+      <link rel="canonical" href={canonical} />
+      <link rel="alternate" hreflang="es" href={absoluteUrl(alternates.es)} />
+      <link rel="alternate" hreflang="en" href={absoluteUrl(alternates.en)} />
+      <link
+        rel="alternate"
+        hreflang="x-default"
+        href={absoluteUrl(alternates.es)}
+      />
+    </>
+  )
+}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical ?? site.url} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlternate} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={schema} />
+))}

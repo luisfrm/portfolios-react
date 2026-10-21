@@ -1,0 +1,246 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import {
+  getCase,
+  nextCase,
+  type CaseKey,
+  type CaseLink,
+} from "@/data/services";
+import { getDictionary } from "@/i18n";
+import {
+  caseAlternates,
+  casePath,
+  pagePath,
+  type Locale,
+} from "@/lib/routes";
+import { absoluteUrl } from "@/lib/seo";
+
+interface Props {
+  locale: Locale;
+  caseKey: CaseKey;
+}
+
+const { locale, caseKey } = Astro.props;
+const dict = getDictionary(locale);
+const study = getCase(caseKey);
+const copy = dict.cases[caseKey];
+const next = nextCase(caseKey);
+const nextCopy = dict.cases[next.key];
+const alternates = caseAlternates(caseKey);
+const clientLabel =
+  study.clientType === "product" ? dict.ui.ownProduct : dict.ui.client;
+const caseStatus =
+  study.status === "live" ? dict.ui.statusLive : dict.ui.statusCode;
+const liveLinks: CaseLink[] =
+  study.status === "live"
+    ? study.links?.length
+      ? study.links
+      : [
+          {
+            label: { es: dict.ui.live, en: dict.ui.live },
+            href: study.live,
+          },
+        ]
+    : [];
+const primaryLive = liveLinks[0];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: copy.title,
+  description: copy.metaDescription,
+  image: study.cover,
+  url: absoluteUrl(alternates[locale]),
+  inLanguage: locale,
+  creator: {
+    "@type": "Person",
+    name: "Luis Rivas",
+    url: "https://luisrivas.work",
+  },
+};
+---
+
+<Base
+  locale={locale}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  alternates={alternates}
+  image={study.cover}
+  type="article"
+  jsonLd={[schema]}
+>
+  <article>
+    <header class="case-hero">
+      <div class="shell">
+        <a class="back-link" href={pagePath(locale, "work")}>
+          {dict.ui.backToWork}
+        </a>
+        <p class="mono">
+          {study.clientType === "product"
+            ? clientLabel
+            : `${copy.serviceLabel} · ${clientLabel}`}
+        </p>
+        <h1>{copy.title}</h1>
+        <p class="case-hero__lede">{copy.subtitle}</p>
+
+        <div class="case-hero__meta">
+          <span>{copy.role}</span>
+          <span> · </span>
+          <span>{caseStatus}</span>
+          <span> · </span>
+          {
+            primaryLive ? (
+              <a
+                class="link-quiet"
+                href={primaryLive.href}
+                rel="noopener"
+                target="_blank"
+              >
+                {primaryLive.label[locale]}{" "}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ) : study.repo ? (
+              <a
+                class="link-quiet"
+                href={study.repo}
+                rel="noopener"
+                target="_blank"
+              >
+                {dict.ui.repo} <span aria-hidden="true">↗</span>
+              </a>
+            ) : null
+          }
+        </div>
+      </div>
+    </header>
+
+    <div class="shell">
+      <figure class="figure figure--cinema case-cover">
+        <img
+          src={study.cover}
+          alt={study.coverAlt[locale]}
+          width="1200"
+          height="675"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <figcaption>
+          <span>{copy.title}</span>
+          <span>{copy.serviceLabel}</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <section class="section--tight">
+      <div class="shell case-body">
+        <div class="case-main">
+          <div class="case-section">
+            <h2>{copy.challengeTitle}</h2>
+            <p>{copy.challenge}</p>
+          </div>
+
+          <div class="case-section">
+            <h2>{copy.approachTitle}</h2>
+            <p>{copy.approach}</p>
+          </div>
+
+          <div class="case-gallery">
+            {
+              study.gallery.map((image) => (
+                <figure>
+                  <img
+                    src={image.src}
+                    alt={image.alt[locale]}
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              ))
+            }
+            <p class="mono case-gallery__caption">{copy.galleryCaption}</p>
+          </div>
+
+          <div class="outcome-panel">
+            <h2>{copy.resultTitle}</h2>
+            <p>{copy.result}</p>
+            <ul>
+              {copy.outcomes.map((outcome) => <li>{outcome}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <aside class="case-aside">
+          <dl class="case-meta">
+            <div>
+              <dt>{dict.ui.service}</dt>
+              <dd>{copy.serviceLabel}</dd>
+            </div>
+            <div>
+              <dt>{dict.ui.role}</dt>
+              <dd>{copy.role}</dd>
+            </div>
+            <div>
+              <dt>{dict.ui.statusLabel}</dt>
+              <dd>{caseStatus}</dd>
+            </div>
+            <div>
+              <dt>{dict.ui.links}</dt>
+              <dd>
+                {
+                  liveLinks.map((link) => (
+                    <a href={link.href} rel="noopener" target="_blank">
+                      {link.label[locale]}
+                    </a>
+                  ))
+                }
+                {
+                  study.repo && (
+                    <a href={study.repo} rel="noopener" target="_blank">
+                      {dict.ui.repo}
+                    </a>
+                  )
+                }
+              </dd>
+            </div>
+          </dl>
+
+          <div class="case-facts">
+            <h2>{dict.ui.overview}</h2>
+            <dl>
+              <div class="case-facts__row">
+                <dt>{dict.ui.stack}</dt>
+                <dd>
+                  <ul class="tech-list">
+                    {study.tech.map((tech) => <li>{tech}</li>)}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="shell">
+        <a class="next-case" href={casePath(locale, next.key)}>
+          <span>{dict.ui.nextCase}</span>
+          <strong>{nextCopy.title} <span aria-hidden="true">→</span></strong>
+        </a>
+      </div>
+    </section>
+
+    <Cta
+      title={dict.work.ctaTitle}
+      text={dict.work.ctaText}
+      primaryLabel={dict.ui.startProject}
+      primaryHref={pagePath(locale, "contact")}
+      secondaryLabel={dict.ui.allWork}
+      secondaryHref={pagePath(locale, "work")}
+      note={dict.contact.availability}
+    />
+  </article>
+</Base>

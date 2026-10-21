@@ -1,0 +1,86 @@
+---
+import Base from "@/layouts/Base.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { site } from "@/data/site";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const copy = dict.contact;
+const alternates = pageAlternates("contact");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.contact.title}
+  description={dict.seo.contact.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <p class="mono page-head__meta">{copy.availability}</p>
+      <h1>{copy.pageTitle}</h1>
+      <p>{copy.pageLede}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell contact-grid">
+      <div class="contact-direct">
+        <div>
+          <p class="mono">{copy.directTitle}</p>
+          <a class="contact-direct__email" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
+        </div>
+        <p class="contact-direct__note">{copy.directNote}</p>
+        <p class="contact-direct__note">{copy.response}</p>
+
+        <ul class="contact-list">
+          <li>
+            <a href={site.whatsapp} rel="noopener" target="_blank">
+              {copy.whatsapp} · {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={site.github} rel="me noopener" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+          </li>
+          <li>
+            <a href={site.portfolio} rel="me noopener" target="_blank">
+              {dict.about.portfolioLink}
+            </a>
+          </li>
+        </ul>
+
+        <p class="contact-direct__note">{copy.whatsappNote}</p>
+        <p class="mono">{copy.remote}</p>
+
+        <div>
+          <p class="mono">{copy.nextTitle}</p>
+          <ol class="contact-next">
+            {
+              copy.nextSteps.map((step, index) => (
+                <li>
+                  <span aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p>{step}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+
+      <ContactForm locale={locale} dict={dict} />
+    </div>
+  </section>
+</Base>

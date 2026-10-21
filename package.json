@@ -5,8 +5,11 @@
   "packageManager": "pnpm@11.5.3",
   "scripts": {
     "dev": "pnpm --filter @portfolio/web dev",
+    "dev:services": "pnpm --filter @portfolio/services dev",
     "dev:all": "pnpm -r --parallel dev",
     "build": "pnpm --filter @portfolio/web build",
+    "build:services": "pnpm --filter @portfolio/services build",
+    "deploy:services": "pnpm --filter @portfolio/services deploy",
     "start": "pnpm --filter @portfolio/web start",
     "lint": "eslint .",
     "typecheck": "pnpm -r --workspace-concurrency=4 typecheck",

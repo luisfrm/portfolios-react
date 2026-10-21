@@ -1,0 +1,92 @@
+---
+import CaseRow from "@/components/CaseRow.astro";
+import type { CaseStudy } from "@/data/services";
+import type { Dictionary } from "@/i18n";
+import type { Locale } from "@/lib/routes";
+
+interface Props {
+  studies: CaseStudy[];
+  locale: Locale;
+  dict: Dictionary;
+  filterable?: boolean;
+}
+
+const { studies, locale, dict, filterable = true } = Astro.props;
+
+const filters = [
+  { value: "all", label: dict.ui.filterAll },
+  { value: "landing", label: dict.ui.filterLanding },
+  { value: "sitio", label: dict.ui.filterSite },
+  { value: "producto", label: dict.ui.filterProduct },
+];
+---
+
+{
+  filterable && (
+    <div class="work-filters" role="group" aria-label={dict.work.filtersLabel}>
+      {filters.map((filter, index) => (
+        <button
+          class="filter"
+          type="button"
+          data-work-filter={filter.value}
+          aria-pressed={index === 0 ? "true" : "false"}
+          aria-controls="work-grid"
+        >
+          {filter.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+<div class="work-grid" id="work-grid" data-work-grid>
+  {
+    studies.map((study, index) => (
+      <CaseRow
+        study={study}
+        locale={locale}
+        dict={dict}
+        feature={index < 2}
+      />
+    ))
+  }
+</div>
+
+<p class="work-empty" data-work-empty hidden>{dict.work.empty}</p>
+
+<script>
+  const grid = document.querySelector<HTMLElement>("[data-work-grid]");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(
+    "[data-work-filter]",
+  );
+  const empty = document.querySelector<HTMLElement>("[data-work-empty]");
+
+  if (grid && buttons.length) {
+    const cards = Array.from(
+      grid.querySelectorAll<HTMLElement>("[data-work-card]"),
+    );
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.workFilter ?? "all";
+        let visible = 0;
+
+        buttons.forEach((item) => {
+          item.setAttribute(
+            "aria-pressed",
+            String(item === button),
+          );
+        });
+
+        cards.forEach((card) => {
+          const show =
+            filter === "all" || card.dataset.service === filter;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+
+        if (empty) empty.hidden = visible > 0;
+      });
+    });
+  }
+</script>

@@ -1,0 +1,177 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import Faq from "@/components/Faq.astro";
+import Steps from "@/components/Steps.astro";
+import { getCase, getService, type ServiceKey } from "@/data/services";
+import { getDictionary } from "@/i18n";
+import {
+  casePath,
+  pagePath,
+  serviceAlternates,
+  type Locale,
+} from "@/lib/routes";
+import { absoluteUrl } from "@/lib/seo";
+
+interface Props {
+  locale: Locale;
+  serviceKey: ServiceKey;
+}
+
+const { locale, serviceKey } = Astro.props;
+const dict = getDictionary(locale);
+const service = getService(serviceKey);
+const copy = dict.serviceList[serviceKey];
+const related = service.caseKeys.map((key) => getCase(key));
+const alternates = serviceAlternates(serviceKey);
+const compactSteps = dict.process.steps.filter((_, index) =>
+  [0, 1, 3, 4].includes(index),
+);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: copy.title,
+  serviceType: copy.label,
+  description: copy.metaDescription,
+  url: absoluteUrl(alternates[locale]),
+  areaServed: "Worldwide",
+  availableLanguage: ["es", "en"],
+  inLanguage: locale,
+  provider: {
+    "@type": "Person",
+    name: "Luis Rivas",
+    url: "https://luisrivas.work",
+  },
+};
+---
+
+<Base
+  locale={locale}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  alternates={alternates}
+  image={related[0].cover}
+  jsonLd={[schema]}
+>
+  <section class="page-head">
+    <div class="shell">
+      <a class="back-link" href={pagePath(locale, "services")}>
+        {dict.nav.services}
+      </a>
+      <p class="mono page-head__meta">
+        {copy.label} · {copy.timeline}
+      </p>
+      <h1>{copy.title}</h1>
+      <p>{copy.intro}</p>
+      <div class="page-head__actions">
+        <a class="btn" href={pagePath(locale, "contact")}>{copy.cta}</a>
+        <span class="mono">
+          {dict.services.priceLabel}: {dict.services.priceValue}
+        </span>
+      </div>
+      <p class="service-note">{copy.note}</p>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell split">
+      <div>
+        <h2 class="subhead">{copy.bestForLabel}</h2>
+        <p class="lede">{copy.bestFor}</p>
+      </div>
+      <div>
+        <h3 class="offer__includes-title">{copy.includesTitle}</h3>
+        <ul class="scope-list">
+          {copy.includes.map((item) => <li>{item}</li>)}
+        </ul>
+        <div class="service-facts">
+          <span class="mono">{copy.timelineLabel}</span>
+          <strong>{copy.timeline}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head section-head--split">
+        <h2>{copy.outcomeTitle}</h2>
+        <p>{copy.outcomeLine}</p>
+      </div>
+
+      <div class="related-cases">
+        {
+          related.map((study) => {
+            const studyCopy = dict.cases[study.key];
+            const typeLabel =
+              study.clientType === "product"
+                ? dict.ui.ownProduct
+                : dict.ui.client;
+            const statusLabel =
+              study.status === "live"
+                ? dict.ui.statusLive
+                : dict.ui.statusCode;
+            return (
+              <article class="related-case">
+                <a
+                  class="related-case__media"
+                  href={casePath(locale, study.key)}
+                  tabindex="-1"
+                  aria-label={`${dict.ui.viewCase}: ${studyCopy.title}`}
+                >
+                  <img
+                    src={study.cover}
+                    alt={study.coverAlt[locale]}
+                    width="1200"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <p class="mono">
+                  {typeLabel} · {statusLabel}
+                </p>
+                <h3><a href={casePath(locale, study.key)}>{studyCopy.title}</a></h3>
+                <p>{studyCopy.outcomeLine}</p>
+                <a class="link-arrow" href={casePath(locale, study.key)}>
+                  {dict.ui.viewCase}
+                  <span class="link-arrow__arrow" aria-hidden="true">→</span>
+                </a>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.home.processTitle}</h2>
+        <p>{dict.home.processLede}</p>
+      </div>
+      <Steps steps={compactSteps} compact />
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{copy.faqTitle}</h2>
+      </div>
+      <Faq items={copy.faq} />
+    </div>
+  </section>
+
+  <Cta
+    title={dict.services.ctaTitle}
+    text={dict.services.ctaText}
+    primaryLabel={copy.cta}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.ui.seeWork}
+    secondaryHref={pagePath(locale, "work")}
+    note={dict.contact.availability}
+  />
+</Base>

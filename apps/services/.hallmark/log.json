@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-10-20",
+    "macrostructure": "Portfolio Grid",
+    "theme": "custom",
+    "theme_axes": "light / high-contrast-serif / lime-green",
+    "vibe": "editorial premium, lima, innovación cálida",
+    "enrichment": "none",
+    "brief": "Luis Rivas · servicios de diseño y desarrollo web para clientes"
+  },
+  {
+    "date": "2026-10-20",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "taller técnico, frío, sobrio, señal cobalto",
+    "enrichment": "none",
+    "brief": "Luis Rivas · servicios de diseño y desarrollo web"
+  }
+]
