@@ -58,6 +58,8 @@ export const fitStackTechnologies = [
   "Cloudflare Workers AI",
   "OpenRouter API",
   "LLM Chat Streaming (SSE)",
+  "RAG & Tool Calling",
+  "CMS & Blog",
   "Cloudflare Queues",
   "Cloudflare R2",
   "Hono API",

@@ -34,6 +34,7 @@ interface Props {
     media?: ProjectMedia[];
     githubUrl?: string;
     liveUrl?: string;
+    consoleUrl?: string;
   };
   delayClass?: string;
   index: number;
@@ -44,7 +45,15 @@ const TECH_BADGE_STYLE =
   "px-3 py-1 text-xs font-mono rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/80 transition-colors";
 
 export function ProjectItem({ project, delayClass, isFeatured = false }: Props) {
-  const { title, description, media, technologies, githubUrl, liveUrl } = project;
+  const {
+    title,
+    description,
+    media,
+    technologies,
+    githubUrl,
+    liveUrl,
+    consoleUrl,
+  } = project;
 
   // Build the media list — images share the carousel slot
   const mediaList: ProjectMedia[] = media ?? [];
@@ -101,6 +110,9 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     } else {
       api?.scrollTo(currentIndex, true);
     }
+    // Intentionally sync only when the lightbox opens/closes; adding
+    // currentIndex here creates a scroll/animation loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLightboxOpen, modalApi, api]);
 
   const handleNext = useCallback(
@@ -144,8 +156,9 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   // Determine link presence & space-between layout logic
   const hasGithub = Boolean(githubUrl && githubUrl.trim() !== "");
   const hasLive = Boolean(liveUrl && liveUrl.trim() !== "");
+  const hasConsole = Boolean(consoleUrl && consoleUrl.trim() !== "");
   // If githubUrl is missing/empty, display Contact link as fallback
-  const isJustifyBetween = hasLive;
+  const isJustifyBetween = hasLive || hasConsole;
 
   const renderCodeOrContactLink = () => {
     if (hasGithub) {
@@ -180,18 +193,38 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
   };
 
   const renderLiveLink = () => {
-    if (!hasLive) return null;
+    if (!hasLive && !hasConsole) return null;
+
+    const linkClass =
+      "inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
+
     return (
-      <a
-        href={liveUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-        aria-label={`View ${title} live demo`}
-      >
-        <ExternalLink className="w-4 h-4" />
-        <span>{t("projects.liveDemo")}</span>
-      </a>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        {hasLive && (
+          <a
+            href={liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            aria-label={`View ${title} live demo`}
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span>{t("projects.liveDemo")}</span>
+          </a>
+        )}
+        {hasConsole && (
+          <a
+            href={consoleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass}
+            aria-label={`View ${title} SaaS console`}
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span>{t("projects.consoleDemo")}</span>
+          </a>
+        )}
+      </div>
     );
   };
 
@@ -387,7 +420,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
               </div>
 
               {/* Actions Footer Links */}
-              <div className={cn("pt-4 border-t border-border/40 flex items-center w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
+              <div className={cn("pt-4 border-t border-border/40 flex flex-wrap items-center gap-2 w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
                 {renderCodeOrContactLink()}
                 {renderLiveLink()}
               </div>
@@ -500,7 +533,7 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
           </div>
 
           {/* Actions Footer Links */}
-          <div className={cn("pt-4 border-t border-border/40 flex items-center w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
+          <div className={cn("pt-4 border-t border-border/40 flex flex-wrap items-center gap-2 w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
             {renderCodeOrContactLink()}
             {renderLiveLink()}
           </div>

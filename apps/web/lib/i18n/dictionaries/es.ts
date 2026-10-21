@@ -71,6 +71,7 @@ export const es = {
     viewAll: "Ver todos los proyectos",
     viewCode: "Ver Código",
     liveDemo: "Demo en Vivo",
+    consoleDemo: "Consola SaaS",
     contactCode: "Contactar",
     code: "Código",
     demo: "Demo",
@@ -78,9 +79,9 @@ export const es = {
       {
         key: "fitStack",
         title:
-          "Fit-Stack - Plataforma B2B SaaS Multi-inquilino de Gestión de Gimnasios, Asistente IA y Control de Acceso",
+          "FIT Stack — SaaS multi-inquilino para gimnasios: ERP, CMS, portal e IA",
         description:
-          "Plataforma B2B SaaS de alto rendimiento para la automatización operativa, financiera y asistida por Inteligencia Artificial en gimnasios. Arquitectura monorepo (Turborepo + pnpm) impulsada por una API Edge Serverless en Cloudflare Workers con Hono, base de datos Serverless Neon Postgres con Drizzle ORM, caché distribuido en Upstash Redis y un motor de Asistente IA con streaming SSE (Server-Sent Events) multi-proveedor (Cloudflare Workers AI + OpenRouter). Incluye un Panel de Gestión (Next.js 16 / React 19) con reglas de renovación acumulativa y cobros multimoneda; una Consola de Super-Admin SaaS (Next.js 16); un Portal de Miembros (Next.js 16) con CMS dinámico; suite de pruebas automatizadas con Vitest a lo largo de todo el monorepo; procesamiento asíncrono en colas con Cloudflare Queues y correos transaccionales con Resend; y un cliente nativo de escritorio (Python / Flet) para control de acceso por hardware (biometría/QR). Infraestructura declarada en Terraform y CI/CD con GitHub Actions.",
+          "Plataforma SaaS multi-inquilino para gimnasios que cubre la operación completa: ERP para socios, renovaciones, cobros y accesos; CMS para la página comercial, blog y notificaciones; portal de socios; y gestión de la relación entrenador-alumno, incluido el seguimiento de clientes independientes. La capa de IA usa RAG y tool calling para generar rutinas, reportes y otras tareas sobre los datos reales de cada gimnasio, tanto en el panel como en el portal. Arquitectura monorepo (Turborepo + pnpm) con API Edge en Cloudflare Workers y Hono, Neon Postgres con Drizzle, Upstash Redis, Cloudflare Queues, Better Auth multi-tenant, Resend, Terraform y CI/CD; incluye consola SaaS de super-admin y puente de escritorio en Python para control de acceso por hardware.",
         media: [
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
@@ -89,7 +90,8 @@ export const es = {
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
         ],
         githubUrl: "https://github.com/luisfrm/fit-stack",
-        liveUrl: "https://panel.luisrivas.site",
+        liveUrl: "https://fitstack-panel.luisrivas.site",
+        consoleUrl: "https://fitstack-console.luisrivas.site",
       },
       {
         key: "pulseStream",

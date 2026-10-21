@@ -69,6 +69,7 @@ export const en = {
     viewAll: "View all projects",
     viewCode: "View Code",
     liveDemo: "Live Demo",
+    consoleDemo: "SaaS console",
     contactCode: "Contact",
     code: "Code",
     demo: "Demo",
@@ -76,9 +77,9 @@ export const en = {
       {
         key: "fitStack",
         title:
-          "Fit-Stack - Multi-Tenant B2B Gym SaaS, AI Assistant & Hardware Access Control",
+          "FIT Stack — Multi-Tenant Gym SaaS: ERP, CMS, Member Portal & AI",
         description:
-          "High-performance B2B SaaS platform for gym operations, financial auditability, AI assistance, and physical access control. Engineered as a Turborepo monorepo featuring an Edge Serverless API on Cloudflare Workers using Hono, a serverless Neon Postgres database powered by Drizzle ORM, Upstash Redis edge caching, and an AI Chat engine with real-time SSE streaming leveraging Cloudflare Workers AI and OpenRouter models. Comprises a Gym Admin Panel (Next.js 16 / React 19) with cumulative renewal logic and multi-currency billing; a SaaS Super-Admin Console (Next.js 16); a Member Portal (Next.js 16) with dynamic CMS rendering; full monorepo test suite with Vitest; asynchronous task queues via Cloudflare Queues and Resend transactional emails; and a native Desktop Bridge (Python / Flet) for turnstile hardware integration via biometric/QR sensors. Infrastructure fully managed via Terraform and deployed with GitHub Actions CI/CD pipelines.",
+          "Multi-tenant SaaS platform for gyms covering the full operation: ERP for members, renewals, billing and access; CMS for the commercial page, blog and notifications; member portal; and coach-member relationship management, including independent clients. The AI layer uses RAG and tool calling to generate routines, reports and other tasks against each gym's real data, in both the panel and the portal. Turborepo monorepo architecture with an Edge API on Cloudflare Workers and Hono, Neon Postgres with Drizzle, Upstash Redis, Cloudflare Queues, multi-tenant Better Auth, Resend, Terraform and CI/CD; includes a SaaS super-admin console and a Python desktop bridge for hardware access control.",
         media: [
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-1.webp" },
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-2.webp" },
@@ -87,7 +88,8 @@ export const en = {
           { type: "image", url: "https://r2-personal.luisrivas.site/portfolios/fitstack-5.webp" },
         ],
         githubUrl: "https://github.com/luisfrm/fit-stack",
-        liveUrl: "https://panel.luisrivas.site",
+        liveUrl: "https://fitstack-panel.luisrivas.site",
+        consoleUrl: "https://fitstack-console.luisrivas.site",
       },
       {
         key: "pulseStream",

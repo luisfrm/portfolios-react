@@ -28,6 +28,7 @@ export default function ProjectsPage() {
     media?: { type: "image" | "video"; url: string }[];
     githubUrl?: string;
     liveUrl?: string;
+    consoleUrl?: string;
   }>;
 
   const mergedProjects = projects.map((p) => ({
