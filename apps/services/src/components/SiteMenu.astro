@@ -1,0 +1,102 @@
+---
+import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n";
+import { pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  alternates: Record<Locale, string>;
+}
+
+const { locale, dict, alternates } = Astro.props;
+
+const links = [
+  {
+    href: pagePath(locale, "services"),
+    label: dict.nav.services,
+    meta: dict.nav.menuMeta.services,
+  },
+  {
+    href: pagePath(locale, "work"),
+    label: dict.nav.work,
+    meta: dict.nav.menuMeta.work,
+  },
+  {
+    href: pagePath(locale, "process"),
+    label: dict.nav.process,
+    meta: dict.nav.menuMeta.process,
+  },
+  {
+    href: pagePath(locale, "about"),
+    label: dict.nav.about,
+    meta: dict.nav.menuMeta.about,
+  },
+  {
+    href: pagePath(locale, "contact"),
+    label: dict.nav.contact,
+    meta: dict.nav.menuMeta.contact,
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+<dialog id="site-menu" class="site-menu" aria-label={dict.nav.menu}>
+  <div class="site-menu__inner shell">
+    <div class="site-menu__top">
+      <a
+        class="brand"
+        href={pagePath(locale, "home")}
+        aria-label={`${site.name} — ${dict.nav.home}`}
+      >
+        <span class="brand__name">{site.name}<span class="brand__dot" aria-hidden="true">.</span></span>
+        <span class="brand__role">{dict.footer.tagline}</span>
+      </a>
+      <button class="site-menu__close" type="button" data-menu-close>
+        {dict.nav.close}
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <nav class="site-menu__nav" aria-label={dict.nav.menu}>
+      {
+        links.map((link) => (
+          <a class="site-menu__link" href={link.href}>
+            {link.label}
+            <span aria-hidden="true">{link.meta}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-menu__meta">
+      <div class="footer__links">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.whatsapp} rel="noopener" target="_blank">
+          {dict.footer.whatsapp} · {site.phone}
+        </a>
+        <a href={site.github} rel="me noopener" target="_blank">GitHub</a>
+        <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+        <a href={site.portfolio} rel="me noopener" target="_blank">
+          {dict.footer.portfolio}
+        </a>
+      </div>
+
+      <div class="site-menu__langs" aria-label={dict.nav.language}>
+        <a
+          href={alternates.es}
+          hreflang="es"
+          lang="es"
+          aria-current={locale === "es" ? "page" : undefined}>ES</a>
+        <a
+          href={alternates.en}
+          hreflang="en"
+          lang="en"
+          aria-current={locale === "en" ? "page" : undefined}>EN</a>
+      </div>
+
+      <span>© {year} {site.name}</span>
+    </div>
+  </div>
+</dialog>

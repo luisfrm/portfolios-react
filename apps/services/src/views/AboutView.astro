@@ -1,0 +1,85 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import { site } from "@/data/site";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const alternates = pageAlternates("about");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.about.title}
+  description={dict.seo.about.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <h1>{dict.about.pageTitle}</h1>
+      <p>{dict.about.pageLede}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell about-grid">
+      <div class="about-copy">
+        {dict.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="prose-links">
+          <a href={site.portfolio} rel="me noopener" target="_blank">
+            {dict.about.portfolioLink}
+          </a>
+          <a href={site.github} rel="me noopener" target="_blank">GitHub</a>
+          <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <div>
+        <dl class="fact-list">
+          {
+            dict.about.facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.about.principlesTitle}</h2>
+      </div>
+      <ul class="principles">
+        {
+          dict.about.principles.map((principle) => (
+            <li>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta
+    title={dict.about.ctaTitle}
+    text={dict.about.ctaText}
+    primaryLabel={dict.ui.talk}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.ui.seeWork}
+    secondaryHref={pagePath(locale, "work")}
+    note={dict.contact.availability}
+  />
+</Base>

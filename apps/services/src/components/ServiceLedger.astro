@@ -1,0 +1,37 @@
+---
+import { services } from "@/data/services";
+import type { Dictionary } from "@/i18n";
+import { servicePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+---
+
+<ul class="service-list">
+  {
+    services.map((service, index) => {
+      const copy = dict.serviceList[service.key];
+      return (
+        <li class="service-row">
+          <span class="service-row__index" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 class="service-row__title">
+            <a href={servicePath(locale, service.key)}>{copy.label}</a>
+          </h3>
+          <p class="service-row__summary">{copy.outcomeLine}</p>
+          <span class="service-row__meta">
+            {copy.timeline} ·{" "}
+            <a class="link-quiet" href={servicePath(locale, service.key)}>
+              {dict.ui.viewService} →
+            </a>
+          </span>
+        </li>
+      );
+    })
+  }
+</ul>

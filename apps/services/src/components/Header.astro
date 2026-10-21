@@ -1,0 +1,153 @@
+---
+import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n";
+import { pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  alternates: Record<Locale, string>;
+}
+
+const { locale, dict, alternates } = Astro.props;
+const path = Astro.url.pathname;
+
+const links = [
+  { href: pagePath(locale, "services"), label: dict.nav.services },
+  { href: pagePath(locale, "work"), label: dict.nav.work },
+  { href: pagePath(locale, "process"), label: dict.nav.process },
+];
+
+const isActive = (href: string) => {
+  const base = href.replace(/\/$/, "");
+  return path === href || path.startsWith(`${base}/`);
+};
+---
+
+<div class="site-topbar" data-topbar>
+  <div class="topbar__banner" data-banner>
+    <div class="shell topbar__banner-inner">
+      <p class="topbar__status">
+        <span class="topbar__text topbar__text--full">{dict.home.status}</span>
+        <span class="topbar__text topbar__text--short">{dict.home.statusShort}</span>
+      </p>
+      <div class="topbar__actions">
+        <a class="topbar__action" href={pagePath(locale, "contact")}>
+          {dict.nav.cta} <span aria-hidden="true">→</span>
+        </a>
+        <button
+          class="topbar__close"
+          type="button"
+          data-banner-close
+          aria-label={dict.nav.close}
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header shell">
+    <a
+      class="brand"
+      href={pagePath(locale, "home")}
+      aria-label={`${site.name} — ${dict.nav.home}`}
+    >
+      <span class="brand__name">{site.name}<span class="brand__dot" aria-hidden="true">.</span></span>
+      <span class="brand__role">{dict.footer.tagline}</span>
+    </a>
+
+    <nav class="main-nav" aria-label={dict.nav.menu}>
+      {
+        links.map((link) => (
+          <a
+            class="main-nav__link"
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" aria-label={dict.nav.language}>
+        <a
+          href={alternates.es}
+          hreflang="es"
+          lang="es"
+          aria-current={locale === "es" ? "page" : undefined}>ES</a>
+        <span aria-hidden="true">/</span>
+        <a
+          href={alternates.en}
+          hreflang="en"
+          lang="en"
+          aria-current={locale === "en" ? "page" : undefined}>EN</a>
+      </div>
+
+      <a class="btn" href={pagePath(locale, "contact")}>{dict.nav.cta}</a>
+
+      <button
+        class="menu-trigger"
+        type="button"
+        data-menu-open
+        aria-controls="site-menu"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-label={dict.nav.menu}
+      >
+        <span class="menu-trigger__label">{dict.nav.menu}</span>
+        <span class="menu-trigger__icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+</div>
+
+<script>
+  const topbar = document.querySelector<HTMLElement>("[data-topbar]");
+  const close = document.querySelector<HTMLElement>("[data-banner-close]");
+  let dismissed = false;
+
+  try {
+    dismissed = sessionStorage.getItem("lr-banner-dismissed") === "1";
+  } catch {
+    dismissed = false;
+  }
+
+  if (dismissed) topbar?.classList.add("is-banner-hidden");
+
+  close?.addEventListener("click", () => {
+    dismissed = true;
+    topbar?.classList.add("is-banner-hidden");
+    try {
+      sessionStorage.setItem("lr-banner-dismissed", "1");
+    } catch {
+      /* storage can be unavailable */
+    }
+  });
+
+  let lastY = window.scrollY;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      topbar?.classList.toggle("is-scrolled", y > 8);
+
+      if (!dismissed) {
+        if (y > lastY + 6 && y > 80) {
+          topbar?.classList.add("is-banner-hidden");
+        } else if (y < lastY - 6) {
+          topbar?.classList.remove("is-banner-hidden");
+        }
+      }
+
+      lastY = y;
+    },
+    { passive: true },
+  );
+</script>

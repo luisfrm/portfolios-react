@@ -31,5 +31,10 @@ playwright-report/
 test-results/
 playwright/.cache/
 
+# Astro / Wrangler / local audit artifacts
+.astro/
+.wrangler/
+.screens/
+
 # TypeScript build info
 *.tsbuildinfo

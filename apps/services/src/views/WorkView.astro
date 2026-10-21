@@ -1,0 +1,58 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import WorkGrid from "@/components/WorkGrid.astro";
+import { getCase } from "@/data/services";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const alternates = pageAlternates("work");
+
+const workCases = [
+  "el-poaig",
+  "delivery-los-latinos",
+  "dnova",
+  "fit-stack",
+  "pulse-stream",
+].map((key) => getCase(key as Parameters<typeof getCase>[0]));
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.work.title}
+  description={dict.seo.work.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <p class="mono page-head__meta">{dict.work.proof}</p>
+      <h1>{dict.work.pageTitle}</h1>
+      <p>{dict.work.pageLede}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.work.gridTitle}</h2>
+      </div>
+      <WorkGrid studies={workCases} locale={locale} dict={dict} />
+    </div>
+  </section>
+
+  <Cta
+    title={dict.work.ctaTitle}
+    text={dict.work.ctaText}
+    primaryLabel={dict.ui.talk}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.ui.seeServices}
+    secondaryHref={pagePath(locale, "services")}
+    note={dict.contact.availability}
+  />
+</Base>

@@ -1,0 +1,102 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import Steps from "@/components/Steps.astro";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const alternates = pageAlternates("process");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.process.title}
+  description={dict.seo.process.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <h1>{dict.process.pageTitle}</h1>
+      <p>{dict.process.pageLede}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.process.stepsTitle}</h2>
+      </div>
+      <Steps steps={dict.process.steps} />
+    </div>
+  </section>
+
+  <section class="process-band section">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.home.guaranteesTitle}</h2>
+        <p>{dict.home.guaranteesLede}</p>
+      </div>
+      <ul class="guarantees">
+        {
+          dict.home.guarantees.map((item, index) => (
+            <li class="guarantee">
+              <p class="guarantee__index" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell split">
+      <div>
+        <h2 class="subhead">{dict.process.needTitle}</h2>
+        <ul class="scope-list">
+          {dict.process.need.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="subhead">{dict.process.noTitle}</h2>
+        <ul class="scope-list">
+          {dict.process.no.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell split">
+      <div>
+        <h2 class="subhead">{dict.process.toolsTitle}</h2>
+        <p class="lede">{dict.process.toolsText}</p>
+        <p class="mono process-remote">{dict.process.remote}</p>
+      </div>
+      <div>
+        <ul class="tech-list tech-list--stack">
+          {dict.process.tools.map((tool) => <li>{tool}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Cta
+    title={dict.home.closingLine}
+    text={dict.home.closingText}
+    primaryLabel={dict.ui.talk}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.ui.seeWork}
+    secondaryHref={pagePath(locale, "work")}
+    note={dict.contact.availability}
+  />
+</Base>

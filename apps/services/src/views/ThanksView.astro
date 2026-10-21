@@ -1,0 +1,48 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const copy = dict.thanks;
+const alternates = pageAlternates("thanks");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.thanks.title}
+  description={dict.seo.thanks.description}
+  alternates={alternates}
+  noindex
+>
+  <section class="simple-page">
+    <div class="shell">
+      <h1>{copy.pageTitle}</h1>
+      <p>{copy.pageLede}</p>
+
+      <ol class="next-steps">
+        {
+          copy.steps.map((step, index) => (
+            <li>
+              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <p>{step}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="simple-page__actions">
+        <a class="btn" href={pagePath(locale, "home")}>{copy.back}</a>
+        <a class="link-arrow" href={pagePath(locale, "work")}>
+          {copy.work}
+          <span class="link-arrow__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

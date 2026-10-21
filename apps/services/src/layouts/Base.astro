@@ -1,0 +1,148 @@
+---
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/jetbrains-mono";
+import "@/styles/global.css";
+
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Seo from "@/components/Seo.astro";
+import SiteMenu from "@/components/SiteMenu.astro";
+import { getDictionary } from "@/i18n";
+import { pagePath, type Locale } from "@/lib/routes";
+import {
+  professionalServiceSchema,
+  websiteSchema,
+} from "@/lib/seo";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  alternates: Record<Locale, string>;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  omitCanonical?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  locale,
+  title,
+  description,
+  alternates,
+  image,
+  type,
+  noindex,
+  omitCanonical = false,
+  jsonLd = [],
+} = Astro.props;
+
+const dict = getDictionary(locale);
+const isHome = alternates[locale] === pagePath(locale, "home");
+const schemas = [
+  professionalServiceSchema(locale, dict),
+  ...(isHome ? [websiteSchema(locale)] : []),
+  ...jsonLd,
+];
+
+const noJsLinks = [
+  { href: pagePath(locale, "services"), label: dict.nav.services },
+  { href: pagePath(locale, "work"), label: dict.nav.work },
+  { href: pagePath(locale, "process"), label: dict.nav.process },
+  { href: pagePath(locale, "about"), label: dict.nav.about },
+  { href: pagePath(locale, "contact"), label: dict.nav.contact },
+];
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Seo
+      title={title}
+      description={description}
+      alternates={alternates}
+      locale={locale}
+      image={image}
+      type={type}
+      noindex={noindex}
+      canonical={omitCanonical ? null : undefined}
+      jsonLd={schemas}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">{dict.nav.skip}</a>
+
+    <Header locale={locale} dict={dict} alternates={alternates} />
+
+    <noscript>
+      <nav class="shell nojs-nav" aria-label={dict.nav.menu}>
+        {
+          noJsLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </nav>
+    </noscript>
+
+    <main id="content" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer locale={locale} dict={dict} />
+    <SiteMenu locale={locale} dict={dict} alternates={alternates} />
+
+    <script>
+      const dialog = document.querySelector<HTMLDialogElement>("#site-menu");
+      const openers =
+        document.querySelectorAll<HTMLElement>("[data-menu-open]");
+      const closer = document.querySelector<HTMLElement>("[data-menu-close]");
+
+      const setExpanded = (open: boolean) => {
+        openers.forEach((opener) =>
+          opener.setAttribute("aria-expanded", String(open)),
+        );
+      };
+
+      if (dialog) {
+        openers.forEach((opener) => {
+          opener.addEventListener("click", () => {
+            if (typeof dialog.showModal === "function") {
+              dialog.showModal();
+            } else {
+              dialog.setAttribute("open", "");
+            }
+            closer?.focus({ preventScroll: true });
+            setExpanded(true);
+          });
+        });
+
+        closer?.addEventListener("click", () => {
+          dialog.close();
+        });
+
+        dialog.addEventListener("close", () => {
+          setExpanded(false);
+        });
+
+        dialog.addEventListener("cancel", () => {
+          setExpanded(false);
+        });
+
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) {
+            dialog.close();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

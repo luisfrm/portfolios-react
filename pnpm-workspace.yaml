@@ -1,5 +1,15 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
 allowBuilds:
-  '@parcel/watcher': set this to true or false
-  '@swc/core': set this to true or false
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
+  "@parcel/watcher": true
+  "@swc/core": true
+  esbuild: true
+  sharp: false
+  unrs-resolver: true
+  workerd: false
+
+minimumReleaseAgeExclude:
+  - miniflare@5.20261019.1-beta
+  - wrangler@4.151.3

@@ -1,0 +1,29 @@
+---
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  steps: Step[];
+  compact?: boolean;
+}
+
+const { steps, compact = false } = Astro.props;
+---
+
+<ol class:list={["steps", compact && "steps--compact"]}>
+  {
+    steps.map((step, index) => (
+      <li>
+        <span class="step__num" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>

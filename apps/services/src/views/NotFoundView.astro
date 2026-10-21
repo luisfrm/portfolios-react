@@ -1,0 +1,42 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getDictionary } from "@/i18n";
+import { pageAlternates, pagePath } from "@/lib/routes";
+
+const locale = "es" as const;
+const dict = getDictionary(locale);
+const copy = dict.notFound;
+const alternates = pageAlternates("home");
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.notFound.title}
+  description={dict.seo.notFound.description}
+  alternates={alternates}
+  noindex
+  omitCanonical
+>
+  <section class="simple-page">
+    <div class="shell">
+      <h1>{copy.pageTitle}</h1>
+      <p>{copy.pageLede}</p>
+
+      <div class="simple-page__actions">
+        <a class="btn" href={pagePath(locale, "home")}>{copy.home}</a>
+        <a class="link-arrow" href={pagePath(locale, "contact")}>
+          {copy.contact}
+          <span class="link-arrow__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="link-arrow" href="/en/">
+          English home
+          <span class="link-arrow__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <p class="lost-en" lang="en">
+        This page doesn't exist. <a href="/en/">Go to the English home</a>.
+      </p>
+    </div>
+  </section>
+</Base>

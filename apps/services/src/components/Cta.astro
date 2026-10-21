@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  text: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  note?: string;
+}
+
+const {
+  title,
+  text,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  note,
+} = Astro.props;
+---
+
+<section class="closing">
+  <div class="shell closing__inner">
+    <h2>{title}</h2>
+    <div>
+      <p>{text}</p>
+      <div class="closing__actions">
+        <a class="btn" href={primaryHref}>{primaryLabel}</a>
+        {
+          secondaryLabel && secondaryHref && (
+            <a class="link-arrow" href={secondaryHref}>
+              {secondaryLabel}
+              <span class="link-arrow__arrow" aria-hidden="true">→</span>
+            </a>
+          )
+        }
+      </div>
+      {note && <p class="closing__availability">{note}</p>}
+    </div>
+  </div>
+</section>

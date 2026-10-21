@@ -1,0 +1,193 @@
+---
+import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n";
+import { pagePath, type Locale } from "@/lib/routes";
+import { absoluteUrl } from "@/lib/seo";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const copy = dict.contact;
+const thanksUrl = absoluteUrl(pagePath(locale, "thanks"));
+---
+
+<form
+  class="form"
+  method="POST"
+  action={site.formEndpoint}
+  aria-label={copy.formTitle}
+  data-contact-form
+  data-thanks={thanksUrl}
+  data-sending={copy.sending}
+>
+  <input type="hidden" name="_subject" value={`Nuevo proyecto — ${site.name}`} />
+  <input type="hidden" name="_next" value={thanksUrl} />
+
+  <p class="visually-hidden" aria-hidden="true">
+    <label for="contact-company">No completar</label>
+    <input
+      id="contact-company"
+      type="text"
+      name="_gotcha"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </p>
+
+  <div class="form__row">
+    <div class="field">
+      <label class="field__label" for="contact-name">{copy.fields.name}</label>
+      <input
+        class="field__control"
+        id="contact-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        placeholder={copy.fields.namePlaceholder}
+        aria-describedby="contact-name-hint"
+        required
+      />
+      <p class="field__hint" id="contact-name-hint">
+        {copy.fields.nameHint}
+      </p>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="contact-email">{copy.fields.email}</label>
+      <input
+        class="field__control"
+        id="contact-email"
+        name="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        placeholder={copy.fields.emailPlaceholder}
+        aria-describedby="contact-email-hint"
+        required
+      />
+      <p class="field__hint" id="contact-email-hint">
+        {copy.fields.emailHint}
+      </p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="contact-project">{copy.fields.project}</label>
+    <select
+      class="field__control"
+      id="contact-project"
+      name="project"
+      aria-describedby="contact-project-hint"
+      required
+    >
+      <option value="" disabled selected>{copy.fields.projectPlaceholder}</option>
+      {
+        copy.fields.projectOptions.map((option) => (
+          <option value={option.value}>{option.label}</option>
+        ))
+      }
+    </select>
+    <p class="field__hint" id="contact-project-hint">
+      {copy.fields.projectHint}
+    </p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="contact-message">{copy.fields.message}</label>
+    <textarea
+      class="field__control"
+      id="contact-message"
+      name="message"
+      rows="5"
+      placeholder={copy.fields.messagePlaceholder}
+      aria-describedby="contact-message-hint"
+      required></textarea>
+    <p class="field__hint" id="contact-message-hint">{copy.fields.messageHint}</p>
+  </div>
+
+  <label class="checkbox">
+    <input type="checkbox" name="consent" value="yes" required />
+    <span>
+      {copy.consent}{" "}
+      <a
+        href={pagePath(locale, "privacy")}
+        target="_blank"
+        rel="noopener"
+      >{copy.consentLink}</a>.
+    </span>
+  </label>
+
+  <p class="field__hint">{copy.privacyNote}</p>
+
+  <div class="form__alert" data-form-alert role="alert" hidden>
+    <strong>{copy.errorTitle}</strong>
+    <span>{copy.errorBody}</span>
+    <a href={`mailto:${site.email}`}>{copy.errorMail} →</a>
+  </div>
+
+  <div class="form__actions">
+    <button class="btn" type="submit">
+      <span data-submit-label>{copy.submit}</span>
+      <span aria-hidden="true">→</span>
+    </button>
+    <span class="form__status" aria-live="polite"></span>
+  </div>
+</form>
+
+<script>
+  document
+    .querySelectorAll<HTMLFormElement>("[data-contact-form]")
+    .forEach((form) => {
+      const button = form.querySelector<HTMLButtonElement>(
+        'button[type="submit"]',
+      );
+      const label = form.querySelector<HTMLElement>("[data-submit-label]");
+      const alert = form.querySelector<HTMLElement>("[data-form-alert]");
+      const sending = form.dataset.sending ?? "Sending…";
+      const thanksUrl = form.dataset.thanks ?? "/";
+      const original = label?.textContent ?? "";
+
+      const restore = () => {
+        if (button) {
+          button.disabled = false;
+          button.removeAttribute("aria-busy");
+        }
+        if (label) label.textContent = original;
+      };
+
+      form.addEventListener("submit", async (event) => {
+        if (!("fetch" in window)) return;
+
+        event.preventDefault();
+        if (alert) alert.hidden = true;
+        if (button) {
+          button.disabled = true;
+          button.setAttribute("aria-busy", "true");
+        }
+        if (label) label.textContent = sending;
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+            signal: controller.signal,
+          });
+
+          if (!response.ok) throw new Error(String(response.status));
+          window.location.assign(new URL(thanksUrl).pathname);
+        } catch {
+          if (alert) alert.hidden = false;
+          restore();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      });
+    });
+</script>

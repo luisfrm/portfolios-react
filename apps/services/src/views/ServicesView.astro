@@ -1,0 +1,165 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/components/Cta.astro";
+import Faq from "@/components/Faq.astro";
+import { getCase, services } from "@/data/services";
+import { getDictionary } from "@/i18n";
+import {
+  casePath,
+  pageAlternates,
+  pagePath,
+  servicePath,
+  type Locale,
+} from "@/lib/routes";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+const alternates = pageAlternates("services");
+
+const offers = services.map((service) => ({
+  service,
+  copy: dict.serviceList[service.key],
+  cases: service.caseKeys.map((key) => getCase(key)),
+}));
+---
+
+<Base
+  locale={locale}
+  title={dict.seo.services.title}
+  description={dict.seo.services.description}
+  alternates={alternates}
+>
+  <section class="page-head">
+    <div class="shell">
+      <p class="mono page-head__meta">
+        {dict.services.priceLabel}: {dict.services.priceValue}
+      </p>
+      <h1>{dict.services.pageTitle}</h1>
+      <p>{dict.services.pageLede}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell">
+      <div class="offer-list">
+        {
+          offers.map(({ service, copy, cases }, index) => {
+            const primaryCase = cases[0];
+            const primaryCopy = dict.cases[primaryCase.key];
+            return (
+              <article class="offer">
+                <div class="offer__head">
+                  <p class="offer__index" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")} · {copy.label}
+                  </p>
+                  <h2 class="offer__title">{copy.title}</h2>
+                  <p class="offer__summary">{copy.outcomeLine}</p>
+                  <p class="offer__meta">
+                    <span>{copy.timelineLabel}: {copy.timeline}</span>
+                    <span>{dict.services.priceLabel}: {dict.services.priceValue}</span>
+                  </p>
+                  <div class="offer__actions">
+                    <a class="link-arrow" href={servicePath(locale, service.key)}>
+                      {dict.ui.viewService}
+                      <span class="link-arrow__arrow" aria-hidden="true">→</span>
+                    </a>
+                  </div>
+
+                  <div class="offer__includes">
+                    <h3 class="offer__includes-title">{copy.includesTitle}</h3>
+                    <ul class="scope-list">
+                      {copy.includes.slice(0, 5).map((item) => <li>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="offer__aside">
+                  <div class="offer__case">
+                    <a
+                      href={casePath(locale, primaryCase.key)}
+                      aria-label={`${dict.ui.viewCase}: ${primaryCopy.title}`}
+                    >
+                      <img
+                        src={primaryCase.cover}
+                        alt={primaryCase.coverAlt[locale]}
+                        width="1200"
+                        height="750"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                    <p class="offer__case-caption">
+                      <span>{dict.ui.relatedCases}</span>
+                      <span>{primaryCopy.title} · {primaryCopy.outcomeLine}</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head section-head--split">
+        <h2>{dict.services.compareTitle}</h2>
+        <p>{dict.services.compareLede}</p>
+      </div>
+
+      <div class="service-matrix">
+        <div class="service-matrix__row service-matrix__head-row">
+          <span class="service-matrix__label" aria-hidden="true"></span>
+          {
+            dict.services.compareHead.map((head) => (
+              <span class="service-matrix__head">{head}</span>
+            ))
+          }
+        </div>
+        {
+          dict.services.compare.map((row) => (
+            <div class="service-matrix__row">
+              <span class="service-matrix__label">{row.label}</span>
+              {row.values.map((value, index) => (
+                <span
+                  class="service-matrix__value"
+                  data-label={dict.services.compareHead[index]}
+                >
+                  {value}
+                </span>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="service-note">{dict.services.priceNote}</p>
+    </div>
+  </section>
+
+  <section class="section rule-top">
+    <div class="shell">
+      <div class="section-head">
+        <h2>{dict.services.faqTitle}</h2>
+        <p>{dict.services.faqLede}</p>
+      </div>
+      <Faq items={dict.services.faq} />
+    </div>
+  </section>
+
+  <Cta
+    title={dict.services.ctaTitle}
+    text={dict.services.ctaText}
+    primaryLabel={dict.services.ctaAction}
+    primaryHref={pagePath(locale, "contact")}
+    secondaryLabel={dict.services.ctaSecondary}
+    secondaryHref={pagePath(locale, "work")}
+    note={dict.contact.availability}
+  />
+</Base>

@@ -1,0 +1,21 @@
+---
+import CaseView from "@/views/CaseView.astro";
+import { caseKeys, type CaseKey } from "@/data/services";
+
+export function getStaticPaths() {
+  return caseKeys.map((key) => ({
+    params: { slug: key },
+  }));
+}
+
+const slug = Astro.params.slug ?? "";
+const isCase = (caseKeys as readonly string[]).includes(slug);
+
+if (!isCase) {
+  throw new Error(`Unknown case slug: ${slug}`);
+}
+
+const caseKey = slug as CaseKey;
+---
+
+<CaseView locale="en" caseKey={caseKey} />
