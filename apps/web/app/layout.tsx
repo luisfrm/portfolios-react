@@ -48,8 +48,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${workSans.variable} ${bitter.variable}`} suppressHydrationWarning>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
-        <Analytics />
+        <ThemeProvider
+          attribute={["class", "data-theme"]}
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+        {/* Vercel Analytics only has a backend on Vercel deployments. */}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

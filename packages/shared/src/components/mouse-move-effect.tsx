@@ -1,10 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
+
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export function MouseMoveEffect() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Hydration-safe mount flag: the server and first client render use `false`,
+  // then React switches to `true` after hydration without a mismatch.
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -18,9 +29,10 @@ export function MouseMoveEffect() {
     };
   }, []);
 
-  // `resolvedTheme` is undefined on the server and during hydration, so both
-  // render the light gradient and there is no mismatch to guard against.
-  const currentTheme = resolvedTheme ?? "light";
+  // Keep the first client render identical to the server render. next-themes
+  // can resolve the stored theme before hydration, which would otherwise make
+  // the gradient color differ between server HTML and the client tree.
+  const currentTheme = mounted ? resolvedTheme ?? "light" : "light";
   const gradientColor =
     currentTheme === "dark"
       ? "rgba(29, 78, 216, 0.15)"
@@ -28,9 +40,10 @@ export function MouseMoveEffect() {
 
   return (
     <div
+      aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
       style={{
-        background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, ${gradientColor}, transparent 80%)`,
+        backgroundImage: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, ${gradientColor}, transparent 80%)`,
       }}
     />
   );
