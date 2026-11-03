@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useScrollTo } from "@/hooks";
@@ -27,36 +27,18 @@ export function UpWidget() {
   return (
     <div
       className={cn(
-        "fixed bottom-6 right-6 z-50 transition-all duration-300",
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-2 pointer-events-none"
+        "fixed bottom-6 right-6 z-50 transition-opacity duration-200",
+        isVisible ? "opacity-100" : "pointer-events-none opacity-0"
       )}
     >
-      <div
+      <button
+        type="button"
         onClick={handleClick}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleClick();
-          }
-        }}
-        className={cn(
-          "w-12 h-12 rounded-full cursor-pointer",
-          "bg-gradient-to-r from-blue-600 to-slate-700 text-white",
-          "hover:from-blue-700 hover:to-slate-800",
-          "shadow-lg hover:shadow-xl",
-          "transform hover:scale-110 transition-all duration-300",
-          "flex items-center justify-center",
-          "border border-blue-500/20",
-          "backdrop-blur-sm"
-        )}
         aria-label={t("common.scrollToTop")}
+        className="flex h-10 w-10 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
       >
-        <ChevronUp className="w-5 h-5" />
-      </div>
+        <ArrowUp className="h-4 w-4" />
+      </button>
     </div>
   );
 }

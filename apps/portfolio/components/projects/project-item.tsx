@@ -3,18 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ExternalLink, Mail, Maximize2 } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
 import { GithubIcon } from "@portfolio/shared/components/icons/brand-icons";
 import { cn } from "@/lib/utils";
-import { useInView, useScrollTo } from "@/hooks";
+import { useScrollTo } from "@/hooks";
 import { type Project, type ProjectMedia } from "@/lib/data/projects";
 
-import { Badge } from "@portfolio/ui/components/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@portfolio/ui/components/dialog";
 import {
   Carousel,
   CarouselContent,
@@ -23,87 +17,174 @@ import {
   CarouselNext,
   type CarouselApi,
 } from "@portfolio/ui/components/carousel";
+import { Dialog, DialogContent, DialogTitle } from "@portfolio/ui/components/dialog";
 import { ExpandableText } from "@portfolio/shared/components/expandable-text";
 
-/* Hallmark · component: project-item · genre: editorial · theme: custom · archetype: Split Ledger / Card */
+/* Hallmark · component: project-item · genre: editorial · theme: custom · archetype: Featured Sheet / Ledger Row */
 
-interface Props {
-  project: Project & {
-    title?: string;
-    description?: string;
-    media?: ProjectMedia[];
-    githubUrl?: string;
-    liveUrl?: string;
-    consoleUrl?: string;
-  };
-  delayClass?: string;
-  index: number;
-  isFeatured?: boolean;
+type ProjectWithCopy = Project & {
+  title?: string;
+  description?: string;
+  media?: ProjectMedia[];
+  githubUrl?: string;
+  liveUrl?: string;
+  consoleUrl?: string;
+};
+
+const META = "font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground";
+
+const LINK = cn(
+  "inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.16em]",
+  "text-foreground transition-colors hover:text-primary"
+);
+
+function ProjectLinks({ project }: { project: ProjectWithCopy }) {
+  const { title, githubUrl, liveUrl, consoleUrl } = project;
+  const { scrollToElement } = useScrollTo();
+  const t = useTranslations();
+
+  const hasGithub = Boolean(githubUrl && githubUrl.trim() !== "");
+  const hasLive = Boolean(liveUrl && liveUrl.trim() !== "");
+  const hasConsole = Boolean(consoleUrl && consoleUrl.trim() !== "");
+
+  const contactLink = (
+    <a
+      href="#contact-form"
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToElement("#contact-form");
+      }}
+      className={LINK}
+      aria-label={`Contact regarding ${title}`}
+    >
+      <Mail className="h-3.5 w-3.5" />
+      <span>{t("projects.contactCode")}</span>
+    </a>
+  );
+
+  const githubLink = (
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={LINK}
+      aria-label={`View ${title} source code`}
+    >
+      <GithubIcon className="h-3.5 w-3.5" />
+      <span>{t("projects.viewCode")}</span>
+    </a>
+  );
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+      {hasGithub ? githubLink : contactLink}
+      {hasLive && (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={LINK}
+          aria-label={`View ${title} live demo`}
+        >
+          <ExternalLink className="h-3.5 w-3.5" />
+          <span>{t("projects.liveDemo")}</span>
+        </a>
+      )}
+      {hasConsole && (
+        <a
+          href={consoleUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={LINK}
+          aria-label={`View ${title} SaaS console`}
+        >
+          <ExternalLink className="h-3.5 w-3.5" />
+          <span>{t("projects.consoleDemo")}</span>
+        </a>
+      )}
+    </div>
+  );
 }
 
-const TECH_BADGE_STYLE =
-  "px-3 py-1 text-xs font-mono rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/80 transition-colors";
+/** Compact list row: the secondary rhythm, deliberately not a card grid. */
+export function ProjectRow({ project }: { project: ProjectWithCopy }) {
+  const { title, description, media, technologies } = project;
+  const cover = media?.find((item) => item.type === "image") ?? media?.[0];
 
-export function ProjectItem({ project, delayClass, isFeatured = false }: Props) {
-  const {
-    title,
-    description,
-    media,
-    technologies,
-    githubUrl,
-    liveUrl,
-    consoleUrl,
-  } = project;
+  return (
+    <article className="group grid grid-cols-[84px_minmax(0,1fr)] items-start gap-5 border-t border-border py-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-8 sm:py-8">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+        {cover?.type === "image" ? (
+          <Image
+            src={cover.url}
+            alt={`${title} preview`}
+            fill
+            sizes="(max-width: 640px) 84px, 160px"
+            className="object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            {title}
+          </span>
+        )}
+      </div>
 
-  // Build the media list — images share the carousel slot
+      <div className="min-w-0">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+          <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+            {title}
+          </h3>
+          <p className={cn(META, "shrink-0")}>
+            {technologies.slice(0, 3).join(" / ")}
+          </p>
+        </div>
+        {description && (
+          <p className="mt-2 line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {description}
+          </p>
+        )}
+        <div className="mt-4">
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** Full-width featured sheet with carousel + lightbox. */
+export function ProjectItem({ project }: { project: ProjectWithCopy }) {
+  const { title, description, media, technologies } = project;
   const mediaList: ProjectMedia[] = media ?? [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [api, setApi] = useState<CarouselApi>();
   const [modalApi, setModalApi] = useState<CarouselApi>();
-
-  const { ref, isInView } = useInView<HTMLDivElement>({
-    threshold: 0.2,
-    rootMargin: "100px",
-  });
-  const { scrollToElement } = useScrollTo();
   const t = useTranslations();
 
-  // Listen to main card Embla carousel slide changes (when modal is closed)
   useEffect(() => {
     if (!api) return;
-
     const onSelect = () => {
-      if (!isLightboxOpen) {
-        setCurrentIndex(api.selectedScrollSnap());
-      }
+      if (!isLightboxOpen) setCurrentIndex(api.selectedScrollSnap());
     };
-
     api.on("select", onSelect);
     return () => {
       api.off("select", onSelect);
     };
   }, [api, isLightboxOpen]);
 
-  // Listen to Lightbox modal Embla carousel slide changes (when modal is open)
   useEffect(() => {
     if (!modalApi) return;
-
     const onSelect = () => {
-      if (isLightboxOpen) {
-        const idx = modalApi.selectedScrollSnap();
-        setCurrentIndex(idx);
-      }
+      if (isLightboxOpen) setCurrentIndex(modalApi.selectedScrollSnap());
     };
-
     modalApi.on("select", onSelect);
     return () => {
       modalApi.off("select", onSelect);
     };
   }, [modalApi, isLightboxOpen]);
 
-  // Sync state between card and modal on open/close without animation loops
   useEffect(() => {
     if (isLightboxOpen) {
       modalApi?.scrollTo(currentIndex, true);
@@ -137,129 +218,46 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     [mediaList.length, currentIndex, api]
   );
 
-  // Keyboard navigation when Lightbox Modal is open
   useEffect(() => {
     if (!isLightboxOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        handleNext();
-      } else if (e.key === "ArrowLeft") {
-        handlePrev();
-      }
+      if (e.key === "ArrowRight") handleNext();
+      else if (e.key === "ArrowLeft") handlePrev();
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isLightboxOpen, handleNext, handlePrev]);
-
-  // Determine link presence & space-between layout logic
-  const hasGithub = Boolean(githubUrl && githubUrl.trim() !== "");
-  const hasLive = Boolean(liveUrl && liveUrl.trim() !== "");
-  const hasConsole = Boolean(consoleUrl && consoleUrl.trim() !== "");
-  // If githubUrl is missing/empty, display Contact link as fallback
-  const isJustifyBetween = hasLive || hasConsole;
-
-  const renderCodeOrContactLink = () => {
-    if (hasGithub) {
-      return (
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          aria-label={`View ${title} source code`}
-        >
-          <GithubIcon className="w-4 h-4" />
-          <span>{t("projects.viewCode")}</span>
-        </a>
-      );
-    }
-
-    return (
-      <a
-        href="#contact-form"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToElement("#contact-form");
-        }}
-        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
-        aria-label={`Contact regarding ${title}`}
-      >
-        <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-        <span>{t("projects.contactCode")}</span>
-      </a>
-    );
-  };
-
-  const renderLiveLink = () => {
-    if (!hasLive && !hasConsole) return null;
-
-    const linkClass =
-      "inline-flex items-center gap-1.5 sm:gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors";
-
-    return (
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        {hasLive && (
-          <a
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            aria-label={`View ${title} live demo`}
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span>{t("projects.liveDemo")}</span>
-          </a>
-        )}
-        {hasConsole && (
-          <a
-            href={consoleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-            aria-label={`View ${title} SaaS console`}
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span>{t("projects.consoleDemo")}</span>
-          </a>
-        )}
-      </div>
-    );
-  };
 
   const renderLightboxModal = () => {
     if (mediaList.length === 0) return null;
 
     return (
       <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
-        <DialogContent className="max-w-[92vw] sm:max-w-5xl max-h-[80vh] sm:max-h-[85vh] bg-black/95 border-slate-800 text-white p-3 sm:p-5 flex flex-col justify-between overflow-hidden rounded-2xl outline-none">
+        <DialogContent className="max-w-[92vw] sm:max-w-5xl max-h-[80vh] sm:max-h-[85vh] bg-black/95 border-white/10 text-white p-3 sm:p-5 flex flex-col justify-between overflow-hidden outline-none">
           <DialogTitle className="sr-only">
             {title} - Image {currentIndex + 1} of {mediaList.length}
           </DialogTitle>
 
-          {/* Modal Header: Clear pr-12 padding prevents collision with the absolute close (X) button */}
-          <div className="flex items-center justify-between pb-2.5 border-b border-white/10 z-10 pr-10">
-            <h4 className="font-semibold text-xs sm:text-sm text-slate-200 truncate pr-2">
+          <div className="flex items-center justify-between border-b border-white/10 pb-2.5 pr-10">
+            <h4 className="truncate pr-2 text-xs font-semibold text-white/80 sm:text-sm">
               {title}
             </h4>
-            <span className="font-mono text-xs text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full whitespace-nowrap shrink-0">
+            <span className="shrink-0 whitespace-nowrap font-mono text-xs text-white/60">
               {currentIndex + 1} / {mediaList.length}
             </span>
           </div>
 
-          {/* Modal Media Carousel Display Container */}
-          <div className="relative flex-1 w-full my-2 overflow-hidden flex items-center justify-center">
+          <div className="relative my-2 flex w-full flex-1 items-center justify-center overflow-hidden">
             <Carousel
               setApi={setModalApi}
               opts={{ loop: true, startIndex: currentIndex }}
-              className="w-full h-full"
+              className="h-full w-full"
             >
-              <CarouselContent className="h-full -ml-0 items-center">
+              <CarouselContent className="-ml-0 h-full items-center">
                 {mediaList.map((item, idx) => (
-                  <CarouselItem key={`modal-${idx}`} className="pl-0 h-full flex items-center justify-center">
+                  <CarouselItem key={`modal-${idx}`} className="flex h-full items-center justify-center pl-0">
                     {item.type === "image" ? (
-                      <div className="relative w-full h-[45vh] sm:h-[60vh] max-h-[60vh] flex items-center justify-center">
+                      <div className="relative flex h-[45vh] max-h-[60vh] w-full items-center justify-center sm:h-[60vh]">
                         <Image
                           src={item.url}
                           alt={`${title} fullscreen view ${idx + 1}`}
@@ -270,8 +268,8 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                         />
                       </div>
                     ) : (
-                      <div className="w-full h-[45vh] flex items-center justify-center bg-slate-900 text-slate-300">
-                        <span className="font-mono text-base">▶ Video Player</span>
+                      <div className="flex h-[45vh] w-full items-center justify-center bg-neutral-900 text-neutral-300">
+                        <span className="font-mono text-sm">Video</span>
                       </div>
                     )}
                   </CarouselItem>
@@ -280,16 +278,15 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
 
               {mediaList.length > 1 && (
                 <>
-                  <CarouselPrevious className="left-1 sm:left-3 h-9 w-9 bg-black/70 hover:bg-black/90 text-white border-none" />
-                  <CarouselNext className="right-1 sm:right-3 h-9 w-9 bg-black/70 hover:bg-black/90 text-white border-none" />
+                  <CarouselPrevious className="left-1 h-9 w-9 border-none bg-black/70 text-white hover:bg-black/90 sm:left-3" />
+                  <CarouselNext className="right-1 h-9 w-9 border-none bg-black/70 text-white hover:bg-black/90 sm:right-3" />
                 </>
               )}
             </Carousel>
           </div>
 
-          {/* Modal Dots Navigation Footer */}
           {mediaList.length > 1 && (
-            <div className="flex items-center justify-center gap-1.5 pt-2.5 border-t border-white/10 z-10">
+            <div className="flex items-center justify-center gap-1.5 border-t border-white/10 pt-2.5">
               {mediaList.map((_, idx) => (
                 <button
                   key={`modal-dot-${idx}`}
@@ -300,10 +297,8 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
                   }}
                   aria-label={`Go to slide ${idx + 1}`}
                   className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    idx === currentIndex
-                      ? "w-5 bg-blue-500"
-                      : "w-1.5 bg-white/40 hover:bg-white/70"
+                    "h-1 transition-all duration-200",
+                    idx === currentIndex ? "w-5 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70"
                   )}
                 />
               ))}
@@ -314,234 +309,91 @@ export function ProjectItem({ project, delayClass, isFeatured = false }: Props) 
     );
   };
 
-  if (isFeatured) {
-    return (
-      <div
-        ref={ref}
-        className={cn("col-span-full animate-fade-up", delayClass, isInView && "is-visible")}
-      >
-        <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/60 shadow-lg hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300">
-          
-          {/* Media Container (Full Width — 2:1 aspect ratio images) */}
-          <div className="relative w-full aspect-[2/1] bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
-            {mediaList.length > 0 ? (
-              <Carousel
-                setApi={setApi}
-                opts={{ loop: true }}
-                className="w-full h-full"
-              >
-                <CarouselContent className="h-full min-h-[300px] -ml-0">
-                  {mediaList.map((item, idx) => (
-                    <CarouselItem key={idx} className="pl-0 h-full">
-                      <div
-                        onClick={() => setIsLightboxOpen(true)}
-                        className="relative w-full h-full min-h-[300px] cursor-zoom-in group/img"
-                      >
-                        {/* Expand Icon Hint */}
-                        <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 text-white backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-opacity z-10 pointer-events-none">
-                          <Maximize2 className="w-4 h-4" />
-                        </div>
-
-                        {item.type === "image" ? (
-                          <Image
-                            src={item.url}
-                            alt={`Preview of ${title} (Slide ${idx + 1})`}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 60vw"
-                            className="object-cover"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
-                            <span className="font-mono text-sm opacity-60">▶ Video</span>
-                          </div>
-                        )}
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-
-                {mediaList.length > 1 && (
-                  <>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-auto">
-                      {mediaList.map((_, idx) => (
-                        <span
-                          key={idx}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            api?.scrollTo(idx);
-                          }}
-                          className={cn(
-                            "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
-                            idx === currentIndex ? "w-5 bg-white" : "w-1.5 bg-white/50"
-                          )}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-              </Carousel>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
-                <span className="font-mono text-base">{title}</span>
-              </div>
-            )}
-          </div>
-
-          {/* Content Column (Full Width below image) */}
-          <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 font-mono text-xs uppercase tracking-wider w-fit">
-                ★ Featured Project
-              </Badge>
-              
-              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                {title}
-              </h3>
-              
-              <ExpandableText
-                text={description ?? ""}
-                lines={4}
-                toggleLabel={t("common.readMore")}
-                collapseLabel={t("common.readLess")}
-              />
-            </div>
-
-            <div className="space-y-6">
-              {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5">
-                {technologies.map((tech, i) => (
-                  <span key={`tech-${i}`} className={TECH_BADGE_STYLE}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Actions Footer Links */}
-              <div className={cn("pt-4 border-t border-border/40 flex flex-wrap items-center gap-2 w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
-                {renderCodeOrContactLink()}
-                {renderLiveLink()}
-              </div>
-            </div>
-
-          </div>
-
-        </article>
-        {renderLightboxModal()}
-      </div>
-    );
-  }
-
   return (
-    <div
-      ref={ref}
-      className={cn("animate-fade-up", delayClass, isInView && "is-visible")}
-    >
-      <article className="group relative bg-card/90 backdrop-blur-md rounded-2xl overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 flex flex-col h-full">
-        
-        {/* Media Container: Single Item or Carousel */}
-        <div className="relative h-64 w-full bg-slate-900/10 dark:bg-slate-900/60 overflow-hidden">
-          {mediaList.length > 0 ? (
-            <Carousel
-              setApi={setApi}
-              opts={{ loop: true }}
-              className="w-full h-full"
-            >
-              <CarouselContent className="h-full -ml-0">
-                {mediaList.map((item, idx) => (
-                  <CarouselItem key={idx} className="pl-0 h-full">
-                    <div
-                      onClick={() => setIsLightboxOpen(true)}
-                      className="relative w-full h-full cursor-zoom-in group/img"
-                    >
-                      {/* Expand Icon Hint */}
-                      <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 text-white backdrop-blur-md opacity-0 group-hover/img:opacity-100 transition-opacity z-10 pointer-events-none">
-                        <Maximize2 className="w-4 h-4" />
-                      </div>
-
-                      {item.type === "image" ? (
-                        <Image
-                          src={item.url}
-                          alt={`Preview of ${title} (Slide ${idx + 1})`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-300">
-                          <span className="font-mono text-sm opacity-60">▶ Video</span>
-                        </div>
-                      )}
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-
-              {mediaList.length > 1 && (
-                <>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 pointer-events-auto">
-                    {mediaList.map((_, idx) => (
-                      <span
-                        key={idx}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          api?.scrollTo(idx);
-                        }}
-                        className={cn(
-                          "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
-                          idx === currentIndex ? "w-4 bg-white" : "w-1.5 bg-white/50"
-                        )}
+    <article className="group border border-border bg-card">
+      <div className="relative aspect-[2/1] w-full overflow-hidden bg-muted">
+        {mediaList.length > 0 ? (
+          <Carousel setApi={setApi} opts={{ loop: true }} className="h-full w-full">
+            <CarouselContent className="-ml-0 h-full">
+              {mediaList.map((item, idx) => (
+                <CarouselItem key={idx} className="h-full pl-0">
+                  <div
+                    onClick={() => setIsLightboxOpen(true)}
+                    className="relative h-full w-full cursor-zoom-in"
+                  >
+                    {item.type === "image" ? (
+                      <Image
+                        src={item.url}
+                        alt={`Preview of ${title} (Slide ${idx + 1})`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        className="object-cover"
+                        loading="lazy"
                       />
-                    ))}
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-neutral-900 text-neutral-300">
+                        <span className="font-mono text-sm">Video</span>
+                      </div>
+                    )}
                   </div>
-                </>
-              )}
-            </Carousel>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400">
-              <span className="font-mono text-sm">{title}</span>
-            </div>
-          )}
-        </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
 
-        {/* Content Body */}
-        <div className="p-6 flex flex-col space-y-4">
-          <div className="space-y-3">
-            <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              {title}
-            </h3>
+            {mediaList.length > 1 && (
+              <>
+                <CarouselPrevious className="left-3 border-none bg-background/90 text-foreground hover:bg-background" />
+                <CarouselNext className="right-3 border-none bg-background/90 text-foreground hover:bg-background" />
+                <div className="absolute bottom-3 left-4 flex gap-1.5">
+                  {mediaList.map((_, idx) => (
+                    <span
+                      key={idx}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        api?.scrollTo(idx);
+                      }}
+                      className={cn(
+                        "h-1 cursor-pointer transition-all duration-200",
+                        idx === currentIndex ? "w-5 bg-foreground" : "w-1.5 bg-foreground/40"
+                      )}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </Carousel>
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
+            <span className="font-mono text-sm">{title}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-12 lg:gap-10 lg:p-10">
+        <div className="lg:col-span-7">
+          <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            {title}
+          </h3>
+          <div className="mt-3 text-base leading-relaxed text-muted-foreground">
             <ExpandableText
               text={description ?? ""}
-              lines={3}
+              lines={4}
               toggleLabel={t("common.readMore")}
               collapseLabel={t("common.readLess")}
             />
           </div>
-
-          {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
-            {technologies.map((tech, i) => (
-              <span key={`tech-${i}`} className={TECH_BADGE_STYLE}>
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Actions Footer Links */}
-          <div className={cn("pt-4 border-t border-border/40 flex flex-wrap items-center gap-2 w-full", isJustifyBetween ? "justify-between" : "justify-start")}>
-            {renderCodeOrContactLink()}
-            {renderLiveLink()}
-          </div>
         </div>
 
-      </article>
+        <div className="flex flex-col justify-between gap-6 lg:col-span-5">
+          <p className={META}>{technologies.join(" / ")}</p>
+          <div className="border-t border-border pt-4">
+            <ProjectLinks project={project} />
+          </div>
+        </div>
+      </div>
+
       {renderLightboxModal()}
-    </div>
+    </article>
   );
 }
 

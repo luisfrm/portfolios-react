@@ -52,7 +52,7 @@ export function Navigation() {
           onClick={() => setIsSheetOpen(false)}
         />
       )}
-      <nav className="shadow-md fixed w-screen z-50 bg-gradient-to-b from-background via-background/90 to-background top-0 border-b border-b-[#ffffff77]">
+      <nav className="fixed top-0 z-50 w-screen border-b border-border bg-background/80 backdrop-blur-md">
         <div
           className={cn(
             NAV_CONFIG.MAX_WIDTH,
@@ -152,7 +152,7 @@ export function Navigation() {
                     {/* Social & Language Controls */}
                     <div
                       id="nav_actions_mobile"
-                      className="flex flex-col gap-3 pt-4 border-t border-slate-200 dark:border-slate-800"
+                      className="flex flex-col gap-3 pt-4 border-t border-border"
                     >
                       <section className="flex items-center gap-3">
                         <Button

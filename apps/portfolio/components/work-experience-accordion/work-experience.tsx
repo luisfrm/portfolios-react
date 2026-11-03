@@ -3,17 +3,14 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, Building2 } from "lucide-react";
-import { Badge } from "@portfolio/ui/components/badge";
-import { Button } from "@portfolio/ui/components/button";
 import { cn } from "@/lib/utils";
-import { LAYOUT, TYPOGRAPHY, COLORS, SPACING } from "@/lib/constants";
-import { AnimatedSection } from "@portfolio/shared/components/animated-section";
+import { LAYOUT } from "@/lib/constants";
+import { SectionHead } from "@/components/layout/section-head";
 import { workExperiences } from "@/lib/data/workExperience";
 
 /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
 
-const SKILL_BADGE_STYLE =
-  "bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-blue-500/60 dark:hover:border-blue-400/60 transition-all duration-200 text-xs font-mono font-medium shadow-2xs";
+const META = "font-mono text-[11px] uppercase tracking-[0.16em]";
 
 function ExperienceRow({
   data,
@@ -34,72 +31,60 @@ function ExperienceRow({
   const previewItems = data.items ? data.items.slice(0, 3) : [];
 
   return (
-    <AnimatedSection
-      animation="fade-up"
-      delay={index * 100}
+    <article
       className={cn(
-        "group relative pb-8 pt-4 transition-colors",
-        !isLast && "border-b border-slate-200 dark:border-slate-800"
+        "grid gap-6 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10",
+        !isLast && "border-b border-border"
       )}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
-        
-        {/* Left Column: Index & Dates */}
-        <div className="lg:col-span-4 space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">
-              0{index + 1}
-            </span>
-            <span className="h-px w-4 bg-border/60" />
-            <time className="font-mono text-xs uppercase tracking-wider font-semibold text-blue-600 dark:text-blue-400">
-              {data.period}
-            </time>
-          </div>
-          <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-            {data.position}
-          </h3>
-          <div className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 font-medium">
-            <Building2 className="w-3.5 h-3.5 text-slate-400" />
-            <span>{data.company}</span>
-          </div>
+      {/* Left rail: index, period, role, company */}
+      <div className="lg:col-span-4">
+        <div className="flex items-center gap-3">
+          <span className={cn(META, "text-muted-foreground")}>
+            0{index + 1}
+          </span>
+          <time className={cn(META, "font-semibold text-primary")}>
+            {data.period}
+          </time>
         </div>
-
-        {/* Right Column: Description, Item preview & Skill badges */}
-        <div className="lg:col-span-8 space-y-4">
-          {data.description && (
-            <p className={cn(COLORS.TEXT_SECONDARY, "text-base leading-relaxed")}>
-              {data.description}
-            </p>
-          )}
-
-          {previewItems.length > 0 && (
-            <ul className="space-y-2 pt-1">
-              {previewItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                  {/* Upgraded bullet item body text to text-base */}
-                  <span className="font-mono text-slate-400 select-none mt-0.5">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* All skill badges rendered without truncation */}
-          <div className="flex flex-wrap gap-1.5 pt-1">
-            {data.skills.map((skill, i) => (
-              <Badge
-                key={`skill-preview-${i}`}
-                variant="outline"
-                className={SKILL_BADGE_STYLE}
-              >
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
+        <h3 className="mt-3 font-heading text-xl font-bold tracking-tight text-foreground">
+          {data.position}
+        </h3>
+        <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+          <Building2 className="h-3.5 w-3.5" />
+          <span>{data.company}</span>
+        </p>
       </div>
-    </AnimatedSection>
+
+      {/* Body: description, bullets, stack */}
+      <div className="lg:col-span-8">
+        {data.description && (
+          <p className="text-base leading-relaxed text-muted-foreground">
+            {data.description}
+          </p>
+        )}
+
+        {previewItems.length > 0 && (
+          <ul className="mt-4 space-y-2">
+            {previewItems.map((item, i) => (
+              <li
+                key={i}
+                className="flex items-start gap-3 text-base leading-relaxed text-foreground"
+              >
+                <span className="mt-0.5 select-none font-mono text-muted-foreground">
+                  —
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <p className={cn(META, "mt-5 text-muted-foreground")}>
+          {data.skills.join(" / ")}
+        </p>
+      </div>
+    </article>
   );
 }
 
@@ -131,22 +116,22 @@ export function WorkExperience() {
   }>;
 
   return (
-    <section id="experience" className={cn(LAYOUT.CONTAINER_MAX_WIDTH, "mx-auto", SPACING.SECTION)}>
-      <AnimatedSection animation="fade-scale" delay={0}>
-        <div className="text-center mb-8 sm:mb-12">
-          <h2
-            className={cn(
-              TYPOGRAPHY.SECTION_TITLE,
-              "text-3xl sm:text-4xl font-bold tracking-tight text-foreground"
-            )}
+    <section id="experience" className={LAYOUT.CONTAINER_MAX_WIDTH}>
+      <SectionHead
+        index="01"
+        title={t("workExperiences.title")}
+        aside={
+          <Link
+            href={`/${locale}/work-experience`}
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-foreground transition-colors hover:text-primary"
           >
-            {t("workExperiences.title")}
-          </h2>
-          <div className="w-16 h-1 bg-blue-600 dark:bg-blue-400 mx-auto mt-3 rounded-full" />
-        </div>
-      </AnimatedSection>
+            {t("workExperiences.viewMore")}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        }
+      />
 
-      <div className="space-y-2">
+      <div className="border-t border-border">
         {experiences.map((exp, index) => (
           <ExperienceRow
             key={exp.key}
@@ -155,18 +140,6 @@ export function WorkExperience() {
             isLast={index === experiences.length - 1}
           />
         ))}
-      </div>
-
-      <div className="text-center pt-8">
-        <Link href={`/${locale}/work-experience`}>
-          <Button
-            variant="outline"
-            className="gap-2 px-6 py-5 text-sm font-mono uppercase tracking-wider rounded-full border-border hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all"
-          >
-            {t("workExperiences.viewMore")}
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-        </Link>
       </div>
     </section>
   );

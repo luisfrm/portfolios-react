@@ -12,8 +12,8 @@ interface NavItemMobileProps {
 }
 
 const MOBILE_NAV_STYLES = {
-  base: "cursor-pointer block px-3 py-2 rounded-md text-base font-medium",
-  colors: "text-gray-700 dark:text-white hover:text-gray-900",
+  base: "cursor-pointer block px-3 py-2 text-base font-medium",
+  colors: "text-foreground/80 hover:text-foreground",
 };
 
 export function NavItemMobile({

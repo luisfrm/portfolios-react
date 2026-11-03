@@ -14,7 +14,7 @@ interface NavItemProps {
 const NAVIGATION_STYLES = {
   base: "cursor-pointer border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium",
   colors:
-    "text-gray-900 dark:text-gray-300 hover:border-gray-300 hover:text-gray-500 dark:hover:text-white",
+    "text-foreground/80 hover:border-foreground/30 hover:text-foreground",
 };
 
 export function NavItem({ children, url, className, onClick }: NavItemProps) {
