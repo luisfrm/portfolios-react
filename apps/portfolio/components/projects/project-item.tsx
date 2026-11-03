@@ -112,7 +112,7 @@ export function ProjectRow({ project }: { project: ProjectWithCopy }) {
   const cover = media?.find((item) => item.type === "image") ?? media?.[0];
 
   return (
-    <article className="group grid grid-cols-[84px_minmax(0,1fr)] items-start gap-5 border-t border-border py-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-8 sm:py-8">
+    <article className="grid grid-cols-[84px_minmax(0,1fr)] items-start gap-5 border-t border-border py-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-8 sm:py-8">
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         {cover?.type === "image" ? (
           <Image
@@ -132,7 +132,7 @@ export function ProjectRow({ project }: { project: ProjectWithCopy }) {
 
       <div className="min-w-0">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
-          <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+          <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             {title}
           </h3>
           <p className={cn(META, "shrink-0")}>
