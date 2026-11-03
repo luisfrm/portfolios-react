@@ -44,13 +44,13 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
   --color-theme-secondary: var(--themeSecondary);
-  /* Radii scale: containers stay square, only controls get a corner. */
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 3px;
-  --radius-xl: 4px;
-  --radius-2xl: 4px;
-  --radius-3xl: 6px;
+  /* Radii: nothing is rounded. Containers, controls and inputs are square. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -137,60 +137,60 @@
   /* Palette: neutral paper, warm near-black ink, one vermilion signal.
      Deliberately not the slate/blue shadcn default. */
   :root {
-    --background: 0 0% 98.5%;
-    --foreground: 24 10% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 24 10% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 10%;
-    --primary: 16 78% 38%;
-    --primary-foreground: 30 40% 98%;
-    --secondary: 30 8% 94%;
-    --secondary-foreground: 24 10% 12%;
-    --muted: 30 8% 95%;
-    --muted-foreground: 25 7% 38%;
-    --accent: 30 10% 93%;
-    --accent-foreground: 24 10% 12%;
+    --background: 40 12% 98%;
+    --foreground: 24 12% 8%;
+    --card: 40 14% 99%;
+    --card-foreground: 24 12% 8%;
+    --popover: 40 14% 99%;
+    --popover-foreground: 24 12% 8%;
+    --primary: 12 72% 36%;
+    --primary-foreground: 40 30% 98%;
+    --secondary: 36 10% 93%;
+    --secondary-foreground: 24 12% 10%;
+    --muted: 36 10% 94%;
+    --muted-foreground: 26 7% 36%;
+    --accent: 36 11% 92%;
+    --accent-foreground: 24 12% 10%;
     --destructive: 0 72% 42%;
-    --destructive-foreground: 30 40% 98%;
-    --border: 30 9% 87%;
-    --input: 30 9% 85%;
-    --ring: 16 78% 42%;
-    --chart-1: 16 78% 50%;
+    --destructive-foreground: 40 30% 98%;
+    --border: 32 9% 84%;
+    --input: 32 9% 82%;
+    --ring: 12 72% 40%;
+    --chart-1: 12 72% 48%;
     --chart-2: 173 45% 34%;
     --chart-3: 24 20% 32%;
     --chart-4: 43 60% 55%;
     --chart-5: 340 55% 50%;
-    --radius: 0.125rem;
-    --themeSecondary: hsl(24 10% 12%);
+    --radius: 0rem;
+    --themeSecondary: hsl(24 12% 10%);
   }
 
   .dark {
-    --background: 24 10% 8%;
-    --foreground: 30 15% 94%;
-    --card: 24 9% 10%;
-    --card-foreground: 30 15% 94%;
-    --popover: 24 9% 10%;
-    --popover-foreground: 30 15% 94%;
-    --primary: 18 84% 58%;
-    --primary-foreground: 24 30% 10%;
-    --secondary: 24 7% 16%;
-    --secondary-foreground: 30 15% 94%;
-    --muted: 24 7% 16%;
-    --muted-foreground: 30 7% 64%;
-    --accent: 24 7% 18%;
-    --accent-foreground: 30 15% 94%;
+    --background: 24 10% 7%;
+    --foreground: 40 12% 94%;
+    --card: 24 8% 9%;
+    --card-foreground: 40 12% 94%;
+    --popover: 24 8% 9%;
+    --popover-foreground: 40 12% 94%;
+    --primary: 14 82% 58%;
+    --primary-foreground: 24 30% 8%;
+    --secondary: 24 7% 15%;
+    --secondary-foreground: 40 12% 94%;
+    --muted: 24 7% 15%;
+    --muted-foreground: 34 7% 64%;
+    --accent: 24 7% 17%;
+    --accent-foreground: 40 12% 94%;
     --destructive: 0 62% 45%;
-    --destructive-foreground: 30 15% 94%;
-    --border: 24 7% 21%;
-    --input: 24 7% 24%;
-    --ring: 18 84% 58%;
-    --chart-1: 18 84% 60%;
+    --destructive-foreground: 40 12% 94%;
+    --border: 24 7% 20%;
+    --input: 24 7% 23%;
+    --ring: 14 82% 58%;
+    --chart-1: 14 82% 60%;
     --chart-2: 160 45% 50%;
     --chart-3: 30 20% 60%;
     --chart-4: 43 70% 60%;
     --chart-5: 340 70% 60%;
-    --themeSecondary: hsl(24 7% 16%);
+    --themeSecondary: hsl(24 7% 15%);
   }
 }
 
