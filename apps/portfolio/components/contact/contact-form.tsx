@@ -95,16 +95,12 @@ export function ContactForm() {
 
   return (
     <section id="contact-form" className={LAYOUT.CONTAINER_MAX_WIDTH}>
-      <SectionHead index="05" title={t("contactForm.title")} />
+      <SectionHead title={t("contactForm.title")} />
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Left rail: identity and direct contact */}
         <div className="space-y-6 lg:col-span-5">
           <div className="space-y-4">
-            <span className={cn(META, "block text-primary")}>
-              {t("contactForm.subtitle")}
-            </span>
-
             <h3 className="max-w-md font-heading text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl">
               {t("contactForm.headline")}
             </h3>

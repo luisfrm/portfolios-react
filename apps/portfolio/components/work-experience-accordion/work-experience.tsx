@@ -14,7 +14,6 @@ const META = "font-mono text-[11px] uppercase tracking-[0.16em]";
 
 function ExperienceRow({
   data,
-  index,
   isLast,
 }: {
   data: {
@@ -25,7 +24,6 @@ function ExperienceRow({
     items: string[];
     skills: readonly string[];
   };
-  index: number;
   isLast?: boolean;
 }) {
   const previewItems = data.items ? data.items.slice(0, 3) : [];
@@ -37,12 +35,9 @@ function ExperienceRow({
         !isLast && "border-b border-border"
       )}
     >
-      {/* Left rail: index, period, role, company */}
+      {/* Left rail: period, role, company */}
       <div className="lg:col-span-4">
         <div className="flex items-center gap-3">
-          <span className={cn(META, "text-muted-foreground")}>
-            0{index + 1}
-          </span>
           <time className={cn(META, "font-semibold text-primary")}>
             {data.period}
           </time>
@@ -118,7 +113,6 @@ export function WorkExperience() {
   return (
     <section id="experience" className={LAYOUT.CONTAINER_MAX_WIDTH}>
       <SectionHead
-        index="01"
         title={t("workExperiences.title")}
         aside={
           <Link
@@ -136,7 +130,6 @@ export function WorkExperience() {
           <ExperienceRow
             key={exp.key}
             data={exp}
-            index={index}
             isLast={index === experiences.length - 1}
           />
         ))}

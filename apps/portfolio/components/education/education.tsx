@@ -12,7 +12,7 @@ export function Education() {
 
   return (
     <section id="education" className={LAYOUT.CONTAINER_MAX_WIDTH}>
-      <SectionHead index="03" title={t("education.title")} />
+      <SectionHead title={t("education.title")} />
 
       <div className="grid gap-8 sm:grid-cols-12 sm:gap-10">
         {/* Left rail: period and institution, set as metadata */}
@@ -36,21 +36,19 @@ export function Education() {
           </p>
 
           {items && items.length > 0 && (
-            <dl className="mt-8 border-t border-border">
+            <ul className="mt-8 border-t border-border">
               {items.map((item: string, idx: number) => (
-                <div
+                <li
                   key={idx}
-                  className="grid gap-1 border-b border-border py-4 sm:grid-cols-12 sm:gap-8"
+                  className="flex items-start gap-3 border-b border-border py-4 text-sm leading-relaxed text-foreground"
                 >
-                  <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary sm:col-span-3">
-                    {String(idx + 1).padStart(2, "0")}
-                  </dt>
-                  <dd className="text-sm leading-relaxed text-foreground sm:col-span-9">
-                    {item}
-                  </dd>
-                </div>
+                  <span className="mt-0.5 select-none font-mono text-muted-foreground" aria-hidden="true">
+                    —
+                  </span>
+                  <span>{item}</span>
+                </li>
               ))}
-            </dl>
+            </ul>
           )}
         </div>
       </div>

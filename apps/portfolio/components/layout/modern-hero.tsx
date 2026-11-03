@@ -30,16 +30,7 @@ export function ModernHero({ children, className }: ModernHeroProps) {
       <div className="hero-grid-paper pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-24 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-9">
-            <div className={SPACING.HERO_SPACING}>{children}</div>
-          </div>
-          <div className="hidden lg:col-span-3 lg:block lg:justify-self-end lg:text-right">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              Portfolio / {new Date().getFullYear()}
-            </p>
-          </div>
-        </div>
+        <div className={SPACING.HERO_SPACING}>{children}</div>
       </div>
     </section>
   );

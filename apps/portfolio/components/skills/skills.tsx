@@ -22,7 +22,7 @@ export function Skills() {
 
   return (
     <section id="skills" className={LAYOUT.CONTAINER_MAX_WIDTH}>
-      <SectionHead index="04" title={t("skills.title")} />
+      <SectionHead title={t("skills.title")} />
 
       {/* Filters as a text row, not a stack of pills */}
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pb-8">

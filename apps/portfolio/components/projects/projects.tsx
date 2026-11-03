@@ -40,7 +40,6 @@ export function Projects() {
   return (
     <section id="projects" className={LAYOUT.CONTAINER_MAX_WIDTH}>
       <SectionHead
-        index="02"
         title={t("projects.title")}
         aside={
           <Link

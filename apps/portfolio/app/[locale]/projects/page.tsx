@@ -38,10 +38,7 @@ export default function ProjectsPage() {
       <MainContent className="pt-24 sm:pt-28 lg:pt-32">
         <div className="mx-auto w-full max-w-7xl space-y-12 pb-12 sm:space-y-16">
           <header className="border-t border-border pt-5 pb-8 sm:pb-12">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                [02] / Work
-              </p>
+            <div className="flex flex-wrap items-center justify-end gap-3">
               <Link
                 href={`/${locale}`}
                 className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
