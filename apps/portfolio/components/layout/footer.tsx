@@ -33,12 +33,12 @@ export function Footer() {
 
   return (
     <footer className="mt-16 w-full border-t border-border pt-10 pb-8 sm:mt-24">
-      <div className="mx-auto max-w-7xl space-y-10">
+      <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-12 sm:items-start">
           <div className="space-y-3 sm:col-span-6">
             {/* Real availability, stated once; the dot is static on purpose */}
-            <p className={cn(META, "flex items-center gap-2 text-muted-foreground")}>
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+            <p className={cn(META, "flex items-start gap-2 text-muted-foreground")}>
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
               <span>{t("footer.status")}</span>
             </p>
 
@@ -86,7 +86,7 @@ export function Footer() {
           <p>
             © {currentYear} Luis Rivas. {t("footer.rights")}
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <a
               href="/sitemap.xml"
               target="_blank"
