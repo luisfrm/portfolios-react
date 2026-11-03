@@ -61,7 +61,7 @@ export function ExpandableText({
       >
         <p
           ref={pRef}
-          className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed whitespace-pre-line"
+          className="text-base leading-relaxed whitespace-pre-line text-inherit sm:text-lg"
         >
           {text}
         </p>
@@ -74,7 +74,7 @@ export function ExpandableText({
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="mt-1.5 -mb-3 inline-flex items-center py-3 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+          className="mt-1.5 -mb-3 inline-flex items-center py-3 text-sm font-medium text-primary transition-colors hover:text-primary/80"
         >
           {expanded ? collapseLabel : toggleLabel}
         </button>

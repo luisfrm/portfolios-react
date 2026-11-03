@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Work_Sans, Bitter } from "next/font/google";
+import { Work_Sans, Bitter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@portfolio/ui/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
@@ -15,6 +15,14 @@ const workSans = Work_Sans({
 const bitter = Bitter({
   subsets: ["latin"],
   variable: "--font-bitter",
+  display: "swap",
+});
+
+// Mono for labels, metadata and code-ish UI
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -47,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${workSans.variable} ${bitter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${workSans.variable} ${bitter.variable} ${plexMono.variable}`} suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute={["class", "data-theme"]}
