@@ -18,7 +18,7 @@ export function professionalServiceSchema(
     url: site.url,
     email: site.email,
     description: dict.seo.home.description,
-    image: site.ogImage,
+    image: site.ogImage[locale],
     areaServed: "Worldwide",
     availableLanguage: ["es", "en"],
     knowsAbout: [

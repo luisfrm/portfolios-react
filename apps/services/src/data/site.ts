@@ -8,8 +8,10 @@ export const site = {
   github: "https://github.com/luisfrm/",
   linkedin: "https://www.linkedin.com/in/luisrivasm/",
   formEndpoint: "https://formspree.io/f/mvgqkavr",
-  ogImage:
-    "https://r2-personal.luisrivas.site/portfolios/dnova-1.webp",
+  ogImage: {
+    es: "https://servicios.luisrivas.site/og-image-es.png",
+    en: "https://servicios.luisrivas.site/og-image-en.png",
+  },
   r2Base: "https://r2-personal.luisrivas.site/portfolios",
 } as const;
 

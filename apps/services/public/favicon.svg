@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Luis Rivas">
-  <rect width="32" height="32" rx="3" fill="#2455cf"/>
-  <path d="M9.5 7.5h4.2v13.1h9.3v4H9.5z" fill="#fbfbfd"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">Luis Rivas</title>
+  <rect width="32" height="32" rx="7" fill="#a8d832"/>
+  <path d="M8 7.6h3.7v13.5h8v3.4H8z" fill="#0d1911"/>
+  <rect x="21.3" y="21.1" width="3.7" height="3.4" fill="#0d1911"/>
 </svg>
