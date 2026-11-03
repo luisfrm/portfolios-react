@@ -1803,9 +1803,14 @@ main {
 
 @media (min-width: 48rem) {
   .guarantee {
-    padding: var(--space-6) var(--space-6) var(--space-6) 0;
+    padding: var(--space-6);
     border-right: var(--rule-hair) solid var(--color-rule);
     border-bottom: 0;
+  }
+
+  /* The outer edges stay flush with the shell; the inner ones breathe. */
+  .guarantee:first-child {
+    padding-left: 0;
   }
 
   .guarantee:last-child {
