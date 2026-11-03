@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://luisrivas.site"),
   icons: {
     icon: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 

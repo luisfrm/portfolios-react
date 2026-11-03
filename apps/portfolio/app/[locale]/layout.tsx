@@ -6,6 +6,7 @@ import { Toaster } from "@portfolio/ui/components/sonner";
 import { routing } from "@/lib/i18n/routing";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
+import { ogImage } from "@/lib/seo";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -41,12 +42,14 @@ export async function generateMetadata({
       siteName: "Luis Rivas — Senior Full Stack Developer",
       locale: locale === "es" ? "es_ES" : "en_US",
       type: "website",
+      images: [ogImage(locale)],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: "@luisrivasm",
+      images: [ogImage(locale)],
     },
     alternates: {
       canonical: `${baseUrl}/${locale}`,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { routing } from "@/lib/i18n/routing";
 import type { Locale } from "@/lib/i18n/config";
+import { ogImage } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -18,6 +19,7 @@ export async function generateMetadata({
     openGraph: {
       title: dict.projects.pageTitle,
       description: dict.projects.pageSubtitle,
+      images: [ogImage(locale)],
     },
   };
 }
