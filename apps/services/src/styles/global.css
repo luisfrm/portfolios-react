@@ -2,7 +2,7 @@
  * Hallmark · macrostructure: Portfolio Grid · theme: custom (Lima Businessweek)
  * reference: Bloomberg Businessweek covers (2010–2018) — hard white stock,
  *   oversized tight grotesque, one loud colour field, rules as structure.
- * display: Archivo · body: Geist · mono: JetBrains Mono
+ * display: Bricolage Grotesque · body: Hanken Grotesk · mono: Spline Sans Mono
  * axes: light / grotesk-sans / green-lime · studied: no
  * nav: N12 · footer: Ft1 · enrichment: none · v2.1.0
  * contrast: pass (40–41) · honest: pass (46) · chrome: pass (47)
@@ -981,7 +981,7 @@ main {
   font-size: var(--text-display);
   letter-spacing: var(--tracking-display);
   line-height: var(--leading-tight);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .hero__title mark {
@@ -990,6 +990,14 @@ main {
   color: var(--color-accent-ink);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+/* Greedy wrapping splits "trabaja cuando | tú no." on wide columns, but leaves
+   a one-word last line on narrow ones. Balance the lines only below 48rem. */
+@media (max-width: 47.99rem) {
+  .hero__title {
+    text-wrap: balance;
+  }
 }
 
 .hero__lede {
