@@ -7,7 +7,7 @@ import Steps from "@/components/Steps.astro";
 import WorkGrid from "@/components/WorkGrid.astro";
 import { getCase } from "@/data/services";
 import { getDictionary } from "@/i18n";
-import { pageAlternates, pagePath, type Locale } from "@/lib/routes";
+import { pageAlternates, pagePath, casePath, type Locale } from "@/lib/routes";
 
 interface Props {
   locale: Locale;
@@ -230,6 +230,21 @@ const titleAfter = hasTitleMark
               )
             }
           </div>
+
+          <figure class="testimonial__figure">
+            <img
+              src={heroMain.cover}
+              alt={heroMain.coverAlt[locale]}
+              width="1200"
+              height="750"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>{heroMainCopy.title}</span>
+              <a href={casePath(locale, "dnova")}>{dict.ui.viewCase} →</a>
+            </figcaption>
+          </figure>
         </article>
 
         <div class="testimonials__aside">

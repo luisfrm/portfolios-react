@@ -11,10 +11,67 @@ const { items } = Astro.props;
     items.map((item) => (
       <details>
         <summary>{item.question}</summary>
-        <div class="faq__answer">
-          <p>{item.answer}</p>
+        <div class="faq__panel">
+          <div class="faq__answer">
+            <p>{item.answer}</p>
+          </div>
         </div>
       </details>
     ))
   }
 </div>
+
+<script>
+  // <details> opens and closes instantly; animate the panel height instead and
+  // keep the native element (and its keyboard behaviour) as the source of truth.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduceMotion) {
+    const DURATION = 220;
+    const EASING = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+    document.querySelectorAll<HTMLDetailsElement>(".faq details").forEach((details) => {
+      const summary = details.querySelector("summary");
+      const panel = details.querySelector<HTMLElement>(".faq__panel");
+      if (!summary || !panel) return;
+
+      let busy = false;
+
+      summary.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (busy) return;
+
+        const animate = (from: number, to: number, onDone: () => void) => {
+          busy = true;
+          panel.style.overflow = "hidden";
+          panel.style.height = `${from}px`;
+
+          const animation = panel.animate(
+            [
+              { height: `${from}px`, opacity: from === 0 ? 0 : 1 },
+              { height: `${to}px`, opacity: to === 0 ? 0 : 1 },
+            ],
+            { duration: DURATION, easing: EASING, fill: "forwards" }
+          );
+
+          animation.addEventListener("finish", () => {
+            animation.cancel();
+            panel.style.height = "";
+            panel.style.overflow = "";
+            onDone();
+            busy = false;
+          });
+        };
+
+        if (details.open) {
+          animate(panel.offsetHeight, 0, () => {
+            details.open = false;
+          });
+        } else {
+          details.open = true;
+          animate(0, panel.offsetHeight, () => {});
+        }
+      });
+    });
+  }
+</script>

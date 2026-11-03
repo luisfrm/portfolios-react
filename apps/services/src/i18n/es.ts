@@ -159,7 +159,7 @@ export const es = {
       {
         quote:
           "Publico las sesiones nuevas yo misma. Ya no tengo que pedirle a nadie que toque el código.",
-        name: "María R.",
+        name: "Darianny S.",
         role: "Fotógrafa · D'Nova Gallery",
         placeholder: true,
       },
@@ -172,9 +172,9 @@ export const es = {
       },
       {
         quote:
-          "Operación, cobros y accesos están en el mismo sistema. La consola nos deja ver cada gimnasio sin hojas de cálculo.",
-        name: "Daniel S.",
-        role: "Operaciones · FIT Stack",
+          "La web hace las preguntas por mí. Cuando llega la llamada, el encargo ya está claro.",
+        name: "Laura M.",
+        role: "Cliente · Landing",
         placeholder: true,
       },
     ],

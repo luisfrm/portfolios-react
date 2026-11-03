@@ -1846,7 +1846,27 @@ main {
 @media (min-width: 64rem) {
   .testimonials {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    align-items: start;
+    align-items: stretch;
+  }
+
+  /* The lead quote is shorter than the two stacked ones; the case image
+     absorbs the leftover height instead of leaving a hole. */
+  .testimonial--lead {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial__figure {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 200px;
+  }
+
+  .testimonial__figure img {
+    flex: 1 1 0;
+    aspect-ratio: auto;
+    min-height: 0;
   }
 }
 
@@ -1878,6 +1898,44 @@ main {
 
 .testimonial__name {
   color: var(--color-ink);
+}
+
+/* Case still under the lead quote: fills the left column instead of leaving
+   a hole next to the two shorter testimonials. */
+.testimonial__figure {
+  margin: var(--space-6) 0 0;
+  border: var(--rule-hair) solid var(--color-rule);
+  background: var(--color-paper-2);
+}
+
+.testimonial__figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.testimonial__figure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.testimonial__figure a {
+  color: var(--color-accent-strong);
+  text-decoration: none;
+}
+
+.testimonial__figure a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .testimonial__flag {

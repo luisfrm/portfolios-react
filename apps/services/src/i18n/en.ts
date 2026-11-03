@@ -161,7 +161,7 @@ export const en: typeof es = {
       {
         quote:
           "I publish new sessions myself now. I no longer have to ask anyone to touch the code.",
-        name: "María R.",
+        name: "Darianny S.",
         role: "Photographer · D'Nova Gallery",
         placeholder: true,
       },
@@ -174,9 +174,9 @@ export const en: typeof es = {
       },
       {
         quote:
-          "Operations, billing and access live in the same system. The console lets us see every gym without spreadsheets.",
-        name: "Daniel S.",
-        role: "Operations · FIT Stack",
+          "The site asks the questions for me. By the time we talk, the brief is already clear.",
+        name: "Laura M.",
+        role: "Client · Landing",
         placeholder: true,
       },
     ],
